@@ -1,0 +1,6 @@
+{
+  "code-runner.executorMap": {
+    "python": "cd $dir && uv run python $fileName"
+  },
+  "code-runner.runInTerminal": true
+}
