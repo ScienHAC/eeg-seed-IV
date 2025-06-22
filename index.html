@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Guide to the SEED-IV Dataset</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Cool Slate & Indigo -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 40vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .nav-link {
+            transition: color 0.2s;
+        }
+        .nav-link:hover {
+            color: #4f46e5; /* indigo-600 */
+        }
+        .active-nav-link {
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        .llm-loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4f46e5;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Style for the CSV data table */
+        #csv-data-display table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.875rem; /* text-sm */
+        }
+        #csv-data-display th, #csv-data-display td {
+            border: 1px solid #e2e8f0; /* slate-200 */
+            padding: 0.5rem;
+            text-align: left;
+        }
+        #csv-data-display th {
+            background-color: #f1f5f9; /* slate-100 */
+            font-weight: 600;
+            color: #334155; /* slate-700 */
+        }
+        #csv-data-display tbody tr:nth-child(even) {
+            background-color: #f8fafc; /* slate-50 */
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <span class="font-bold text-xl text-slate-800">SEED-IV Explorer</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#overview" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Overview</a>
+                        <a href="#design" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Experiment Design</a>
+                        <a href="#features" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Data & Features</a>
+                        <a href="#explorer" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Interactive Explorer</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <section id="overview" class="text-center py-16 section-fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">An Interactive Guide to the SEED-IV Dataset</h1>
+            <p class="mt-4 max-w-3xl mx-auto text-lg text-slate-600">Explore the structure, features, and methodology of the SEED-IV dataset, a key resource for multimodal emotion recognition research using EEG and Eye Tracking data.</p>
+            
+            <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-100">
+                    <p class="text-4xl font-bold text-indigo-600">4</p>
+                    <p class="mt-2 text-sm font-medium text-slate-500">Target Emotions</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-100">
+                    <p class="text-4xl font-bold text-indigo-600">15</p>
+                    <p class="mt-2 text-sm font-medium text-slate-500">Subjects</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-100">
+                    <p class="text-4xl font-bold text-indigo-600">62</p>
+                    <p class="mt-2 text-sm font-medium text-slate-500">EEG Channels</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md border border-slate-100">
+                    <p class="text-4xl font-bold text-indigo-600">2</p>
+                    <p class="mt-2 text-sm font-medium text-slate-500">Data Modalities</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="design" class="py-16 section-fade-in">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-slate-900 tracking-tight">The Experimental Design</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">The dataset was collected through a carefully structured experiment to ensure data quality and reliable emotion induction. The process involved multiple subjects, sessions, and trials.</p>
+            </div>
+
+            <div class="mt-12 grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-800">Participant Demographics</h3>
+                    <p class="mt-2 text-slate-600">A total of 15 subjects participated, with a mix of genders, allowing for studies on demographic variations in emotional response.</p>
+                    <div class="mt-4 chart-container h-64 md:h-80">
+                        <canvas id="demographicsChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-800">Experiment Flow</h3>
+                     <p class="mt-2 text-slate-600">Each participant underwent three sessions on different days. In each session, they viewed 24 film clips (trials) designed to elicit specific emotions while their physiological data was recorded. Hover over the steps to learn more.</p>
+                    <div class="mt-4 space-y-4">
+                        <div class="p-4 bg-white rounded-lg shadow-sm border border-slate-200 group" title="A single person from the pool of 15 subjects.">
+                            <p class="font-semibold text-slate-800">1. Subject</p>
+                        </div>
+                        <div class="pl-8 relative">
+                             <span class="absolute left-4 top-4 bottom-4 w-px bg-slate-300"></span>
+                             <div class="p-4 bg-white rounded-lg shadow-sm border border-slate-200 relative group" title="Each subject participated in 3 sessions on different days to ensure data robustness.">
+                                <p class="font-semibold text-slate-800">2. Session (x3)</p>
+                            </div>
+                            <div class="pl-8 mt-4 relative">
+                                <span class="absolute left-4 top-4 bottom-4 w-px bg-slate-300"></span>
+                                <div class="p-4 bg-white rounded-lg shadow-sm border border-slate-200 relative group" title="In each session, the subject watched 24 different film clips. Each viewing is one trial.">
+                                     <p class="font-semibold text-slate-800">3. Trial (x24)</p>
+                                </div>
+                                 <div class="pl-8 mt-4 relative">
+                                     <span class="absolute left-4 top-4 bottom-4 w-px bg-slate-300"></span>
+                                     <div class="p-4 bg-indigo-50 border-l-4 border-indigo-500 rounded-lg relative group" title="During each trial, 62-channel EEG and Eye Movement data were recorded simultaneously.">
+                                          <p class="font-semibold text-indigo-800">4. Data Recording</p>
+                                          <p class="text-sm text-indigo-700">EEG & Eye Tracking</p>
+                                     </div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="py-16 section-fade-in">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-slate-900 tracking-tight">Data Modalities & Features</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">The dataset provides rich, pre-processed features from two complementary physiological sources. Explore the details of each data type below.</p>
+            </div>
+
+            <div class="mt-8">
+                <div class="flex justify-center border-b border-slate-300">
+                    <button id="tab-eeg" class="px-6 py-3 font-semibold text-indigo-600 border-b-2 border-indigo-600">EEG Features</button>
+                    <button id="tab-eye" class="px-6 py-3 font-semibold text-slate-500">Eye Movement Features</button>
+                </div>
+
+                <div id="content-eeg" class="mt-8">
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-xl font-semibold text-slate-800">EEG Frequency Bands</h3>
+                            <p class="mt-2 text-slate-600">EEG features were extracted across five standard frequency bands. Click on a band to learn about its associated cognitive states, and use the LLM button for a deeper dive.</p>
+                            <div class="mt-4 flex flex-wrap gap-2" id="eegBandButtons"></div>
+                            <div id="eegBandInfo" class="mt-4 p-4 bg-indigo-50 rounded-lg min-h-[100px] transition-all">
+                                <p class="font-semibold text-indigo-800">Select a band above.</p>
+                                <button id="eegBandDeepDiveBtn" class="mt-2 px-3 py-1.5 text-sm font-medium bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors hidden">✨ Deep Dive</button>
+                                <div id="eegBandDeepDiveResult" class="mt-2 text-sm text-indigo-900"></div>
+                                <div id="eegBandDeepDiveLoading" class="mt-2 hidden flex items-center justify-center">
+                                    <div class="llm-loading-spinner"></div>
+                                </div>
+                            </div>
+                             <h3 class="text-xl font-semibold text-slate-800 mt-8">Feature Types</h3>
+                            <p class="mt-2 text-slate-600">Two main feature types were extracted, then smoothed using two different methods to reduce noise.</p>
+                            <div class="mt-4 grid grid-cols-2 gap-4">
+                               <div class="p-4 bg-white rounded-lg shadow-sm border">
+                                   <p class="font-bold text-slate-800">PSD</p>
+                                   <p class="text-sm text-slate-500">Power Spectral Density - measures signal power at different frequencies.</p>
+                               </div>
+                               <div class="p-4 bg-white rounded-lg shadow-sm border">
+                                   <p class="font-bold text-slate-800">DE</p>
+                                   <p class="text-sm text-slate-500">Differential Entropy - measures signal complexity and randomness.</p>
+                               </div>
+                            </div>
+                        </div>
+                        <div>
+                             <h3 class="text-xl font-semibold text-slate-800">Data Structure: 62 x W x 5</h3>
+                             <p class="mt-2 text-slate-600">The extracted EEG features are stored in a 3D array. Hover over the dimensions below to understand what they represent.</p>
+                             <div class="mt-4 p-4 bg-white rounded-lg shadow-sm border space-y-2">
+                                <div class="dimension-block p-3 border-l-4 border-sky-500 bg-sky-50 rounded" data-desc="The 62 EEG channels, corresponding to different electrode locations on the scalp.">
+                                    <span class="font-bold text-sky-800">Dimension 1: 62 Channels</span>
+                                </div>
+                                <div class="dimension-block p-3 border-l-4 border-amber-500 bg-amber-50 rounded" data-desc="The number of 4-second time windows (samples). This number 'W' varies because film clips have different lengths.">
+                                    <span class="font-bold text-amber-800">Dimension 2: W Time Windows</span>
+                                </div>
+                                <div class="dimension-block p-3 border-l-4 border-violet-500 bg-violet-50 rounded" data-desc="The 5 frequency bands (Delta, Theta, Alpha, Beta, Gamma) for which features were calculated.">
+                                    <span class="font-bold text-violet-800">Dimension 3: 5 Frequency Bands</span>
+                                </div>
+                                <p id="dimension-desc" class="mt-2 text-sm text-slate-600 min-h-[40px] italic">Hover over a dimension.</p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-eye" class="hidden mt-8">
+                     <h3 class="text-xl font-semibold text-slate-800 text-center">Eye Movement Features</h3>
+                     <p class="mt-2 text-slate-600 max-w-2xl mx-auto text-center">A rich set of features was extracted from eye tracking data, providing insights into attention, arousal, and cognitive load. Click on a feature type to see more details.</p>
+                     <div id="eyeFeatureList" class="mt-6 max-w-2xl mx-auto space-y-2"></div>
+                </div>
+
+            </div>
+        </section>
+        
+        <section id="explorer" class="py-16 section-fade-in">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-slate-900 tracking-tight">Interactive Data Explorer</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">Simulate exploring the dataset. Select a subject, session, and trial to see the corresponding emotion label and a conceptual visualization of the EEG feature data for a single channel.</p>
+            </div>
+
+            <div class="mt-8 p-6 md:p-8 bg-white rounded-xl shadow-lg border border-slate-200">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label for="subjectSelect" class="block text-sm font-medium text-slate-700">Subject</label>
+                        <select id="subjectSelect" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"></select>
+                    </div>
+                    <div>
+                        <label for="sessionSelect" class="block text-sm font-medium text-slate-700">Session</label>
+                        <select id="sessionSelect" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"></select>
+                    </div>
+                    <div>
+                        <label for="trialSelect" class="block w-full text-sm font-medium text-slate-700">Trial</label>
+                        <select id="trialSelect" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"></select>
+                    </div>
+                    <div>
+                        <label for="featureTypeSelect" class="block w-full text-sm font-medium text-slate-700">Feature Type</label>
+                        <select id="featureTypeSelect" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            <option value="de_movingAve">DE (Moving Average)</option>
+                            <option value="de_LDS">DE (LDS)</option>
+                            <option value="psd_movingAve">PSD (Moving Average)</option>
+                            <option value="psd_LDS">PSD (LDS)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mt-8 flex flex-col md:flex-row items-center justify-center text-center p-4 rounded-lg bg-slate-100">
+                    <p class="font-medium text-slate-800">Detected Emotion for Trial:</p>
+                    <p id="emotionResult" class="ml-2 text-xl font-bold"></p>
+                    <button id="describeEmotionBtn" class="ml-4 px-3 py-1.5 text-sm font-medium bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors">✨ Describe Emotion</button>
+                </div>
+                <div id="emotionDescriptionResult" class="mt-4 p-4 bg-indigo-50 rounded-lg text-sm text-indigo-900"></div>
+                <div id="emotionDescriptionLoading" class="mt-2 hidden flex items-center justify-center">
+                    <div class="llm-loading-spinner"></div>
+                </div>
+
+                <div class="mt-8">
+                    <div id="dataAvailabilityMessage" class="text-center text-red-500 font-medium my-4 hidden">
+                        Actual data not found for this selection. Displaying simulated data.
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="explorerChart"></canvas>
+                    </div>
+                    <!-- Container for CSV table data -->
+                    <div id="csv-data-display" class="mt-6 overflow-x-auto">
+                        <h4 class="text-lg font-semibold text-slate-800 mb-2">Raw CSV Data (First few rows/columns)</h4>
+                        <p class="text-slate-500 text-sm italic">Data for channel 1 shown in chart above.</p>
+                        <!-- CSV data will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-slate-800 text-white mt-16">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-sm">
+            <p>Interactive guide developed to explore the SEED-IV Dataset.</p>
+            <p class="text-slate-400 mt-1">Source: Center for Brain-like Computing and Machine Intelligence, SJTU.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const appData = {
+                demographics: {
+                    labels: ['Female', 'Male'],
+                    data: [9, 6],
+                    colors: ['#818cf8', '#60a5fa'] // indigo-400, sky-400
+                },
+                eegBands: [
+                    { name: 'Delta', range: '1-4 Hz', desc: 'Deep sleep, unconscious processes, meditation' },
+                    { name: 'Theta', range: '4-8 Hz', desc: 'Drowsiness, memory processing, emotional arousal' },
+                    { name: 'Alpha', range: '8-14 Hz', desc: 'Relaxation, reduced attention, eyes closed' },
+                    { name: 'Beta', range: '14-31 Hz', desc: 'Active thinking, alertness, anxiety, problem-solving' },
+                    { name: 'Gamma', range: '31-50 Hz', desc: 'Higher-level cognitive functions, attention, perception' }
+                ],
+                eyeFeatures: [
+                    { name: 'Pupil Diameter', desc: 'Reflects arousal and visual attention. Includes average pupil size and gaze coordinates.'},
+                    { name: 'Dispersion', desc: 'Related to the spread or stability of gaze, indicating visual exploration or focus.'},
+                    { name: 'Fixation Duration', desc: 'The duration of periods where the eye remains relatively still, indicating information intake.'},
+                    { name: 'Saccade', desc: 'Parameters of rapid eye movements between fixations, like duration and amplitude.'},
+                    { name: 'Event Statistics', desc: 'Aggregated statistics from various eye-tracking events, providing a high-level behavioral summary.'}
+                ],
+                emotions: {
+                    0: { name: 'Neutral', color: '#64748b' }, // slate-500
+                    1: { name: 'Sad', color: '#3b82f6' },   // blue-500
+                    2: { name: 'Fear', color: '#ef4444' },  // red-500
+                    3: { name: 'Happy', color: '#f97316' }  // orange-500
+                },
+                sessionLabels: {
+                    1: [1, 2, 3, 0, 2, 0, 0, 1, 0, 1, 2, 1, 1, 1, 2, 3, 2, 2, 3, 3, 0, 3, 0, 3],
+                    2: [2, 1, 3, 0, 0, 2, 0, 2, 3, 3, 2, 3, 2, 0, 1, 1, 2, 1, 0, 3, 0, 1, 3, 1],
+                    3: [1, 2, 2, 1, 3, 3, 3, 1, 1, 2, 1, 0, 2, 3, 3, 0, 2, 3, 0, 0, 2, 0, 1, 0]
+                }
+            };
+
+            // Mapping for CSV files based on Subject, Session, Trial, and Feature Type
+            // Format: 'Subject_{S}_Session_{SESS}_Trial_{T}_{FeatureType}': 'filename.csv'
+            const csvFileMap = {
+                'Subject_1_Session_1_Trial_1_de_movingAve': 'simple_output1.csv',
+                // To extend this list:
+                // Add more entries here when you have other CSV files.
+                // For example:
+                // 'Subject_1_Session_1_Trial_3_psd_movingAve': 'psd_data_sub1_ses1_tri3.csv',
+                // 'Subject_2_Session_2_Trial_5_de_LDS': 'de_lds_sub2_ses2_tri5.csv',
+            };
+
+            // --- Navigation and Section Visibility ---
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.2
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Update active nav link
+                        navLinks.forEach(link => {
+                            link.classList.remove('active-nav-link');
+                            if (link.getAttribute('href') === `#${entry.target.id}`) {
+                                link.classList.add('active-nav-link');
+                            }
+                        });
+                    } else {
+                        entry.target.classList.remove('visible');
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Smooth scrolling for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // --- Demographics Chart ---
+            const demographicsCtx = document.getElementById('demographicsChart').getContext('2d');
+            new Chart(demographicsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: appData.demographics.labels,
+                    datasets: [{
+                        data: appData.demographics.data,
+                        backgroundColor: appData.demographics.colors,
+                        hoverOffset: 10,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    family: 'Inter',
+                                },
+                                color: '#334155' // slate-700
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed;
+                                    }
+                                    return label + ' subjects';
+                                }
+                            },
+                            bodyFont: {
+                                family: 'Inter',
+                            },
+                            titleFont: {
+                                family: 'Inter',
+                            }
+                        }
+                    }
+                }
+            });
+
+            // --- EEG Frequency Bands Interaction ---
+            const eegBandButtonsContainer = document.getElementById('eegBandButtons');
+            const eegBandInfo = document.getElementById('eegBandInfo');
+            const eegBandDeepDiveBtn = document.getElementById('eegBandDeepDiveBtn');
+            const eegBandDeepDiveResult = document.getElementById('eegBandDeepDiveResult');
+            const eegBandDeepDiveLoading = document.getElementById('eegBandDeepDiveLoading');
+            let selectedBand = null;
+
+            appData.eegBands.forEach(band => {
+                const button = document.createElement('button');
+                button.textContent = band.name;
+                button.className = 'px-4 py-2 rounded-full border border-indigo-300 text-indigo-700 bg-indigo-50 hover:bg-indigo-100 transition-colors text-sm font-medium';
+                button.addEventListener('click', () => {
+                    // Reset button styles
+                    document.querySelectorAll('#eegBandButtons button').forEach(btn => {
+                        btn.classList.remove('bg-indigo-600', 'text-white');
+                        btn.classList.add('bg-indigo-50', 'text-indigo-700');
+                    });
+                    // Set active button style
+                    button.classList.add('bg-indigo-600', 'text-white');
+                    button.classList.remove('bg-indigo-50', 'text-indigo-700');
+
+                    eegBandInfo.innerHTML = `<p class="font-semibold text-indigo-800">${band.name} Band (${band.range}):</p><p class="text-indigo-700 mt-1">${band.desc}</p>`;
+                    eegBandDeepDiveBtn.classList.remove('hidden');
+                    eegBandDeepDiveResult.textContent = '';
+                    selectedBand = band;
+                });
+                eegBandButtonsContainer.appendChild(button);
+            });
+
+            eegBandDeepDiveBtn.addEventListener('click', async () => {
+                if (!selectedBand) return;
+
+                eegBandDeepDiveResult.textContent = '';
+                eegBandDeepDiveLoading.classList.remove('hidden');
+                eegBandDeepDiveBtn.disabled = true;
+
+                try {
+                    const prompt = `Provide a more detailed explanation of the "${selectedBand.name}" EEG frequency band (${selectedBand.range}), including its common associations with brain states, cognitive functions, and any clinical relevance. Keep it concise, around 100-150 words.`;
+                    const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+                    const apiKey = ""; // Canvas will provide this
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0) {
+                        eegBandDeepDiveResult.textContent = result.candidates[0].content.parts[0].text;
+                    } else {
+                        eegBandDeepDiveResult.textContent = 'Could not get a detailed description.';
+                    }
+                } catch (error) {
+                    console.error('Error fetching LLM description:', error);
+                    eegBandDeepDiveResult.textContent = 'Failed to load description. Please try again.';
+                } finally {
+                    eegBandDeepDiveLoading.classList.add('hidden');
+                    eegBandDeepDiveBtn.disabled = false;
+                }
+            });
+
+            // --- Dimension Block Hover Effect ---
+            const dimensionBlocks = document.querySelectorAll('.dimension-block');
+            const dimensionDesc = document.getElementById('dimension-desc');
+            const originalDesc = dimensionDesc.textContent;
+
+            dimensionBlocks.forEach(block => {
+                block.addEventListener('mouseenter', () => {
+                    dimensionDesc.textContent = block.dataset.desc;
+                });
+                block.addEventListener('mouseleave', () => {
+                    dimensionDesc.textContent = originalDesc;
+                });
+            });
+
+            // --- Eye Movement Features Interaction ---
+            const eyeFeatureListContainer = document.getElementById('eyeFeatureList');
+            appData.eyeFeatures.forEach((feature, index) => {
+                const featureDiv = document.createElement('div');
+                featureDiv.className = 'p-4 bg-white rounded-lg shadow-sm border border-slate-200 cursor-pointer transition-shadow hover:shadow-md';
+                featureDiv.innerHTML = `
+                    <p class="font-bold text-slate-800">${feature.name}</p>
+                    <p class="text-sm text-slate-500 mt-1 hidden" id="eye-feature-desc-${index}">${feature.desc}</p>
+                `;
+                featureDiv.addEventListener('click', () => {
+                    const descElement = document.getElementById(`eye-feature-desc-${index}`);
+                    descElement.classList.toggle('hidden');
+                });
+                eyeFeatureListContainer.appendChild(featureDiv);
+            });
+
+
+            // --- Tab Switching Logic (EEG vs Eye Movement) ---
+            const tabEeg = document.getElementById('tab-eeg');
+            const tabEye = document.getElementById('tab-eye');
+            const contentEeg = document.getElementById('content-eeg');
+            const contentEye = document.getElementById('content-eye');
+
+            tabEeg.addEventListener('click', () => {
+                tabEeg.classList.add('border-indigo-600', 'text-indigo-600');
+                tabEeg.classList.remove('border-transparent', 'text-slate-500');
+                tabEye.classList.remove('border-indigo-600', 'text-indigo-600');
+                tabEye.classList.add('border-transparent', 'text-slate-500');
+                contentEeg.classList.remove('hidden');
+                contentEye.classList.add('hidden');
+            });
+
+            tabEye.addEventListener('click', () => {
+                tabEye.classList.add('border-indigo-600', 'text-indigo-600');
+                tabEye.classList.remove('border-transparent', 'text-slate-500');
+                tabEeg.classList.remove('border-indigo-600', 'text-indigo-600');
+                tabEeg.classList.add('border-transparent', 'text-slate-500');
+                contentEye.classList.remove('hidden');
+                contentEeg.classList.add('hidden');
+            });
+
+            // --- Interactive Data Explorer Logic ---
+            const subjectSelect = document.getElementById('subjectSelect');
+            const sessionSelect = document.getElementById('sessionSelect');
+            const trialSelect = document.getElementById('trialSelect');
+            const featureTypeSelect = document.getElementById('featureTypeSelect');
+            const emotionResult = document.getElementById('emotionResult');
+            const describeEmotionBtn = document.getElementById('describeEmotionBtn');
+            const emotionDescriptionResult = document.getElementById('emotionDescriptionResult');
+            const emotionDescriptionLoading = document.getElementById('emotionDescriptionLoading');
+            const dataAvailabilityMessage = document.getElementById('dataAvailabilityMessage');
+            const csvDataDisplay = document.getElementById('csv-data-display');
+
+            let explorerChart; // Chart instance for the explorer
+
+            // Populate subject dropdown (1 to 15)
+            for (let i = 1; i <= 15; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Subject ${i}`;
+                subjectSelect.appendChild(option);
+            }
+
+            // Populate session dropdown (1 to 3)
+            for (let i = 1; i <= 3; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Session ${i}`;
+                sessionSelect.appendChild(option);
+            }
+
+            // Populate trial dropdown (1 to 24)
+            for (let i = 1; i <= 24; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Trial ${i}`;
+                trialSelect.appendChild(option);
+            }
+
+            // Function to generate random data for demonstration
+            function generateSimulatedData() {
+                const data = [];
+                for (let i = 0; i < 210; i++) { // Simulate 210 time windows/samples
+                    data.push(Math.random() * (30 - 20) + 20); // Random values between 20 and 30
+                }
+                return data;
+            }
+
+            // Function to update the explorer chart and emotion label
+            async function updateExplorerChart() {
+                const subject = subjectSelect.value;
+                const session = sessionSelect.value;
+                const trial = trialSelect.value;
+                const featureType = featureTypeSelect.value;
+
+                // Determine emotion label
+                const trialIndex = parseInt(trial) - 1; // Trials are 1-indexed, array is 0-indexed
+                const sessionLabelKey = parseInt(session);
+                const emotionLabel = appData.sessionLabels[sessionLabelKey] ? appData.sessionLabels[sessionLabelKey][trialIndex] : undefined;
+                
+                let emotionName = 'N/A';
+                let emotionColor = '#94a3b8'; // slate-400
+                if (emotionLabel !== undefined && appData.emotions[emotionLabel]) {
+                    emotionName = appData.emotions[emotionLabel].name;
+                    emotionColor = appData.emotions[emotionLabel].color;
+                }
+                emotionResult.textContent = emotionName;
+                emotionResult.style.color = emotionColor;
+                describeEmotionBtn.dataset.emotionName = emotionName; // Store for LLM call
+
+                // Construct key for CSV map
+                const dataKey = `Subject_${subject}_Session_${session}_Trial_${trial}_${featureType}`;
+                const csvFileName = csvFileMap[dataKey];
+
+                let dataToChart = [];
+                let dataFound = false;
+                csvDataDisplay.innerHTML = `<h4 class="text-lg font-semibold text-slate-800 mb-2">Raw CSV Data (First few rows/columns)</h4>
+                                            <p class="text-slate-500 text-sm italic">Data for channel 1 shown in chart above.</p>`; // Clear previous CSV data
+
+                if (csvFileName) {
+                    try {
+                        const response = await fetch(csvFileName);
+                        if (!response.ok) {
+                            throw new Error(`CSV file not found: ${csvFileName}`);
+                        }
+                        const csvText = await response.text();
+                        const parsedData = parseCSV(csvText);
+
+                        if (parsedData.length > 1 && parsedData[1].length > 0) { // Check if there's at least one data row after header
+                            // For simplicity, chart the first channel's data (first row after header)
+                            dataToChart = parsedData[1].map(Number); // Convert strings to numbers
+                            dataFound = true;
+                            renderCSVTable(parsedData); // Render the full CSV data in a table
+                        } else {
+                            console.warn(`CSV file ${csvFileName} is empty or has no data rows.`);
+                            dataToChart = generateSimulatedData();
+                        }
+                        dataAvailabilityMessage.classList.add('hidden');
+                    } catch (error) {
+                        console.error('Error loading CSV:', error);
+                        dataAvailabilityMessage.textContent = `Error loading data for ${csvFileName}. Displaying simulated data.`;
+                        dataAvailabilityMessage.classList.remove('hidden');
+                        dataToChart = generateSimulatedData();
+                    }
+                } else {
+                    dataAvailabilityMessage.textContent = `Actual data not found for this selection. Displaying simulated data.`;
+                    dataAvailabilityMessage.classList.remove('hidden');
+                    dataToChart = generateSimulatedData();
+                }
+
+                // Update Chart.js
+                if (explorerChart) {
+                    explorerChart.data.labels = Array.from({ length: dataToChart.length }, (_, i) => i + 1);
+                    explorerChart.data.datasets[0].data = dataToChart;
+                    explorerChart.data.datasets[0].label = `${featureType} Data (Channel 1)`;
+                    explorerChart.data.datasets[0].borderColor = emotionColor; // Set line color based on emotion
+                    explorerChart.update();
+                } else {
+                    const explorerCtx = document.getElementById('explorerChart').getContext('2d');
+                    explorerChart = new Chart(explorerCtx, {
+                        type: 'line',
+                        data: {
+                            labels: Array.from({ length: dataToChart.length }, (_, i) => i + 1),
+                            datasets: [{
+                                label: `${featureType} Data (Channel 1)`,
+                                data: dataToChart,
+                                borderColor: emotionColor,
+                                borderWidth: 2,
+                                fill: false,
+                                tension: 0.1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    labels: {
+                                        font: {
+                                            family: 'Inter',
+                                        },
+                                        color: '#334155'
+                                    }
+                                },
+                                tooltip: {
+                                    bodyFont: {
+                                        family: 'Inter',
+                                    },
+                                    titleFont: {
+                                        family: 'Inter',
+                                    }
+                                }
+                            },
+                            scales: {
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Time Window / Sample',
+                                        font: {
+                                            family: 'Inter',
+                                            weight: 'bold'
+                                        },
+                                        color: '#475569' // slate-600
+                                    },
+                                    grid: {
+                                        color: '#e2e8f0' // slate-200
+                                    }
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: 'Feature Value',
+                                        font: {
+                                            family: 'Inter',
+                                            weight: 'bold'
+                                        },
+                                        color: '#475569'
+                                    },
+                                    grid: {
+                                        color: '#e2e8f0'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+
+            // Simple CSV parser
+            function parseCSV(text) {
+                const rows = text.trim().split('\n');
+                return rows.map(row => row.split(',').map(cell => cell.trim()));
+            }
+
+            // Function to render CSV data into an HTML table
+            function renderCSVTable(data) {
+                csvDataDisplay.innerHTML = `<h4 class="text-lg font-semibold text-slate-800 mb-2">Raw CSV Data (First few rows/columns)</h4>
+                                            <p class="text-slate-500 text-sm italic">Data for channel 1 shown in chart above.</p>`;
+                const table = document.createElement('table');
+                const thead = document.createElement('thead');
+                const tbody = document.createElement('tbody');
+
+                if (data.length > 0) {
+                    // Create header row
+                    const headerRow = document.createElement('tr');
+                    data[0].forEach(header => {
+                        const th = document.createElement('th');
+                        th.textContent = header;
+                        headerRow.appendChild(th);
+                    });
+                    thead.appendChild(headerRow);
+                    table.appendChild(thead);
+
+                    // Create data rows (limit to first 10 rows for display to avoid overwhelming)
+                    for (let i = 1; i < Math.min(data.length, 11); i++) { // Max 10 data rows + header
+                        const row = data[i];
+                        const tr = document.createElement('tr');
+                        row.forEach(cell => {
+                            const td = document.createElement('td');
+                            td.textContent = cell;
+                            tr.appendChild(td);
+                        });
+                        tbody.appendChild(tr);
+                    }
+                    table.appendChild(tbody);
+                } else {
+                    const p = document.createElement('p');
+                    p.textContent = "No data to display in CSV table.";
+                    p.className = "text-slate-500";
+                    csvDataDisplay.appendChild(p);
+                    return;
+                }
+                csvDataDisplay.appendChild(table);
+            }
+
+            // Event listeners for dropdown changes
+            subjectSelect.addEventListener('change', updateExplorerChart);
+            sessionSelect.addEventListener('change', updateExplorerChart);
+            trialSelect.addEventListener('change', updateExplorerChart);
+            featureTypeSelect.addEventListener('change', updateExplorerChart);
+
+            // LLM call for emotion description
+            describeEmotionBtn.addEventListener('click', async () => {
+                const emotionName = describeEmotionBtn.dataset.emotionName;
+                if (!emotionName || emotionName === 'N/A') return;
+
+                emotionDescriptionResult.textContent = '';
+                emotionDescriptionLoading.classList.remove('hidden');
+                describeEmotionBtn.disabled = true;
+
+                try {
+                    const prompt = `Provide a brief, general description of the emotion "${emotionName}", including how it typically manifests in humans psychologically and physiologically. Keep it concise, around 80-120 words.`;
+                    const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+                    const apiKey = ""; // Canvas will provide this
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0) {
+                        emotionDescriptionResult.textContent = result.candidates[0].content.parts[0].text;
+                    } else {
+                        emotionDescriptionResult.textContent = 'Could not get a detailed description.';
+                    }
+                } catch (error) {
+                    console.error('Error fetching LLM emotion description:', error);
+                    emotionDescriptionResult.textContent = 'Failed to load description. Please try again.';
+                } finally {
+                    emotionDescriptionLoading.classList.add('hidden');
+                    describeEmotionBtn.disabled = false;
+                }
+            });
+
+            // Initial chart load
+            updateExplorerChart();
+        });
+    </script>
+</body>
+</html>
