@@ -91,10 +91,10 @@
                     <span class="font-bold text-xl text-slate-800">SEED-IV Explorer</span>
                 </div>
                 <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#overview" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Overview</a>
+                    <div class="ml-10 flex items-baseline space-x-4">                        <a href="#overview" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Overview</a>
                         <a href="#design" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Experiment Design</a>
                         <a href="#features" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Data & Features</a>
+                        <a href="#data-structure" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Dataset Structure</a>
                         <a href="#explorer" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-slate-600">Interactive Explorer</a>
                     </div>
                 </div>
@@ -235,15 +235,141 @@
                      <h3 class="text-xl font-semibold text-slate-800 text-center">Eye Movement Features</h3>
                      <p class="mt-2 text-slate-600 max-w-2xl mx-auto text-center">A rich set of features was extracted from eye tracking data, providing insights into attention, arousal, and cognitive load. Click on a feature type to see more details.</p>
                      <div id="eyeFeatureList" class="mt-6 max-w-2xl mx-auto space-y-2"></div>
+                </div>            </div>
+        </section>
+
+        <section id="data-structure" class="py-16 section-fade-in bg-gradient-to-br from-slate-50 to-blue-50">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 tracking-tight">📊 Dataset Structure & Research Overview</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-slate-600">Understanding how the SEED-IV dataset is organized and processed for emotion recognition research.</p>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Research Overview -->
+                <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-8">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6">🔬 Research Context</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-indigo-700 mb-3">Project Goal</h4>
+                            <p class="text-slate-700 leading-relaxed">
+                                Develop machine learning models that can automatically recognize human emotions from brain activity patterns. 
+                                This research uses EEG (electroencephalography) signals recorded while participants watched emotion-inducing film clips.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-indigo-700 mb-3">Applications</h4>
+                            <ul class="text-slate-700 space-y-2">
+                                <li>• Brain-computer interfaces</li>
+                                <li>• Mental health monitoring</li>
+                                <li>• Human-computer interaction</li>
+                                <li>• Neurofeedback systems</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
+                <!-- Data Structure Explanation -->
+                <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-8">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6">🧠 3D Data Structure Explained</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+                            <div class="text-3xl font-bold text-blue-600 mb-2">62</div>
+                            <div class="text-sm font-medium text-blue-800">EEG Channels</div>
+                            <div class="text-xs text-blue-600 mt-1">Brain electrode positions</div>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
+                            <div class="text-3xl font-bold text-green-600 mb-2">5</div>
+                            <div class="text-sm font-medium text-green-800">Frequency Bands</div>
+                            <div class="text-xs text-green-600 mt-1">Delta, Theta, Alpha, Beta, Gamma</div>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 rounded-lg p-6 text-center">
+                            <div class="text-3xl font-bold text-purple-600 mb-2">~42</div>
+                            <div class="text-sm font-medium text-purple-800">Time Windows</div>
+                            <div class="text-xs text-purple-600 mt-1">4-second segments</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gradient-to-r from-slate-50 to-blue-50 border border-slate-200 rounded-lg p-6">
+                        <h4 class="text-lg font-semibold text-slate-800 mb-4">💡 Understanding the 3D Structure</h4>
+                        <div class="space-y-3 text-sm text-slate-700">
+                            <p><strong>Dimension 1 (62 Channels):</strong> Each channel represents an electrode placed on different parts of the scalp, capturing brain activity from various brain regions.</p>
+                            <p><strong>Dimension 2 (5 Frequency Bands):</strong> Brain waves are analyzed across different frequency ranges, each associated with different cognitive and emotional states.</p>
+                            <p><strong>Dimension 3 (Time Windows):</strong> The continuous EEG signal is divided into 4-second windows, creating temporal samples for analysis.</p>
+                            <p><strong>Final Structure:</strong> 62 × 5 × ~42 = 13,020+ features per trial, capturing rich spatiotemporal brain patterns during emotional experiences.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Processing Pipeline -->
+                <div class="bg-white rounded-xl shadow-lg border border-slate-200 p-8">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6">⚙️ Data Processing Pipeline</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl">🧠</span>
+                            </div>
+                            <h4 class="font-semibold text-slate-800">Raw EEG</h4>
+                            <p class="text-xs text-slate-600 mt-1">62-channel brain signals recorded at 1000Hz</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl">🔧</span>
+                            </div>
+                            <h4 class="font-semibold text-slate-800">Preprocessing</h4>
+                            <p class="text-xs text-slate-600 mt-1">Filtering, downsampling to 200Hz, artifact removal</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl">📊</span>
+                            </div>
+                            <h4 class="font-semibold text-slate-800">Feature Extraction</h4>
+                            <p class="text-xs text-slate-600 mt-1">Differential Entropy (DE) in 5 frequency bands</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <span class="text-2xl">🤖</span>
+                            </div>
+                            <h4 class="font-semibold text-slate-800">ML Model</h4>
+                            <p class="text-xs text-slate-600 mt-1">Train classifiers for 4 emotion categories</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Work Status -->
+                <div class="bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-200 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-indigo-900 mb-6">🚀 Current Work & Next Steps</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-lg font-semibold text-indigo-800 mb-3">✅ Completed</h4>
+                            <ul class="space-y-2 text-indigo-700">
+                                <li>• Dataset download and organization</li>
+                                <li>• Data structure analysis and understanding</li>
+                                <li>• Feature extraction pipeline development</li>
+                                <li>• CSV export functionality for processed features</li>
+                                <li>• Interactive visualization website</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-lg font-semibold text-indigo-800 mb-3">🔄 In Progress / Next</h4>
+                            <ul class="space-y-2 text-indigo-700">
+                                <li>• Machine learning model development</li>
+                                <li>• Cross-validation and performance evaluation</li>
+                                <li>• Feature importance analysis</li>
+                                <li>• Real-time emotion recognition system</li>
+                                <li>• Academic paper preparation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         
         <section id="explorer" class="py-16 section-fade-in">
             <div class="text-center">
                 <h2 class="text-3xl font-bold text-slate-900 tracking-tight">Interactive Data Explorer</h2>
-                <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">Simulate exploring the dataset. Select a subject, session, and trial to see the corresponding emotion label and a conceptual visualization of the EEG feature data for a single channel.</p>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">Explore real processed EEG data from the SEED-IV dataset. Select parameters to see emotion labels and visualize brain signal patterns.</p>
             </div>
 
             <div class="mt-8 p-6 md:p-8 bg-white rounded-xl shadow-lg border border-slate-200">
@@ -599,15 +725,53 @@
                 option.value = i;
                 option.textContent = `Trial ${i}`;
                 trialSelect.appendChild(option);
+            }            // Function to parse CSV data
+            function parseCSV(csvText) {
+                const lines = csvText.trim().split('\n');
+                const headers = lines[0].split(',');
+                const data = [];
+                
+                for (let i = 1; i < lines.length; i++) {
+                    const values = lines[i].split(',').map(val => parseFloat(val));
+                    data.push(values);
+                }
+                
+                return { headers, data };
             }
 
-            // Function to generate random data for demonstration
-            function generateSimulatedData() {
-                const data = [];
-                for (let i = 0; i < 210; i++) { // Simulate 210 time windows/samples
-                    data.push(Math.random() * (30 - 20) + 20); // Random values between 20 and 30
-                }
-                return data;
+            // Function to analyze data structure and create educational summary
+            function analyzeDataStructure(headers, data) {
+                const channels = 62;
+                const frequencies = 5;
+                const timeWindows = data.length;
+                
+                return {
+                    totalFeatures: headers.length,
+                    channels: channels,
+                    frequencies: frequencies,
+                    timeWindows: timeWindows,
+                    totalDataPoints: headers.length * timeWindows,
+                    structure: `${channels} channels × ${frequencies} frequency bands × ${timeWindows} time windows`,
+                    description: `This represents EEG brain activity data where each of the ${channels} electrode channels captures brain signals across ${frequencies} different frequency bands (Delta, Theta, Alpha, Beta, Gamma) over ${timeWindows} time windows of 4 seconds each.`
+                };
+            }
+
+            // Function to extract channel data for visualization
+            function extractChannelData(data, channelIndex, frequencyIndex) {
+                const columnIndex = channelIndex * 5 + frequencyIndex;
+                return data.map(row => row[columnIndex]);
+            }
+
+            // Function to calculate statistics for educational purposes
+            function calculateStatistics(values) {
+                const mean = values.reduce((a, b) => a + b, 0) / values.length;
+                const sorted = [...values].sort((a, b) => a - b);
+                const median = sorted[Math.floor(sorted.length / 2)];
+                const min = Math.min(...values);
+                const max = Math.max(...values);
+                const std = Math.sqrt(values.reduce((sq, n) => sq + Math.pow(n - mean, 2), 0) / values.length);
+                
+                return { mean, median, min, max, std };
             }
 
             // Function to update the explorer chart and emotion label
@@ -617,81 +781,203 @@
                 const trial = trialSelect.value;
                 const featureType = featureTypeSelect.value;
 
-                // Determine emotion label
-                const trialIndex = parseInt(trial) - 1; // Trials are 1-indexed, array is 0-indexed
-                const sessionLabelKey = parseInt(session);
-                const emotionLabel = appData.sessionLabels[sessionLabelKey] ? appData.sessionLabels[sessionLabelKey][trialIndex] : undefined;
-                
-                let emotionName = 'N/A';
-                let emotionColor = '#94a3b8'; // slate-400
-                if (emotionLabel !== undefined && appData.emotions[emotionLabel]) {
-                    emotionName = appData.emotions[emotionLabel].name;
-                    emotionColor = appData.emotions[emotionLabel].color;
+                // Determine emotion label based on session and trial
+                if (appData.sessionLabels[session] && trial >= 1 && trial <= 24) {
+                    const emotionLabel = appData.sessionLabels[session][trial - 1];
+                    const emotion = appData.emotions[emotionLabel];
+                    emotionResult.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <div class="w-4 h-4 rounded-full" style="background-color: ${emotion.color}"></div>
+                            <span class="font-semibold text-lg">${emotion.name}</span>
+                            <span class="text-sm text-slate-500">(Label: ${emotionLabel})</span>
+                        </div>
+                    `;
+                    describeEmotionBtn.classList.remove('hidden');
+                } else {
+                    emotionResult.innerHTML = '<span class="text-slate-500">Select valid parameters to see emotion label</span>';
+                    describeEmotionBtn.classList.add('hidden');
                 }
-                emotionResult.textContent = emotionName;
-                emotionResult.style.color = emotionColor;
-                describeEmotionBtn.dataset.emotionName = emotionName; // Store for LLM call
 
-                // Construct key for CSV map
-                const dataKey = `Subject_${subject}_Session_${session}_Trial_${trial}_${featureType}`;
-                const csvFileName = csvFileMap[dataKey];
-
-                let dataToChart = [];
-                let dataFound = false;
-                csvDataDisplay.innerHTML = `<h4 class="text-lg font-semibold text-slate-800 mb-2">Raw CSV Data (First few rows/columns)</h4>
-                                            <p class="text-slate-500 text-sm italic">Data for channel 1 shown in chart above.</p>`; // Clear previous CSV data
-
-                if (csvFileName) {
+                // Check if CSV data is available
+                const csvKey = `Subject_${subject}_Session_${session}_Trial_${trial}_${featureType}`;
+                const csvFile = csvFileMap[csvKey];
+                
+                if (csvFile) {
+                    dataAvailabilityMessage.innerHTML = `
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                <span class="text-green-800 font-medium">Data Available: ${csvFile}</span>
+                            </div>
+                            <p class="text-green-700 text-sm mt-1">Loading and analyzing EEG data structure...</p>
+                        </div>
+                    `;
+                    
                     try {
-                        const response = await fetch(csvFileName);
-                        if (!response.ok) {
-                            throw new Error(`CSV file not found: ${csvFileName}`);
-                        }
+                        // Load and display CSV data
+                        const response = await fetch(csvFile);
                         const csvText = await response.text();
-                        const parsedData = parseCSV(csvText);
+                        const { headers, data } = parseCSV(csvText);
+                        const analysis = analyzeDataStructure(headers, data);
+                        
+                        // Display data structure information
+                        csvDataDisplay.innerHTML = `
+                            <div class="space-y-6">
+                                <!-- Data Structure Overview -->
+                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                                    <h3 class="text-lg font-bold text-blue-900 mb-4">📊 Dataset Structure Analysis</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between">
+                                                <span class="text-blue-700">Total Features:</span>
+                                                <span class="font-mono text-blue-900">${analysis.totalFeatures}</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-blue-700">EEG Channels:</span>
+                                                <span class="font-mono text-blue-900">${analysis.channels}</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-blue-700">Frequency Bands:</span>
+                                                <span class="font-mono text-blue-900">${analysis.frequencies}</span>
+                                            </div>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between">
+                                                <span class="text-blue-700">Time Windows:</span>
+                                                <span class="font-mono text-blue-900">${analysis.timeWindows}</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-blue-700">Total Data Points:</span>
+                                                <span class="font-mono text-blue-900">${analysis.totalDataPoints.toLocaleString()}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 p-3 bg-white rounded border">
+                                        <p class="text-sm text-blue-800"><strong>Structure:</strong> ${analysis.structure}</p>
+                                        <p class="text-sm text-blue-700 mt-2">${analysis.description}</p>
+                                    </div>
+                                </div>
 
-                        if (parsedData.length > 1 && parsedData[1].length > 0) { // Check if there's at least one data row after header
-                            // For simplicity, chart the first channel's data (first row after header)
-                            dataToChart = parsedData[1].map(Number); // Convert strings to numbers
-                            dataFound = true;
-                            renderCSVTable(parsedData); // Render the full CSV data in a table
-                        } else {
-                            console.warn(`CSV file ${csvFileName} is empty or has no data rows.`);
-                            dataToChart = generateSimulatedData();
-                        }
-                        dataAvailabilityMessage.classList.add('hidden');
+                                <!-- Sample Data Visualization -->
+                                <div class="bg-white border border-slate-200 rounded-lg p-6">
+                                    <h3 class="text-lg font-bold text-slate-900 mb-4">🧠 EEG Channel Visualization</h3>
+                                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                        <!-- Channel Selection -->
+                                        <div>
+                                            <label class="block text-sm font-medium text-slate-700 mb-2">Select Channel & Frequency:</label>
+                                            <div class="space-y-3">
+                                                <select id="channelSelect" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                                    ${Array.from({length: 62}, (_, i) => `<option value="${i}">Channel ${i + 1}</option>`).join('')}
+                                                </select>
+                                                <select id="frequencySelect" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                                    <option value="0">Delta (1-4 Hz)</option>
+                                                    <option value="1">Theta (4-8 Hz)</option>
+                                                    <option value="2">Alpha (8-14 Hz)</option>
+                                                    <option value="3">Beta (14-31 Hz)</option>
+                                                    <option value="4">Gamma (31-50 Hz)</option>
+                                                </select>
+                                            </div>
+                                            <div id="channelStats" class="mt-4 p-3 bg-slate-50 rounded text-sm"></div>
+                                        </div>
+                                        
+                                        <!-- Mini Chart -->
+                                        <div>
+                                            <canvas id="miniChart" width="400" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Educational Information -->
+                                <div class="bg-amber-50 border border-amber-200 rounded-lg p-6">
+                                    <h3 class="text-lg font-bold text-amber-900 mb-4">🎓 Understanding This Data</h3>
+                                    <div class="space-y-3 text-sm text-amber-800">
+                                        <p><strong>What you're seeing:</strong> This data represents brain electrical activity (EEG) captured during emotional stimulus presentation.</p>
+                                        <p><strong>Each row:</strong> Represents a 4-second time window of brain activity.</p>
+                                        <p><strong>Each column:</strong> Represents a specific brain location (channel) and frequency band combination.</p>
+                                        <p><strong>Values:</strong> Differential Entropy (DE) features that measure the complexity/information content of brain signals.</p>
+                                        <p><strong>Research Goal:</strong> Use this structured data to train machine learning models that can automatically recognize emotions from brain signals.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        
+                        // Setup interactive channel visualization
+                        setupChannelVisualization(data, headers);
+                        
                     } catch (error) {
-                        console.error('Error loading CSV:', error);
-                        dataAvailabilityMessage.textContent = `Error loading data for ${csvFileName}. Displaying simulated data.`;
-                        dataAvailabilityMessage.classList.remove('hidden');
-                        dataToChart = generateSimulatedData();
+                        console.error('Error loading CSV data:', error);
+                        dataAvailabilityMessage.innerHTML = `
+                            <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                                    <span class="text-red-800 font-medium">Error loading data file</span>
+                                </div>
+                                <p class="text-red-700 text-sm mt-1">Could not load ${csvFile}. Please check if the file exists.</p>
+                            </div>
+                        `;
                     }
                 } else {
-                    dataAvailabilityMessage.textContent = `Actual data not found for this selection. Displaying simulated data.`;
-                    dataAvailabilityMessage.classList.remove('hidden');
-                    dataToChart = generateSimulatedData();
+                    dataAvailabilityMessage.innerHTML = `
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                                <span class="text-yellow-800 font-medium">Sample Data Not Available</span>
+                            </div>
+                            <p class="text-yellow-700 text-sm mt-1">No CSV file mapped for this combination. Available: Subject 1, Session 1, Trial 1, DE Moving Average</p>
+                        </div>
+                    `;
+                    csvDataDisplay.innerHTML = '';
                 }
+            }
 
-                // Update Chart.js
-                if (explorerChart) {
-                    explorerChart.data.labels = Array.from({ length: dataToChart.length }, (_, i) => i + 1);
-                    explorerChart.data.datasets[0].data = dataToChart;
-                    explorerChart.data.datasets[0].label = `${featureType} Data (Channel 1)`;
-                    explorerChart.data.datasets[0].borderColor = emotionColor; // Set line color based on emotion
-                    explorerChart.update();
-                } else {
-                    const explorerCtx = document.getElementById('explorerChart').getContext('2d');
-                    explorerChart = new Chart(explorerCtx, {
+            // Function to setup interactive channel visualization
+            function setupChannelVisualization(data, headers) {
+                const channelSelect = document.getElementById('channelSelect');
+                const frequencySelect = document.getElementById('frequencySelect');
+                const channelStats = document.getElementById('channelStats');
+                const miniChartCanvas = document.getElementById('miniChart');
+                
+                let miniChart;
+                
+                function updateChannelVisualization() {
+                    const channelIndex = parseInt(channelSelect.value);
+                    const frequencyIndex = parseInt(frequencySelect.value);
+                    const channelData = extractChannelData(data, channelIndex, frequencyIndex);
+                    const stats = calculateStatistics(channelData);
+                    const freqNames = ['Delta', 'Theta', 'Alpha', 'Beta', 'Gamma'];
+                    
+                    // Update statistics display
+                    channelStats.innerHTML = `
+                        <div class="space-y-1">
+                            <div class="font-medium text-slate-700">Channel ${channelIndex + 1} - ${freqNames[frequencyIndex]} Band Statistics:</div>
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <div>Mean: <span class="font-mono">${stats.mean.toFixed(2)}</span></div>
+                                <div>Std Dev: <span class="font-mono">${stats.std.toFixed(2)}</span></div>
+                                <div>Min: <span class="font-mono">${stats.min.toFixed(2)}</span></div>
+                                <div>Max: <span class="font-mono">${stats.max.toFixed(2)}</span></div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Update mini chart
+                    const ctx = miniChartCanvas.getContext('2d');
+                    
+                    if (miniChart) {
+                        miniChart.destroy();
+                    }
+                    
+                    miniChart = new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: Array.from({ length: dataToChart.length }, (_, i) => i + 1),
+                            labels: Array.from({length: channelData.length}, (_, i) => `${(i + 1) * 4}s`),
                             datasets: [{
-                                label: `${featureType} Data (Channel 1)`,
-                                data: dataToChart,
-                                borderColor: emotionColor,
+                                label: `CH${channelIndex + 1} ${freqNames[frequencyIndex]}`,
+                                data: channelData,
+                                borderColor: '#6366f1',
+                                backgroundColor: 'rgba(99, 102, 241, 0.1)',
                                 borderWidth: 2,
-                                fill: false,
-                                tension: 0.1
+                                fill: true,
+                                tension: 0.3
                             }]
                         },
                         options: {
@@ -699,103 +985,37 @@
                             maintainAspectRatio: false,
                             plugins: {
                                 legend: {
-                                    display: true,
-                                    labels: {
-                                        font: {
-                                            family: 'Inter',
-                                        },
-                                        color: '#334155'
-                                    }
+                                    display: true
                                 },
-                                tooltip: {
-                                    bodyFont: {
-                                        family: 'Inter',
-                                    },
-                                    titleFont: {
-                                        family: 'Inter',
-                                    }
+                                title: {
+                                    display: true,
+                                    text: `EEG Signal Over Time (Differential Entropy)`
                                 }
                             },
                             scales: {
-                                x: {
-                                    title: {
-                                        display: true,
-                                        text: 'Time Window / Sample',
-                                        font: {
-                                            family: 'Inter',
-                                            weight: 'bold'
-                                        },
-                                        color: '#475569' // slate-600
-                                    },
-                                    grid: {
-                                        color: '#e2e8f0' // slate-200
-                                    }
-                                },
                                 y: {
                                     title: {
                                         display: true,
-                                        text: 'Feature Value',
-                                        font: {
-                                            family: 'Inter',
-                                            weight: 'bold'
-                                        },
-                                        color: '#475569'
-                                    },
-                                    grid: {
-                                        color: '#e2e8f0'
+                                        text: 'DE Value'
+                                    }
+                                },
+                                x: {
+                                    title: {
+                                        display: true,
+                                        text: 'Time Windows (4s each)'
                                     }
                                 }
                             }
                         }
                     });
                 }
-            }
-
-            // Simple CSV parser
-            function parseCSV(text) {
-                const rows = text.trim().split('\n');
-                return rows.map(row => row.split(',').map(cell => cell.trim()));
-            }
-
-            // Function to render CSV data into an HTML table
-            function renderCSVTable(data) {
-                csvDataDisplay.innerHTML = `<h4 class="text-lg font-semibold text-slate-800 mb-2">Raw CSV Data (First few rows/columns)</h4>
-                                            <p class="text-slate-500 text-sm italic">Data for channel 1 shown in chart above.</p>`;
-                const table = document.createElement('table');
-                const thead = document.createElement('thead');
-                const tbody = document.createElement('tbody');
-
-                if (data.length > 0) {
-                    // Create header row
-                    const headerRow = document.createElement('tr');
-                    data[0].forEach(header => {
-                        const th = document.createElement('th');
-                        th.textContent = header;
-                        headerRow.appendChild(th);
-                    });
-                    thead.appendChild(headerRow);
-                    table.appendChild(thead);
-
-                    // Create data rows (limit to first 10 rows for display to avoid overwhelming)
-                    for (let i = 1; i < Math.min(data.length, 11); i++) { // Max 10 data rows + header
-                        const row = data[i];
-                        const tr = document.createElement('tr');
-                        row.forEach(cell => {
-                            const td = document.createElement('td');
-                            td.textContent = cell;
-                            tr.appendChild(td);
-                        });
-                        tbody.appendChild(tr);
-                    }
-                    table.appendChild(tbody);
-                } else {
-                    const p = document.createElement('p');
-                    p.textContent = "No data to display in CSV table.";
-                    p.className = "text-slate-500";
-                    csvDataDisplay.appendChild(p);
-                    return;
-                }
-                csvDataDisplay.appendChild(table);
+                
+                // Initial visualization
+                updateChannelVisualization();
+                
+                // Add event listeners
+                channelSelect.addEventListener('change', updateChannelVisualization);
+                frequencySelect.addEventListener('change', updateChannelVisualization);
             }
 
             // Event listeners for dropdown changes
@@ -836,9 +1056,14 @@
                     emotionDescriptionResult.textContent = 'Failed to load description. Please try again.';
                 } finally {
                     emotionDescriptionLoading.classList.add('hidden');
-                    describeEmotionBtn.disabled = false;
-                }
+                    describeEmotionBtn.disabled = false;                }
             });
+
+            // Add event listeners for dropdown changes
+            subjectSelect.addEventListener('change', updateExplorerChart);
+            sessionSelect.addEventListener('change', updateExplorerChart);
+            trialSelect.addEventListener('change', updateExplorerChart);
+            featureTypeSelect.addEventListener('change', updateExplorerChart);
 
             // Initial chart load
             updateExplorerChart();
