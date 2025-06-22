@@ -119,16 +119,52 @@ eeg-seed-IV/
 - Make sure `simple_output1.csv` is in the same folder as `index.html`
 
 ### Processing Additional Data
+
+#### Converting MATLAB Files to CSV
+
+The project includes two conversion methods:
+
+**Method 1: Extract Specific Feature (Recommended)**
+```python
+# Extract a specific feature with auto-generated filename
+from matTocsv import extract_specific_feature
+
+# Example: Extract 'de_LDS1' from subject 1, session 1 file
+mat_file = r"C:\path\to\data\1\1_20160518.mat"
+csv_file = extract_specific_feature(mat_file, "de_LDS1")
+# Creates: 1_1_de_LDS1.csv
+
+# Other available features: 'psd_LDS1', 'de_movingAve1', 'psd_movingAve1', etc.
+```
+
+**Method 2: Convert All Features**
+```python
+# Convert the first available feature in the file
+from matTocsv import simple_mat_to_csv
+
+simple_mat_to_csv('input_file.mat', 'output_file.csv')
+```
+
+#### Setup Instructions
 1. Install Python dependencies:
    ```bash
    pip install scipy numpy pandas
    ```
-2. Place MATLAB (.mat) files in the appropriate directory
-3. Run the conversion script:
-   ```bash
-   python matTocsv.py
+2. Place MATLAB (.mat) files in your desired directory
+3. Use the conversion functions in Python:
+   ```python
+   # Interactive Python session
+   python
+   >>> from matTocsv import extract_specific_feature
+   >>> extract_specific_feature('path/to/file.mat', 'de_LDS1')
    ```
 4. Update the `csvFileMap` in `index.html` to include new files
+
+#### Auto-Generated Filenames
+The `extract_specific_feature` function automatically creates meaningful filenames:
+- Input: `C:\data\subjects\3\3_20160518.mat` with feature `de_LDS1`
+- Output: `3_3_de_LDS1.csv`
+- Format: `{subject}_{session}_{feature}.csv`
 
 ## 📈 Current Status & Next Steps
 
