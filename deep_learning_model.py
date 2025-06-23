@@ -9,14 +9,14 @@ This model implements CNN-LSTM architecture optimized for EEG signal processing.
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras.layers import (
+from keras.models import Sequential, Model
+from keras.layers import (
     Dense, LSTM, Conv1D, MaxPooling1D, Dropout, BatchNormalization,
     Flatten, Input, concatenate, Attention, GlobalAveragePooling1D
 )
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
-from tensorflow.keras.utils import to_categorical
+from keras.optimizers import Adam
+from keras.callbacks import EarlyStopping, ReduceLROnPlateau
+from keras.utils import to_categorical
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 import tensorflow as tf
@@ -352,3 +352,55 @@ class DeepEmotionRecognizer:
             results.append(result)
         
         return results[0] if len(results) == 1 else results
+
+
+# Demo/test section
+if __name__ == "__main__":
+    print("Deep Learning Emotion Recognition Model")
+    print("=" * 50)
+    
+    # Create an instance of the model
+    print("Creating DeepEmotionRecognizer instance...")
+    recognizer = DeepEmotionRecognizer(n_channels=62, n_frequencies=5, n_classes=4)
+    print(f"✓ Model created with:")
+    print(f"  - Channels: {recognizer.n_channels}")
+    print(f"  - Frequency bands: {recognizer.n_frequencies}")
+    print(f"  - Emotion classes: {recognizer.n_classes}")
+    
+    # Generate some dummy data for demonstration
+    print("\nGenerating demo data...")
+    n_samples = 1000
+    n_features = recognizer.n_channels * recognizer.n_frequencies  # 62 * 5 = 310
+    
+    # Create synthetic EEG-like data
+    np.random.seed(42)
+    X_demo = np.random.randn(n_samples, n_features) * 0.1
+    y_demo = np.random.randint(0, recognizer.n_classes, n_samples)
+    
+    print(f"✓ Generated demo data:")
+    print(f"  - Features shape: {X_demo.shape}")
+    print(f"  - Labels shape: {y_demo.shape}")
+    print(f"  - Emotion distribution: {np.bincount(y_demo)}")
+    
+    # Test data preparation
+    print("\nTesting data preparation...")
+    X_prepared = recognizer.prepare_data(X_demo)
+    print(f"✓ Prepared data shape: {X_prepared.shape}")
+    
+    # Test model building (without training)
+    print("\nTesting model architecture...")
+    input_shape = X_prepared.shape[1:]
+    test_model = recognizer.build_attention_model(input_shape)
+    print("✓ Model architecture created successfully!")
+    print(f"  - Input shape: {input_shape}")
+    print(f"  - Total parameters: {test_model.count_params():,}")
+    
+    # Show model summary
+    print("\nModel Summary:")
+    print("-" * 30)
+    test_model.summary()
+    
+    print("\n" + "=" * 50)
+    print("Deep Learning Model Test Complete!")
+    print("To train the model, use:")
+    print("recognizer.train_model(X_demo, y_demo, epochs=10)")

@@ -422,19 +422,33 @@ class ComprehensiveEmotionAnalyzer:
         
         axes[0, 0].pie(emotion_counts, labels=emotion_names, autopct='%1.1f%%', startangle=90)
         axes[0, 0].set_title('Emotion Distribution')
-        
-        # 2. Feature statistics by emotion
+          # 2. Feature statistics by emotion
         emotions_data = []
+        emotion_labels_available = []
         for i in range(4):
             emotion_mask = self.labels == i
             if np.sum(emotion_mask) > 0:
-                emotions_data.append(np.mean(self.features[emotion_mask], axis=0))
+                # Get mean activity per channel for this emotion
+                emotion_features = self.features[emotion_mask]
+                channel_means = []
+                for channel in range(62):
+                    channel_data = []
+                    for freq in range(5):
+                        feature_idx = channel * 5 + freq
+                        if feature_idx < emotion_features.shape[1]:
+                            channel_data.extend(emotion_features[:, feature_idx])
+                    if channel_data:
+                        channel_means.append(np.mean(channel_data))
+                
+                if channel_means:
+                    emotions_data.append(channel_means)
+                    emotion_labels_available.append(self.emotion_mapping[i])
         
-        if emotions_data:
-            axes[0, 1].boxplot([np.mean(data.reshape(62, 5), axis=1) for data in emotions_data],
-                              labels=emotion_names)
+        if emotions_data and len(emotions_data) > 0:
+            axes[0, 1].boxplot(emotions_data, labels=emotion_labels_available)
             axes[0, 1].set_title('Channel Activity by Emotion')
             axes[0, 1].set_ylabel('Mean Activity')
+            axes[0, 1].tick_params(axis='x', rotation=45)
         
         # 3. Frequency band analysis
         band_means = []
