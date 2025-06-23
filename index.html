@@ -387,12 +387,11 @@
                         <select id="trialSelect" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"></select>
                     </div>
                     <div>
-                        <label for="featureTypeSelect" class="block w-full text-sm font-medium text-slate-700">Feature Type</label>
-                        <select id="featureTypeSelect" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                            <option value="de_movingAve">DE (Moving Average)</option>
-                            <option value="de_LDS">DE (LDS)</option>
-                            <option value="psd_movingAve">PSD (Moving Average)</option>
-                            <option value="psd_LDS">PSD (LDS)</option>
+                        <label for="featureTypeSelect" class="block w-full text-sm font-medium text-slate-700">Feature Type</label>                        <select id="featureTypeSelect" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                            <option value="de_movingAve1">DE (Moving Average)</option>
+                            <option value="de_LDS1">DE (LDS)</option>
+                            <option value="psd_movingAve1">PSD (Moving Average)</option>
+                            <option value="psd_LDS1">PSD (LDS)</option>
                         </select>
                     </div>
                 </div>
@@ -465,15 +464,17 @@
                 sessionLabels: {
                     1: [1, 2, 3, 0, 2, 0, 0, 1, 0, 1, 2, 1, 1, 1, 2, 3, 2, 2, 3, 3, 0, 3, 0, 3],
                     2: [2, 1, 3, 0, 0, 2, 0, 2, 3, 3, 2, 3, 2, 0, 1, 1, 2, 1, 0, 3, 0, 1, 3, 1],
-                    3: [1, 2, 2, 1, 3, 3, 3, 1, 1, 2, 1, 0, 2, 3, 3, 0, 2, 3, 0, 0, 2, 0, 1, 0]
-                }
-            };            // Mapping for CSV files based on organized folder structure
+                    3: [1, 2, 2, 1, 3, 3, 3, 1, 1, 2, 1, 0, 2, 3, 3, 0, 2, 3, 0, 0, 2, 0, 1, 0]                }
+            };
+
+            // Mapping for CSV files based on organized folder structure
             // Format: csv/subject/session/feature.csv
             const csvFileMap = {
-                'Subject_1_Session_1_Trial_1_de_movingAve': 'csv/1/1/de_movingAve1.csv', // Legacy file
+                'Subject_1_Session_1_Trial_1_de_movingAve1': 'csv/1/1/de_movingAve1.csv', 
                 // New organized structure examples:
                 'Subject_1_Session_1_Trial_1_de_LDS1': 'csv/1/1/de_LDS1.csv',
-                // 'Subject_1_Session_1_Trial_1_psd_LDS1': 'csv/1/1/psd_LDS1.csv',
+                'Subject_1_Session_1_Trial_1_psd_LDS1': 'csv/1/1/psd_LDS1.csv',
+                'Subject_1_Session_1_Trial_1_psd_movingAve1': 'csv/1/1/psd_movingAve1.csv',
                 // 'Subject_2_Session_1_Trial_1_de_movingAve1': 'csv/2/1/de_movingAve1.csv',
             };
 
