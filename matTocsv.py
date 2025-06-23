@@ -228,7 +228,7 @@ if __name__ == "__main__":
     # Uncomment and modify the path to your .mat file
     
     # Example 1: Extract specific feature (new organized structure)
-    mat_file_path = r"C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth\1\2_20150915.mat"
+    mat_file_path = r"C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth\2\2_20150920.mat"
     feature_name = "de_movingAve1"  # or "psd_LDS1", "de_LDS1", etc.
     csv_file = extract_specific_feature(mat_file_path, feature_name)
     # Creates: csv/1/1/de_movingAve1.csv
