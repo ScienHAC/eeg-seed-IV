@@ -433,10 +433,7 @@
                     </div>
                     <div>
                         <label for="featureTypeSelect" class="block w-full text-sm font-medium text-slate-700">Feature Type</label>                        <select id="featureTypeSelect" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-slate-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                            <option value="de_movingAve1">DE (Moving Average)</option>
-                            <option value="de_LDS1">DE (LDS)</option>
-                            <option value="psd_movingAve1">PSD (Moving Average)</option>
-                            <option value="psd_LDS1">PSD (LDS)</option>
+                            <!-- Options will be populated dynamically based on trial selection -->
                         </select>
                     </div>
                 </div>
@@ -510,28 +507,30 @@
                     1: [1, 2, 3, 0, 2, 0, 0, 1, 0, 1, 2, 1, 1, 1, 2, 3, 2, 2, 3, 3, 0, 3, 0, 3],
                     2: [2, 1, 3, 0, 0, 2, 0, 2, 3, 3, 2, 3, 2, 0, 1, 1, 2, 1, 0, 3, 0, 1, 3, 1],
                     3: [1, 2, 2, 1, 3, 3, 3, 1, 1, 2, 1, 0, 2, 3, 3, 0, 2, 3, 0, 0, 2, 0, 1, 0]                }
-            };
-
-            // Mapping for CSV files based on organized folder structure
+            };            // Mapping for CSV files based on organized folder structure
             // Format: csv/subject/session/feature.csv
+            // Note: The number in the feature key (e.g., de_movingAve2) corresponds to the trial number
             const csvFileMap = {
-                'Subject_1_Session_1_Trial_1_de_movingAve1': 'csv/1/1/de_movingAve1.csv', 
-                'Subject_1_Session_1_Trial_1_de_movingAve2': 'csv/1/1/de_movingAve2.csv', 
-                'Subject_1_Session_1_Trial_1_de_movingAve3': 'csv/1/1/de_movingAve3.csv', 
-                // New organized structure examples:
+                // Trial 1 examples
+                'Subject_1_Session_1_Trial_1_de_movingAve1': 'csv/1/1/de_movingAve1.csv',
                 'Subject_1_Session_1_Trial_1_de_LDS1': 'csv/1/1/de_LDS1.csv',
-                //'Subject_1_Session_1_Trial_1_psd_LDS1': 'csv/1/1/psd_LDS1.csv',
-                //'Subject_1_Session_1_Trial_1_psd_movingAve1': 'csv/1/1/psd_movingAve1.csv',
-                'Subject_2_Session_1_Trial_1_de_movingAve1': 'csv/2/1/de_movingAve1.csv',
+                
+                // Trial 2 examples
+                'Subject_1_Session_1_Trial_2_de_movingAve2': 'csv/1/1/de_movingAve2.csv',
+                
+                // Other subjects examples
+                'Subject_1_Session_1_Trial_24_de_movingAve24': 'csv/1/1/de_movingAve24.csv',
+                'Subject_2_Session_1_Trial_1_de_movingAve1': 'csv/1/1/de_movingAve1.csv',
+                'Subject_1_Session_2_Trial_1_de_movingAve1': 'csv/2/1/de_movingAve1.csv',
             };
 
             // Function to generate CSV file path from organized structure
-            function generateCSVPath(subject, session, featureType) {
+            function generateCSVPath(subject, session, trial, featureType) {
                 // First try the organized structure: csv/subject/session/feature.csv
                 const organizedPath = `csv/${subject}/${session}/${featureType}.csv`;
                 
-                // Create the key for the csvFileMap
-                const csvKey = `Subject_${subject}_Session_${session}_Trial_1_${featureType}`;
+                // Create the key for the csvFileMap (matches the correct trial)
+                const csvKey = `Subject_${subject}_Session_${session}_Trial_${trial}_${featureType}`;
                 
                 // Check if there's a specific mapping in csvFileMap, otherwise use organized path
                 return csvFileMap[csvKey] || organizedPath;
@@ -895,10 +894,8 @@
                     describeEmotionBtn.classList.remove('hidden');                } else {
                     emotionResult.innerHTML = '<span class="text-slate-500">Select valid parameters to see emotion label</span>';
                     describeEmotionBtn.classList.add('hidden');
-                }
-
-                // Check if CSV data is available
-                const csvFile = generateCSVPath(subject, session, featureType);
+                }                // Check if CSV data is available
+                const csvFile = generateCSVPath(subject, session, trial, featureType);
                 
                 try {
                     // Try to load the CSV file
@@ -1124,8 +1121,41 @@
             // Event listeners for dropdown changes
             subjectSelect.addEventListener('change', updateExplorerChart);
             sessionSelect.addEventListener('change', updateExplorerChart);
-            trialSelect.addEventListener('change', updateExplorerChart);
+            trialSelect.addEventListener('change', () => {
+                updateExplorerChart();
+                updateFeatureTypeOptions();
+            });
             featureTypeSelect.addEventListener('change', updateExplorerChart);
+
+            // Function to update feature type dropdown based on selected trial
+            function updateFeatureTypeOptions() {
+                const trial = trialSelect.value;
+                const featureTypeSelect = document.getElementById('featureTypeSelect');
+                
+                // Clear existing options
+                featureTypeSelect.innerHTML = '';
+                
+                if (trial) {
+                    const featureOptions = [
+                        { value: `de_movingAve${trial}`, label: 'DE (Moving Average)' },
+                        { value: `de_LDS${trial}`, label: 'DE (LDS)' },
+                        { value: `psd_movingAve${trial}`, label: 'PSD (Moving Average)' },
+                        { value: `psd_LDS${trial}`, label: 'PSD (LDS)' }
+                    ];
+                    
+                    featureOptions.forEach(option => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = option.value;
+                        optionElement.textContent = option.label;
+                        featureTypeSelect.appendChild(optionElement);
+                    });
+                    
+                    // Trigger chart update if there's a selected value
+                    if (featureTypeSelect.value) {
+                        updateExplorerChart();
+                    }
+                }
+            }
 
             // LLM call for emotion description
             describeEmotionBtn.addEventListener('click', async () => {
@@ -1157,12 +1187,12 @@
                 } catch (error) {
                     console.error('Error fetching LLM emotion description:', error);
                     emotionDescriptionResult.textContent = 'Failed to load description. Please try again.';                } finally {
-                    emotionDescriptionLoading.classList.add('hidden');
-                    describeEmotionBtn.disabled = false;
+                    emotionDescriptionLoading.classList.add('hidden');                    describeEmotionBtn.disabled = false;
                 }
             });
 
-            // Initial chart load
+            // Initial setup
+            updateFeatureTypeOptions();
             updateExplorerChart();
         });
     </script>
