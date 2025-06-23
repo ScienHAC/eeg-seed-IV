@@ -229,7 +229,7 @@ if __name__ == "__main__":
     
     # Example 1: Extract specific feature (new organized structure)
     mat_file_path = r"C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth\1\1_20160518.mat"
-    feature_name = "de_LDS1"  # or "psd_LDS1", "de_LDS1", etc.
+    feature_name = "de_movingAve24"  # or "psd_LDS1", "de_LDS1", etc.
     csv_file = extract_specific_feature(mat_file_path, feature_name)
     # Creates: csv/1/1/de_movingAve1.csv
     
