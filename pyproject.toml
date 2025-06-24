@@ -19,4 +19,5 @@ dependencies = [
     "tensorflow>=2.18.1",
     "keras>=3.0.0",
     "pathlib2>=2.3.0",
+    "boruta>=0.4.3",
 ]
