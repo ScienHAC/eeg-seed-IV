@@ -20,4 +20,5 @@ dependencies = [
     "keras>=3.0.0",
     "pathlib2>=2.3.0",
     "boruta>=0.4.3",
+    "imbalanced-learn>=0.13.0",
 ]
