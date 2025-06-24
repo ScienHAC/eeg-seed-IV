@@ -36,7 +36,7 @@ def main():
     print("-" * 60)
     
     try:
-        from comprehensive_analysis import main as run_comprehensive
+        from models.home.comprehensive_analysis import main as run_comprehensive
         run_comprehensive()
         print("✓ Comprehensive analysis completed successfully!")
     except Exception as e:
@@ -74,7 +74,7 @@ def main():
 def demonstrate_deep_learning():
     """Demonstrate the deep learning model architecture."""
     try:
-        from deep_learning_model import DeepEmotionRecognizer
+        from models.home.deep_learning_model import DeepEmotionRecognizer
         import numpy as np
         
         print("Building Deep Learning Model Architecture...")
