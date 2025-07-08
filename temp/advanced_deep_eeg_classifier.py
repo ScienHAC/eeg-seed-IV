@@ -1015,11 +1015,10 @@ class AdvancedEEGClassifier:
             train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
             val_loader = DataLoader(val_dataset, batch_size=64, shuffle=False)
             test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
-            
-            # Training with improved hyperparameters
-            optimizer = optim.AdamW(model.parameters(), lr=0.001, weight_decay=1e-4)
-            scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', patience=10, factor=0.5, verbose=True)
-            criterion = nn.CrossEntropyLoss()
+              # Training with improved hyperparameters (fixed for PyTorch compatibility)
+            optimizer = optim.AdamW(model.parameters(), lr=0.0005, weight_decay=1e-5, betas=(0.9, 0.999))
+            scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', patience=8, factor=0.3, min_lr=1e-7)
+            criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
             
             best_val_acc = 0
             patience_counter = 0
@@ -1464,10 +1463,9 @@ class EEGTrainer:
             betas=(0.9, 0.999),
             eps=1e-8
         )
-        
-        # More aggressive learning rate scheduling
+          # More aggressive learning rate scheduling (fixed for PyTorch compatibility)
         scheduler = optim.lr_scheduler.ReduceLROnPlateau(
-            optimizer, mode='min', patience=8, factor=0.3, verbose=False, min_lr=1e-7
+            optimizer, mode='min', patience=8, factor=0.3, min_lr=1e-7
         )
         
         # Label smoothing for regularization
