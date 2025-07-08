@@ -18,16 +18,23 @@ from pathlib import Path
 import warnings
 warnings.filterwarnings('ignore')
 
-def load_eeg_data(csv_dir="csv"):
+def load_eeg_data(csv_dir="csv", max_subjects=10, trials_per_emotion=2):
     """
-    Load EEG data from SEED-IV CSV files
+    Load EEG data from SEED-IV CSV files with balanced sampling for faster processing
+    
+    Parameters:
+    -----------
+    csv_dir : str - Path to CSV directory
+    max_subjects : int - Maximum subjects per session (default: 10)
+    trials_per_emotion : int - Trials per emotion class (default: 2)
     
     Returns:
     --------
     X : pd.DataFrame - Feature matrix
     y : np.array - Emotion labels (0=Neutral, 1=Sad, 2=Fear, 3=Happy)
     """
-    print("🔄 Loading SEED-IV EEG dataset...")
+    print("🔄 Loading SEED-IV EEG dataset with balanced sampling...")
+    print(f"📊 Settings: {max_subjects} subjects/session, {trials_per_emotion} trials/emotion")
     
     csv_path = Path(csv_dir)
     
@@ -38,12 +45,34 @@ def load_eeg_data(csv_dir="csv"):
         3: [1,2,2,1,3,3,3,1,1,2,1,0,2,3,3,0,2,3,0,0,2,0,1,0]
     }
     
+    # Create balanced trial selection for each session
+    def get_balanced_trials(session):
+        """Get balanced trials for each emotion in a session"""
+        labels = session_labels[session]
+        emotion_trials = {0: [], 1: [], 2: [], 3: []}
+        
+        # Group trials by emotion
+        for trial_idx, emotion in enumerate(labels):
+            emotion_trials[emotion].append(trial_idx + 1)  # trials are 1-indexed
+        
+        # Select specified number of trials per emotion
+        selected_trials = []
+        for emotion in [0, 1, 2, 3]:  # Neutral, Sad, Fear, Happy
+            trials = emotion_trials[emotion][:trials_per_emotion]
+            selected_trials.extend(trials)
+        
+        return selected_trials
+    
     all_data = []
     file_count = 0
+    emotion_counts = {0: 0, 1: 0, 2: 0, 3: 0}
     
-    # Load data from all sessions/subjects
+    # Load data from sessions/subjects with balanced sampling
     for session in range(1, 4):  # Sessions 1, 2, 3
-        for subject in range(1, 16):  # Subjects 1-15
+        selected_trials = get_balanced_trials(session)
+        print(f"📋 Session {session} selected trials: {selected_trials}")
+        
+        for subject in range(1, min(max_subjects + 1, 16)):  # Limited subjects
             session_path = csv_path / str(session) / str(subject)
             
             if not session_path.exists():
@@ -51,7 +80,7 @@ def load_eeg_data(csv_dir="csv"):
                 
             print(f"📁 Loading Session {session}, Subject {subject}...")
             
-            for trial in range(1, 25):  # Trials 1-24
+            for trial in selected_trials:  # Only selected balanced trials
                 emotion_label = session_labels[session][trial-1]
                 
                 # Load LDS features (main differential entropy features)
@@ -82,11 +111,13 @@ def load_eeg_data(csv_dir="csv"):
                         
                         all_data.append(row_data)
                         file_count += 1
+                        emotion_counts[emotion_label] += 1
                         
                     except Exception as e:
                         print(f"⚠️ Error loading {file_path}: {e}")
     
     print(f"✅ Loaded {file_count} files successfully")
+    print(f"📊 Emotion distribution: Neutral={emotion_counts[0]}, Sad={emotion_counts[1]}, Fear={emotion_counts[2]}, Happy={emotion_counts[3]}")
     
     if not all_data:
         print("❌ No data found! Check your CSV folder path.")
@@ -229,15 +260,15 @@ def main():
     print("🚀 EEG Sequential Feature Selection for SEED-IV Dataset")
     print("=" * 60)
     
-    # Load data
-    X, y = load_eeg_data("csv")  # Change path if needed
+    # Load data with optimized parameters
+    X, y = load_eeg_data("csv", max_subjects=10, trials_per_emotion=2)
     
     if X is None:
         print("❌ Failed to load data. Please check your CSV folder path.")
         return
     
-    # Run feature selection
-    results = run_sequential_feature_selection(X, y, max_features=100, step=10)
+    # Run feature selection with optimal parameters
+    results = run_sequential_feature_selection(X, y, max_features=25, step=5)
     
     # Plot results
     plot_results(results)

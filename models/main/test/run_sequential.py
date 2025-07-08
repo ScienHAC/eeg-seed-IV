@@ -25,27 +25,65 @@ def run_feature_selection():
     print("🚀 SEED-IV EEG Feature Selection")
     print("=" * 50)
     
-    # STEP 1: Load your EEG data
+    # STEP 1: Load your EEG data with balanced sampling
     print("\n📂 STEP 1: Loading EEG data from CSV folder...")
-    X, y = load_eeg_data("../../../csv")  # Adjust path to your csv folder
+    X, y = load_eeg_data(
+        "../../../csv",  # Updated for Colab
+        max_subjects=10,      # Use 10 subjects per session (instead of 15)
+        trials_per_emotion=2  # Use 2 trials per emotion (balanced sampling)
+    )
     
     if X is None:
-        print("❌ Could not load data. Trying different path...")
-        X, y = load_eeg_data("csv")  # Try current directory
+        print("❌ Could not load data. Trying alternative path...")
+        X, y = load_eeg_data(
+            "csv", 
+            max_subjects=10, 
+            trials_per_emotion=2
+        )
         
     if X is None:
         print("❌ Could not find CSV data. Please check your folder structure.")
         print("Expected structure: csv/1/1/de_LDS1.csv, csv/1/1/de_LDS2.csv, etc.")
         return None
     
-    # STEP 2: Run feature selection  
+    # STEP 1.5: Pre-filter features to make it manageable
+    print(f"\n🔧 STEP 1.5: Pre-filtering features...")
+    print(f"Original features: {X.shape[1]} (too many for sequential selection)")
+    
+    # Clean data: handle NaN values
+    print("🧹 Cleaning data: handling missing values...")
+    print(f"NaN values found: {X.isnull().sum().sum()}")
+    
+    # Fill NaN values with column means
+    X_clean = X.fillna(X.mean())
+    
+    # Remove any remaining infinite values
+    X_clean = X_clean.replace([np.inf, -np.inf], np.nan)
+    X_clean = X_clean.fillna(0)
+    
+    print(f"✅ Data cleaned. NaN values after cleaning: {X_clean.isnull().sum().sum()}")
+    
+    from sklearn.feature_selection import SelectKBest, f_classif
+    
+    # Reduce from 17,050 to 200 most informative features
+    print("🔍 Selecting top 200 features using F-test...")
+    selector = SelectKBest(f_classif, k=200)
+    X_filtered = selector.fit_transform(X_clean, y)  # Use cleaned data
+    
+    # Convert back to DataFrame with proper column names
+    X_filtered = pd.DataFrame(X_filtered, columns=[f'filtered_feature_{i}' for i in range(200)])
+    
+    print(f"✅ Reduced to {X_filtered.shape[1]} features")
+    print(f"📊 New dataset shape: {X_filtered.shape}")
+    
+    # STEP 2: Run feature selection on pre-filtered data
     print("\n🔍 STEP 2: Running sequential feature selection...")
     print("This will test different numbers of features to find the optimal set.")
     
     results = run_sequential_feature_selection(
-        X, y, 
-        max_features=50,  # Test up to 50 features
-        step=5            # Test 5, 10, 15, 20, ... features
+        X_filtered, y,  # Use pre-filtered data instead of X
+        max_features=25,  # Optimal: 25 features (sweet spot)
+        step=5           # Test 5, 10, 15, 20, 25 features
     )
     
     # STEP 3: Show results
@@ -62,7 +100,7 @@ def run_feature_selection():
     summary = {
         'best_accuracy': results['best_accuracy'],
         'best_feature_count': results['best_count'],
-        'total_features_tested': X.shape[1],
+        'total_features_tested': X_filtered.shape[1],  # Use filtered shape
         'improvement_over_baseline': results['best_accuracy'] - results['accuracies'][0],
         'best_feature_indices': best_indices.tolist()
     }
@@ -88,7 +126,7 @@ def run_feature_selection():
     print(f"   🏆 Best accuracy: {results['best_accuracy']:.4f}")
     print(f"   📊 Optimal features: {results['best_count']}")
     print(f"   📈 Improvement: +{summary['improvement_over_baseline']:.4f}")
-    print(f"   💡 Selected {len(best_indices)} out of {X.shape[1]} features")
+    print(f"   💡 Selected {len(best_indices)} out of {X_filtered.shape[1]} features")
     
     return results
 
