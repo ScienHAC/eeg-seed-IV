@@ -18,15 +18,15 @@ from pathlib import Path
 import warnings
 warnings.filterwarnings('ignore')
 
-def load_eeg_data(csv_dir="csv", max_subjects=10, trials_per_emotion=2):
+def load_eeg_data(csv_dir="csv", max_subjects=15, trials_per_emotion=3):
     """
     Load EEG data from SEED-IV CSV files with balanced sampling for faster processing
     
     Parameters:
     -----------
     csv_dir : str - Path to CSV directory
-    max_subjects : int - Maximum subjects per session (default: 10)
-    trials_per_emotion : int - Trials per emotion class (default: 2)
+    max_subjects : int - Maximum subjects per session (default: 15)
+    trials_per_emotion : int - Trials per emotion class (default: 3)
     
     Returns:
     --------
