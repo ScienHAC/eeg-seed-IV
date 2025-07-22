@@ -4,7 +4,13 @@ EEG Emotion Recognition - Main Runner
 
 Organized project structure for SEED-IV emotion recognition:
 1. Sequential Feature Selection (models/sequential_feature_selection/)
-2. Medical-Grade CNN (models/cnn_medical/)
+2. Medical-Grade CNN (models/cnn_medi           print("6. 📈 Show Current Results")
+        print("7. 🌐 Open Interactive Report")
+        print("8. ❌ Exit")
+        
+        choice = input("\nChoose option (1-8): ").strip()print("4. 🚀 Run Improved CNN (Fixed)")
+        print("5. 🎖️ Run Advanced Ensemble (Recommended)")
+        print("6. 📈 Show Current Results")l/)
 3. Interactive Reports (index.html)
 
 Usage: python main.py
@@ -69,6 +75,82 @@ def run_sequential_feature_selection():
     except Exception as e:
         print(f"❌ Error: {e}")
         print("💡 Make sure the CSV data is in the correct location")
+
+def run_advanced_ensemble():
+    """Run Advanced Ensemble that should beat your SFS results"""
+    print("🚀 Running Advanced Ensemble (Proper Small Dataset Approach)...")
+    
+    try:
+        # Import the advanced ensemble module dynamically
+        import importlib.util
+        
+        ensemble_path = Path("models/cnn_medical/advanced_ensemble.py").resolve()
+        if not ensemble_path.exists():
+            print("❌ Advanced Ensemble module not found")
+            return
+            
+        spec = importlib.util.spec_from_file_location("advanced_ensemble", ensemble_path)
+        ensemble_module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(ensemble_module)
+        
+        # Run the advanced ensemble pipeline
+        results = ensemble_module.run_advanced_ensemble_pipeline()
+        if results:
+            print("✅ Advanced Ensemble completed!")
+            print(f"📊 Results: {results}")
+            if results.get('beats_sfs', False):
+                print("🎉 SUCCESS: Advanced Ensemble beats your SFS baseline!")
+                print(f"🎯 Best approach: {results.get('best_approach', 'Unknown')}")
+            else:
+                print("🔧 Advanced ML is better approach than CNN for small datasets")
+        else:
+            print("❌ Advanced Ensemble failed")
+            
+    except Exception as e:
+        print(f"❌ Error: {e}")
+        print(f"💡 Advanced ensemble uses proper ML for small datasets (not CNN)")
+
+def run_improved_cnn():
+    """Run Improved CNN that should beat your SFS results"""
+    print("🚀 Running Improved CNN (Fixed Version)...")
+    
+    try:
+        # Check if TensorFlow is available first
+        import tensorflow as tf
+        print(f"✅ TensorFlow {tf.__version__} available")
+        
+        # Import the improved CNN module dynamically
+        import importlib.util
+        
+        cnn_path = Path("models/cnn_medical/improved_cnn_fixed.py").resolve()
+        if not cnn_path.exists():
+            print("❌ Improved CNN module not found")
+            return
+            
+        spec = importlib.util.spec_from_file_location("improved_cnn_fixed", cnn_path)
+        improved_cnn_module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(improved_cnn_module)
+        
+        # Run the improved CNN pipeline
+        results = improved_cnn_module.run_improved_cnn_pipeline()
+        if results:
+            print("✅ Improved CNN completed!")
+            print(f"📊 Results: {results}")
+            if results.get('beats_sfs', False):
+                print("🎉 SUCCESS: Improved CNN beats your SFS baseline!")
+            else:
+                print("🔧 Still needs work, but better approach than original CNN")
+        else:
+            print("❌ Improved CNN failed")
+            
+    except ImportError as e:
+        if "tensorflow" in str(e).lower():
+            print("❌ TensorFlow not installed")
+            print("💡 Install with: pip install tensorflow")
+        else:
+            print(f"❌ Import error: {e}")
+    except Exception as e:
+        print(f"❌ Error: {e}")
 
 def run_medical_cnn():
     """Run Medical-Grade CNN pipeline"""
@@ -142,12 +224,40 @@ def show_current_results():
     if cnn_results_path.exists():
         import pandas as pd
         cnn_results = pd.read_csv(cnn_results_path)
-        print("\n✅ Medical-Grade CNN Results:")
+        print("\n✅ Medical-Grade CNN Results (Original):")
         print(f"   CV accuracy: {cnn_results['cv_accuracy'].iloc[0]:.3f}")
         print(f"   Medical grade: {cnn_results['medical_grade'].iloc[0]}")
-        print(f"   Improvement: +{cnn_results['improvement_over_svm'].iloc[0]:.1f}%")
+        print(f"   Improvement: {cnn_results['improvement_over_svm'].iloc[0]:+.1f}%")
+        print(f"   Status: ❌ WORSE than SFS baseline")
     else:
-        print("\n❌ Medical-Grade CNN not completed")
+        print("\n❌ Medical-Grade CNN (Original) not completed")
+    
+    # Check Improved CNN results
+    improved_cnn_results_path = Path("improved_cnn_results.csv")
+    if improved_cnn_results_path.exists():
+        import pandas as pd
+        improved_results = pd.read_csv(improved_cnn_results_path)
+        print("\n✅ Improved CNN Results:")
+        print(f"   CV accuracy: {improved_results['cv_accuracy'].iloc[0]:.3f}")
+        print(f"   Beats SFS: {improved_results['beats_sfs'].iloc[0]}")
+        print(f"   Improvement vs SFS: {improved_results['improvement_over_sfs'].iloc[0]:+.1f}%")
+        print(f"   Status: {'✅ SUCCESS' if improved_results['beats_sfs'].iloc[0] else '🔧 NEEDS WORK'}")
+    else:
+        print("\n❌ Improved CNN not completed")
+    
+    # Check Advanced Ensemble results
+    ensemble_results_path = Path("advanced_ensemble_results.csv")
+    if ensemble_results_path.exists():
+        import pandas as pd
+        ensemble_results = pd.read_csv(ensemble_results_path)
+        print("\n✅ Advanced Ensemble Results:")
+        print(f"   Best approach: {ensemble_results['best_approach'].iloc[0]}")
+        print(f"   Best accuracy: {ensemble_results['best_accuracy'].iloc[0]:.3f}")
+        print(f"   Beats SFS: {ensemble_results['beats_sfs'].iloc[0]}")
+        print(f"   Improvement vs SFS: {ensemble_results['improvement_over_sfs'].iloc[0]:+.1f}%")
+        print(f"   Status: {'✅ SUCCESS' if ensemble_results['beats_sfs'].iloc[0] else '🔧 NEEDS MORE FEATURES'}")
+    else:
+        print("\n❌ Advanced Ensemble not completed")
     
     # Check saved models
     if Path("saved_models").exists():
@@ -163,12 +273,13 @@ def main_menu():
         print("=" * 50)
         print("1. 📊 Show Project Structure")
         print("2. 🎯 Run Sequential Feature Selection")
-        print("3. 🏥 Run Medical-Grade CNN")
-        print("4. 📈 Show Current Results")
-        print("5. 🌐 Open Interactive Report")
-        print("6. ❌ Exit")
+        print("3. 🏥 Run Medical-Grade CNN (Original)")
+        print("4. � Run Improved CNN (Fixed)")
+        print("5. �📈 Show Current Results")
+        print("6. 🌐 Open Interactive Report")
+        print("7. ❌ Exit")
         
-        choice = input("\nChoose option (1-6): ").strip()
+        choice = input("\nChoose option (1-7): ").strip()
         
         if choice == '1':
             show_project_structure()
@@ -177,10 +288,14 @@ def main_menu():
         elif choice == '3':
             run_medical_cnn()
         elif choice == '4':
-            show_current_results()
+            run_improved_cnn()
         elif choice == '5':
-            open_interactive_report()
+            run_advanced_ensemble()
         elif choice == '6':
+            show_current_results()
+        elif choice == '7':
+            open_interactive_report()
+        elif choice == '8':
             print("👋 Goodbye!")
             break
         else:

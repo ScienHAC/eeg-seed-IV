@@ -71,20 +71,28 @@ def load_saved_features_and_data():
     """Load your saved Sequential Feature Selection results"""
     print("🔄 Loading your saved Sequential Feature Selection results...")
     
-    # Load your best model and features (modify path as needed)
-    checkpoint_dir = "../../saved_models"
+    # Use absolute path to ensure we find the saved models
+    current_file_dir = Path(__file__).parent
+    checkpoint_dir = current_file_dir / "../../saved_models"
+    checkpoint_dir = checkpoint_dir.resolve()  # Convert to absolute path
+    
     best_n_features = 25  # From your results
     
-    model_path = f"{checkpoint_dir}/rf_model_{best_n_features}_features.joblib"
-    features_path = f"{checkpoint_dir}/selected_features_{best_n_features}.npy"
+    model_path = checkpoint_dir / f"rf_model_{best_n_features}_features.joblib"
+    features_path = checkpoint_dir / f"selected_features_{best_n_features}.npy"
     
-    if os.path.exists(model_path) and os.path.exists(features_path):
+    print(f"🔍 Looking for features at: {features_path}")
+    print(f"🔍 Looking for model at: {model_path}")
+    
+    if model_path.exists() and features_path.exists():
         print(f"✅ Loading saved results for {best_n_features} features")
-        saved_features = np.load(features_path)
+        saved_features = np.load(str(features_path))
         print(f"📊 Selected {np.sum(saved_features)} features out of 200")
         return saved_features
     else:
-        print("❌ Saved features not found. Run Sequential Feature Selection first!")
+        print(f"❌ Files not found:")
+        print(f"   Features ({features_path.exists()}): {features_path}")
+        print(f"   Model ({model_path.exists()}): {model_path}")
         return None
 
 def create_eeg_topology_map(features, grid_size=(9, 9)):
@@ -359,8 +367,13 @@ def run_medical_grade_pipeline():
     import sys
     import importlib.util
     
-    # Load the Sequential Feature Selection module
-    sfs_path = Path("../sequential_feature_selection/clean_eeg_classifier.py").resolve()
+    # Load the Sequential Feature Selection module using absolute path
+    current_file_dir = Path(__file__).parent
+    sfs_path = current_file_dir / "../sequential_feature_selection/clean_eeg_classifier.py"
+    sfs_path = sfs_path.resolve()  # Convert to absolute path
+    
+    print(f"🔍 Looking for SFS module at: {sfs_path}")
+    
     if sfs_path.exists():
         spec = importlib.util.spec_from_file_location("clean_eeg_classifier", sfs_path)
         clean_eeg_classifier = importlib.util.module_from_spec(spec)
@@ -371,8 +384,12 @@ def run_medical_grade_pipeline():
         print(f"❌ Sequential Feature Selection module not found at: {sfs_path}")
         return None
     
-    csv_dir = "../../csv"  # Path to CSV data
-    X, y, metadata = load_clean_seed_iv_data(csv_dir, "de_LDS", max_subjects=15)
+    # Use absolute path for CSV data directory
+    csv_dir = current_file_dir / "../../csv"
+    csv_dir = csv_dir.resolve()
+    print(f"🔍 Looking for CSV data at: {csv_dir}")
+    
+    X, y, metadata = load_clean_seed_iv_data(str(csv_dir), "de_LDS", max_subjects=15)
     
     if len(X) == 0:
         print("❌ Could not load EEG data")
