@@ -433,7 +433,7 @@ class EnhancedFeaturesModel:
         logger.info(f"Evaluation completed in {evaluation_time:.2f} seconds")
         logger.info(f"Test Accuracy: {test_accuracy:.4f} ({test_accuracy:.1%})")
         logger.info(f"F1 Score (Macro): {f1_macro:.4f}")
-        logger.info(f"Target Achievement: {'✅' if test_accuracy >= self.target_accuracy else '❌'}")
+        logger.info(f"Target Achievement: {'[ACHIEVED]' if test_accuracy >= self.target_accuracy else '[NOT ACHIEVED]'}")
         
         return eval_results
     
@@ -510,10 +510,10 @@ class EnhancedFeaturesModel:
         Selected Features: {train_results.get('selected_features', 'N/A')}
         
         Feature Types:
-        • Spatial: {'✅' if self.stage_config.use_spatial_features else '❌'}
-        • Temporal: {'✅' if self.stage_config.use_temporal_features else '❌'}
-        • Connectivity: {'✅' if self.stage_config.use_connectivity_features else '❌'}
-        • Frequency: ✅
+        • Spatial: {'[YES]' if self.stage_config.use_spatial_features else '[NO]'}
+        • Temporal: {'[YES]' if self.stage_config.use_temporal_features else '[NO]'}
+        • Connectivity: {'[YES]' if self.stage_config.use_connectivity_features else '[NO]'}
+        • Frequency: [YES]
         
         Selection Method: {self.stage_config.feature_selection_method}
         Target Features: {self.stage_config.n_selected_features}
@@ -525,7 +525,7 @@ class EnhancedFeaturesModel:
         # 5. Model Summary
         axes[1, 1].axis('off')
         accuracy = eval_results['test_accuracy']
-        target_status = "✅ Achieved" if accuracy >= self.target_accuracy else "❌ Not Achieved"
+        target_status = "[ACHIEVED]" if accuracy >= self.target_accuracy else "[NOT ACHIEVED]"
         
         summary_text = f"""MODEL SUMMARY
         
@@ -717,7 +717,7 @@ def main():
     enhanced_model = EnhancedFeaturesModel()
     
     # This would run the complete pipeline if data path is provided
-    print("⚠️  Please configure data path in config.py to run the complete pipeline")
+    print("WARNING: Please configure data path in config.py to run the complete pipeline")
     
     return enhanced_model
 

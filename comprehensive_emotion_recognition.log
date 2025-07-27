@@ -148,3 +148,108 @@ AttributeError: 'NoneType' object has no attribute 'transform'
 2025-07-27 17:08:58,478 - __main__ - INFO - Generating comprehensive report...
 2025-07-27 17:08:58,480 - __main__ - INFO - Report saved to: csv_data\comprehensive_report.txt
 2025-07-27 17:08:58,480 - __main__ - INFO - Pipeline completed in 218.5 seconds
+2025-07-27 17:17:12,563 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
+2025-07-27 17:17:12,564 - __main__ - INFO - Output directory: csv_data
+2025-07-27 17:17:12,564 - __main__ - INFO - Checkpoint directory: csv_data\checkpoints
+2025-07-27 17:17:12,564 - __main__ - INFO - Checkpoint Status:
+2025-07-27 17:17:12,565 - __main__ - INFO -   Stage 1: [Available]
+2025-07-27 17:17:12,565 - __main__ - INFO -   Stage 2: [Not found]
+2025-07-27 17:17:12,565 - __main__ - INFO -   Stage 3: [Not found]
+2025-07-27 17:17:12,565 - __main__ - INFO -   Stage 4: [Not found]
+2025-07-27 17:17:12,565 - __main__ - INFO -   Stage 5: [Not found]
+2025-07-27 17:17:12,565 - __main__ - INFO -   Stage 6: [Not found]
+2025-07-27 17:17:12,566 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
+2025-07-27 17:17:12,566 - __main__ - INFO - Validating data access...
+2025-07-27 17:17:12,566 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 17:17:12,566 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
+2025-07-27 17:17:12,567 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
+2025-07-27 17:17:12,567 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
+2025-07-27 17:17:12,567 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
+2025-07-27 17:17:12,568 - data_processing.seed_iv_loader - INFO - Total files found: 45
+2025-07-27 17:17:12,568 - __main__ - INFO - Data validation successful. Found 3 subjects
+2025-07-27 17:17:12,568 - __main__ - INFO - 
+============================================================
+2025-07-27 17:17:12,568 - __main__ - INFO - Loading existing checkpoint for Stage 1
+2025-07-27 17:17:12,578 - __main__ - INFO - Checkpoint loaded: csv_data\checkpoints\stage_1_checkpoint.joblib
+2025-07-27 17:17:12,578 - __main__ - INFO - Stage 1 resumed from checkpoint
+2025-07-27 17:17:12,583 - __main__ - INFO - Stage 1 result saved to: csv_data\stage_1_result.json
+2025-07-27 17:17:12,583 - __main__ - INFO - 
+============================================================
+2025-07-27 17:17:12,584 - __main__ - INFO - Running Stage 2: Enhanced Features
+2025-07-27 17:17:12,584 - __main__ - INFO - Target Accuracy: 80.0%
+2025-07-27 17:17:12,584 - models.stage2_enhanced - INFO - EnhancedFeaturesModel initialized with target accuracy: 77.5%
+2025-07-27 17:17:12,584 - models.stage2_enhanced - INFO - Running Stage 2: Enhanced Features Pipeline
+2025-07-27 17:17:12,585 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 17:17:12,585 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
+2025-07-27 17:17:12,585 - data_processing.seed_iv_loader - INFO - OPTIMIZED MODE: Using 5 subjects with 500 samples each (~2,500 total samples)
+2025-07-27 17:17:12,585 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
+2025-07-27 17:17:12,740 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
+2025-07-27 17:17:12,741 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 1 to 500 samples
+2025-07-27 17:17:12,741 - data_processing.seed_iv_loader - INFO - Subject 1: 500 samples
+2025-07-27 17:17:12,742 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
+2025-07-27 17:17:12,951 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
+2025-07-27 17:17:12,953 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 2 to 500 samples
+2025-07-27 17:17:12,954 - data_processing.seed_iv_loader - INFO - Subject 2: 500 samples
+2025-07-27 17:17:12,954 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
+2025-07-27 17:17:13,112 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
+2025-07-27 17:17:13,114 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 3 to 500 samples
+2025-07-27 17:17:13,114 - data_processing.seed_iv_loader - INFO - Subject 3: 500 samples
+2025-07-27 17:17:13,114 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
+2025-07-27 17:17:13,264 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
+2025-07-27 17:17:13,265 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 4 to 500 samples
+2025-07-27 17:17:13,266 - data_processing.seed_iv_loader - INFO - Subject 4: 500 samples
+2025-07-27 17:17:13,266 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
+2025-07-27 17:17:13,418 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
+2025-07-27 17:17:13,421 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 5 to 500 samples
+2025-07-27 17:17:13,421 - data_processing.seed_iv_loader - INFO - Subject 5: 500 samples
+2025-07-27 17:17:13,425 - data_processing.seed_iv_loader - INFO - Combined dataset: 2500 samples, 310 features
+2025-07-27 17:17:13,427 - models.stage2_enhanced - INFO - Loaded 2500 samples from 2500 subjects
+2025-07-27 17:17:13,432 - models.stage2_enhanced - INFO - Training enhanced features model...
+2025-07-27 17:17:13,433 - models.stage2_enhanced - INFO - Training data: 2000 samples, 310 features
+2025-07-27 17:17:13,433 - models.stage2_enhanced - INFO - Extracting enhanced multi-domain features...
+2025-07-27 17:17:13,433 - data_processing.feature_engineering - INFO - AdvancedFeatureEngineer initialized: 62 channels, 5 frequency bands
+2025-07-27 17:17:13,433 - data_processing.feature_engineering - INFO - Extracting features: ['spatial', 'temporal', 'frequency', 'connectivity']
+2025-07-27 17:17:13,434 - data_processing.feature_engineering - INFO - Extracting spatial features...
+2025-07-27 17:17:14,194 - data_processing.feature_engineering - INFO - Extracted 20 spatial features
+2025-07-27 17:17:14,194 - data_processing.feature_engineering - INFO - Extracting temporal features...
+2025-07-27 17:17:16,045 - data_processing.feature_engineering - INFO - Extracted 14 temporal features
+2025-07-27 17:17:16,046 - data_processing.feature_engineering - INFO - Extracting frequency domain features...
+2025-07-27 17:17:16,436 - data_processing.feature_engineering - INFO - Extracted 8 frequency domain features
+2025-07-27 17:17:16,437 - data_processing.feature_engineering - INFO - Extracting connectivity features...
+2025-07-27 17:17:16,789 - data_processing.feature_engineering - INFO - Extracted 30 connectivity features
+2025-07-27 17:17:16,790 - data_processing.feature_engineering - INFO - Combined features shape: (2000, 72)
+2025-07-27 17:17:16,790 - models.stage2_enhanced - INFO - Enhanced features shape: (2000, 72)
+2025-07-27 17:17:16,790 - models.stage2_enhanced - INFO - Feature expansion: 310 -> 72 (0.2x)
+2025-07-27 17:17:16,792 - models.stage2_enhanced - INFO - Feature selection using mutual_info...
+2025-07-27 17:17:16,793 - models.stage2_enhanced - WARNING - Unknown feature selection method: mutual_info
+2025-07-27 17:17:16,793 - models.stage2_enhanced - INFO - Using SelectKBest with f_classif as fallback
+2025-07-27 17:17:16,797 - models.stage2_enhanced - INFO - Selected 72 features from 72
+2025-07-27 17:17:16,797 - models.stage2_enhanced - INFO - Optimizing Random Forest hyperparameters...
+2025-07-27 17:19:52,046 - models.stage2_enhanced - INFO - Best parameters: {'n_estimators': 200, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 'log2', 'max_depth': 20, 'bootstrap': False}
+2025-07-27 17:19:52,046 - models.stage2_enhanced - INFO - Best CV score: 0.9725
+2025-07-27 17:20:00,851 - models.stage2_enhanced - INFO - Training completed in 158.61 seconds
+2025-07-27 17:20:00,851 - models.stage2_enhanced - INFO - Feature pipeline: 310 -> 72 -> 72
+2025-07-27 17:20:00,851 - models.stage2_enhanced - INFO - CV Mean Accuracy: 0.9740 ± 0.0102
+2025-07-27 17:20:00,852 - models.stage2_enhanced - INFO - Evaluating model on 500 test samples...
+2025-07-27 17:20:00,852 - data_processing.feature_engineering - INFO - Extracting features: ['spatial', 'temporal', 'frequency', 'connectivity']
+2025-07-27 17:20:00,852 - data_processing.feature_engineering - INFO - Extracting spatial features...
+2025-07-27 17:20:01,050 - data_processing.feature_engineering - INFO - Extracted 20 spatial features
+2025-07-27 17:20:01,050 - data_processing.feature_engineering - INFO - Extracting temporal features...
+2025-07-27 17:20:01,468 - data_processing.feature_engineering - INFO - Extracted 14 temporal features
+2025-07-27 17:20:01,468 - data_processing.feature_engineering - INFO - Extracting frequency domain features...
+2025-07-27 17:20:01,577 - data_processing.feature_engineering - INFO - Extracted 8 frequency domain features
+2025-07-27 17:20:01,577 - data_processing.feature_engineering - INFO - Extracting connectivity features...
+2025-07-27 17:20:01,687 - data_processing.feature_engineering - INFO - Extracted 30 connectivity features
+2025-07-27 17:20:01,687 - data_processing.feature_engineering - INFO - Combined features shape: (500, 72)
+2025-07-27 17:20:01,726 - models.stage2_enhanced - INFO - Evaluation completed in 0.86 seconds
+2025-07-27 17:20:01,726 - models.stage2_enhanced - INFO - Test Accuracy: 0.9820 (98.2%)
+2025-07-27 17:20:01,727 - models.stage2_enhanced - INFO - F1 Score (Macro): 0.9827
+2025-07-27 17:20:01,766 - models.stage2_enhanced - INFO - Enhanced features model saved to: csv_data\stage2_results\enhanced_features_model.joblib
+2025-07-27 17:20:02,820 - models.stage2_enhanced - INFO - Results plot saved to: csv_data\stage2_results\stage2_results.png
+2025-07-27 17:21:02,556 - __main__ - INFO - Target accuracy ACHIEVED: 98.2% vs 80.0%
+2025-07-27 17:21:02,557 - __main__ - WARNING - Failed to save checkpoint for stage 2: [Errno 2] No such file or directory: 'csv_data\\checkpoints\\stage_2_checkpoint.joblib'
+2025-07-27 17:21:02,557 - __main__ - INFO - Stage 2 completed in 230.0 seconds
+2025-07-27 17:21:02,565 - __main__ - INFO - Stage 2 result saved to: csv_data\stage_2_result.json
+2025-07-27 17:21:02,567 - __main__ - INFO - Generating comprehensive report...
+2025-07-27 17:21:02,568 - __main__ - INFO - Report saved to: csv_data\comprehensive_report.txt
+2025-07-27 17:21:02,568 - __main__ - INFO - Pipeline completed in 230.0 seconds
