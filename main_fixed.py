@@ -71,47 +71,39 @@ def run_sequential_feature_selection():
         print(f"❌ Error: {e}")
         print("💡 Make sure the CSV data is in the correct location")
 
-def run_optimized_eeg_ensemble():
-    """Run optimized EEG ensemble that should significantly beat SFS baseline"""
-    print("🧠 Running Optimized EEG Ensemble (Target 65%+)...")
+def run_advanced_ensemble():
+    """Run Advanced Ensemble that should beat your SFS results"""
+    print("🚀 Running Advanced Ensemble (Proper Small Dataset Approach)...")
     
     try:
-        # Import the optimized ensemble module
+        # Import the advanced ensemble module dynamically
         import importlib.util
         
-        ensemble_path = Path("models/cnn_medical/eeg_ensemble_optimized.py").resolve()
+        ensemble_path = Path("models/cnn_medical/advanced_ensemble.py").resolve()
         if not ensemble_path.exists():
-            print("❌ Optimized EEG Ensemble module not found")
+            print("❌ Advanced Ensemble module not found")
             return
             
-        spec = importlib.util.spec_from_file_location("eeg_ensemble_optimized", ensemble_path)
+        spec = importlib.util.spec_from_file_location("advanced_ensemble", ensemble_path)
         ensemble_module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(ensemble_module)
         
-        # Run the optimized pipeline
-        results = ensemble_module.run_optimized_eeg_ensemble()
+        # Run the advanced ensemble pipeline
+        results = ensemble_module.run_advanced_ensemble_pipeline()
         if results:
-            print("✅ Optimized EEG Ensemble completed!")
-            accuracy = results['test_accuracy']
-            improvement = results['improvement_over_baseline']
-            
-            print(f"� Final Accuracy: {accuracy:.3f} ({accuracy*100:.1f}%)")
-            print(f"📈 Improvement over SFS: {improvement:+.1f}%")
-            
-            if accuracy > 0.65:
-                print("� OUTSTANDING: Excellent performance for EEG!")
-            elif accuracy > 0.60:
-                print("🎉 VERY GOOD: Great improvement!")
-            elif accuracy > 0.55:
-                print("✅ GOOD: Solid improvement!")
+            print("✅ Advanced Ensemble completed!")
+            print(f"📊 Results: {results}")
+            if results.get('beats_sfs', False):
+                print("🎉 SUCCESS: Advanced Ensemble beats your SFS baseline!")
+                print(f"🎯 Best approach: {results.get('best_approach', 'Unknown')}")
             else:
-                print("🔧 MARGINAL: Some improvement, needs more work")
+                print("🔧 Advanced ML is better approach than CNN for small datasets")
         else:
-            print("❌ Optimized EEG Ensemble failed")
+            print("❌ Advanced Ensemble failed")
             
     except Exception as e:
         print(f"❌ Error: {e}")
-        print(f"💡 This uses advanced ensemble methods for better EEG accuracy")
+        print(f"💡 Advanced ensemble uses proper ML for small datasets (not CNN)")
 
 def run_improved_cnn():
     """Run Improved CNN that should beat your SFS results"""
@@ -278,7 +270,7 @@ def main_menu():
         print("2. 🎯 Run Sequential Feature Selection")
         print("3. 🏥 Run Medical-Grade CNN (Original)")
         print("4. 🚀 Run Improved CNN (Fixed)")
-        print("5. 🧠 Run Optimized EEG Ensemble (BEST)")
+        print("5. ⚡ Run Advanced Ensemble (BEST)")
         print("6. 📈 Show Current Results")
         print("7. 🌐 Open Interactive Report")
         print("8. ❌ Exit")
@@ -294,7 +286,7 @@ def main_menu():
         elif choice == '4':
             run_improved_cnn()
         elif choice == '5':
-            run_optimized_eeg_ensemble()
+            run_advanced_ensemble()
         elif choice == '6':
             show_current_results()
         elif choice == '7':

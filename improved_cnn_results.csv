@@ -1,0 +1,2 @@
+method,cv_accuracy,accuracy_std,beats_sfs,improvement_over_sfs,selected_features,total_samples,sfs_baseline
+Improved CNN,0.4212962962962963,0.02131641561707655,False,-15.740740740740744,25,1080,0.5

@@ -1,0 +1,17 @@
+method,test_accuracy,f1_score,cv_mean,cv_std,improvement_over_baseline,feature_count,total_time,model_scores
+Optimized EEG Ensemble,0.5,0.5007124383935978,0.47283950617283954,0.034611964861422706,0.0,22,37.45378088951111,"{'Random Forest': {'cv_mean': 0.445679012345679, 'cv_std': 0.036706342585971614, 'model': RandomForestClassifier(class_weight='balanced', max_depth=12,
+                       min_samples_leaf=2, min_samples_split=3,
+                       n_estimators=180, random_state=42)}, 'Extra Trees': {'cv_mean': 0.45185185185185184, 'cv_std': 0.022897823445668413, 'model': ExtraTreesClassifier(class_weight='balanced', max_depth=12, min_samples_leaf=2,
+                     min_samples_split=3, n_estimators=180, random_state=42)}, 'XGBoost': {'cv_mean': 0.4654320987654321, 'cv_std': 0.029885724535580742, 'model': XGBClassifier(base_score=None, booster=None, callbacks=None,
+              colsample_bylevel=None, colsample_bynode=None,
+              colsample_bytree=0.8, device=None, early_stopping_rounds=None,
+              enable_categorical=False, eval_metric='mlogloss',
+              feature_types=None, feature_weights=None, gamma=None,
+              grow_policy=None, importance_type=None,
+              interaction_constraints=None, learning_rate=0.1, max_bin=None,
+              max_cat_threshold=None, max_cat_to_onehot=None,
+              max_delta_step=None, max_depth=6, max_leaves=None,
+              min_child_weight=None, missing=nan, monotone_constraints=None,
+              multi_strategy=None, n_estimators=150, n_jobs=None,
+              num_parallel_tree=None, ...)}, 'LightGBM': {'cv_mean': 0.4802469135802469, 'cv_std': 0.03181258944870404, 'model': LGBMClassifier(colsample_bytree=0.8, max_depth=6, n_estimators=150,
+               random_state=42, reg_alpha=0.1, subsample=0.8, verbose=-1)}}"

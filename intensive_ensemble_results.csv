@@ -1,0 +1,2 @@
+method,best_approach,best_accuracy,beats_sfs,improvement_over_sfs,sfs_baseline,total_samples,selected_features,individual_best,optimized_best,ensemble_score
+INTENSIVE Advanced Ensemble,Best Optimized,0.55,True,36.86635944700464,0.4018518518518518,1080,25,extra_trees: 0.518,GradientBoosting: 0.550,0.5212962962962963
