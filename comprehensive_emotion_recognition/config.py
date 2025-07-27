@@ -105,6 +105,13 @@ class Stage2Config:
     use_connectivity_features: bool = True
     feature_selection_method: str = "mutual_info"
     n_selected_features: int = 500
+    
+    # Hyperparameter optimization
+    use_randomized_search: bool = True
+    n_iter: int = 50
+    
+    # Preprocessing
+    scaler_type: str = "standard"  # "standard", "minmax", "robust"
 
 @dataclass
 class Stage3Config:

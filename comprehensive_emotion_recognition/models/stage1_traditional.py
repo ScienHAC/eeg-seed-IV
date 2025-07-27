@@ -350,7 +350,7 @@ class TraditionalBaseline:
         logger.info(f"Evaluation completed in {evaluation_time:.2f} seconds")
         logger.info(f"Test Accuracy: {test_accuracy:.4f} ({test_accuracy:.1%})")
         logger.info(f"F1 Score (Macro): {f1_macro:.4f}")
-        logger.info(f"Target Achievement: {'✅' if test_accuracy >= self.target_accuracy else '❌'}")
+        logger.info(f"Target Achievement: {'[ACHIEVED]' if test_accuracy >= self.target_accuracy else '[NOT ACHIEVED]'}")
         
         return eval_results
     
@@ -387,9 +387,19 @@ class TraditionalBaseline:
         per_class_acc = eval_results['per_class_accuracy']
         class_report = eval_results['classification_report']
         
-        x_pos = np.arange(len(emotions))
+        # Ensure we have the right number of classes
+        n_classes = len(per_class_acc)
+        emotions_subset = emotions[:n_classes]  # Take only as many emotions as we have classes
+        
+        x_pos = np.arange(n_classes)
         accuracies = per_class_acc
-        f1_scores = [class_report[str(i)]['f1-score'] for i in range(len(emotions))]
+        # Handle missing classes in classification report
+        f1_scores = []
+        for i in range(n_classes):
+            if str(i) in class_report:
+                f1_scores.append(class_report[str(i)]['f1-score'])
+            else:
+                f1_scores.append(0.0)  # Default for missing classes
         
         x_pos_acc = x_pos - 0.2
         x_pos_f1 = x_pos + 0.2
@@ -400,7 +410,7 @@ class TraditionalBaseline:
         axes[0, 1].set_ylabel('Score')
         axes[0, 1].set_title('Per-Class Performance')
         axes[0, 1].set_xticks(x_pos)
-        axes[0, 1].set_xticklabels(emotions)
+        axes[0, 1].set_xticklabels(emotions_subset)
         axes[0, 1].legend()
         axes[0, 1].grid(True, alpha=0.3)
         axes[0, 1].set_ylim([0, 1])
@@ -585,7 +595,7 @@ class TraditionalBaseline:
         
         # Save results if requested
         if save_results:
-            output_dir = data_config.output_dir / "stage1_results"
+            output_dir = Path(data_config.csv_output_dir) / "stage1_results"
             output_dir.mkdir(parents=True, exist_ok=True)
             
             # Save model

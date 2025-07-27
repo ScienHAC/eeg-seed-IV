@@ -129,7 +129,7 @@ class EnhancedFeaturesModel:
         enhanced_features = self.feature_engineer.extract_all_features(X)
         
         logger.info(f"Enhanced features shape: {enhanced_features.shape}")
-        logger.info(f"Feature expansion: {X.shape[1]} → {enhanced_features.shape[1]} ({enhanced_features.shape[1]/X.shape[1]:.1f}x)")
+        logger.info(f"Feature expansion: {X.shape[1]} -> {enhanced_features.shape[1]} ({enhanced_features.shape[1]/X.shape[1]:.1f}x)")
         
         return enhanced_features
     
@@ -175,7 +175,11 @@ class EnhancedFeaturesModel:
             )
         else:
             logger.warning(f"Unknown feature selection method: {self.stage_config.feature_selection_method}")
-            return X
+            logger.info("Using SelectKBest with f_classif as fallback")
+            self.feature_selector = SelectKBest(
+                score_func=f_classif,
+                k=min(self.stage_config.n_selected_features, X.shape[1])
+            )
         
         # Fit and transform
         X_selected = self.feature_selector.fit_transform(X, y)
@@ -321,7 +325,7 @@ class EnhancedFeaturesModel:
         self.results['training'] = train_results
         
         logger.info(f"Training completed in {training_time:.2f} seconds")
-        logger.info(f"Feature pipeline: {X_train.shape[1]} → {enhanced_features.shape[1]} → {selected_features.shape[1]}")
+        logger.info(f"Feature pipeline: {X_train.shape[1]} -> {enhanced_features.shape[1]} -> {selected_features.shape[1]}")
         
         if 'cv_mean' in cv_results:
             logger.info(f"CV Mean Accuracy: {cv_results['cv_mean']:.4f} ± {cv_results['cv_std']:.4f}")
@@ -374,7 +378,13 @@ class EnhancedFeaturesModel:
         # Transform test data through the same pipeline
         enhanced_features = self.feature_engineer.extract_all_features(X_test)
         enhanced_features_scaled = self.scaler.transform(enhanced_features)
-        selected_features = self.feature_selector.transform(enhanced_features_scaled)
+        
+        # Apply feature selection if available
+        if self.feature_selector is not None:
+            selected_features = self.feature_selector.transform(enhanced_features_scaled)
+        else:
+            logger.warning("No feature selector available, using all features")
+            selected_features = enhanced_features_scaled
         
         # Predictions
         y_pred = self.model.predict(selected_features)
@@ -680,7 +690,7 @@ class EnhancedFeaturesModel:
         
         # Save results if requested
         if save_results:
-            output_dir = data_config.output_dir / "stage2_results"
+            output_dir = Path(data_config.csv_output_dir) / "stage2_results"
             output_dir.mkdir(parents=True, exist_ok=True)
             
             # Save model

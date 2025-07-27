@@ -1,813 +1,150 @@
-2025-07-27 11:38:02,247 - __main__ - INFO - Output directory: csv_data
-2025-07-27 11:38:02,249 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:38:02,250 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
-2025-07-27 11:38:02,251 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
-2025-07-27 11:38:02,251 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
-2025-07-27 11:38:02,252 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
-2025-07-27 11:38:02,252 - data_processing.seed_iv_loader - INFO - Total files found: 45
-2025-07-27 11:38:02,255 - __main__ - INFO - 
+2025-07-27 17:05:19,943 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
+2025-07-27 17:05:19,943 - __main__ - INFO - Output directory: csv_data
+2025-07-27 17:05:19,943 - __main__ - INFO - Checkpoint directory: csv_data\checkpoints
+2025-07-27 17:05:19,943 - __main__ - INFO - Checkpoint Status:
+2025-07-27 17:05:19,944 - __main__ - INFO -   Stage 1: [Not found]
+2025-07-27 17:05:19,944 - __main__ - INFO -   Stage 2: [Not found]
+2025-07-27 17:05:19,944 - __main__ - INFO -   Stage 3: [Not found]
+2025-07-27 17:05:19,944 - __main__ - INFO -   Stage 4: [Not found]
+2025-07-27 17:05:19,944 - __main__ - INFO -   Stage 5: [Not found]
+2025-07-27 17:05:19,944 - __main__ - INFO -   Stage 6: [Not found]
+2025-07-27 17:05:19,946 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
+2025-07-27 17:05:19,946 - __main__ - INFO - Validating data access...
+2025-07-27 17:05:19,946 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 17:05:19,946 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
+2025-07-27 17:05:19,947 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
+2025-07-27 17:05:19,948 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
+2025-07-27 17:05:19,948 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
+2025-07-27 17:05:19,948 - data_processing.seed_iv_loader - INFO - Total files found: 45
+2025-07-27 17:05:19,948 - __main__ - INFO - Data validation successful. Found 3 subjects
+2025-07-27 17:05:19,948 - __main__ - INFO - 
 ============================================================
-2025-07-27 11:38:02,256 - __main__ - INFO - Target Accuracy: 75.0%
-2025-07-27 11:38:02,257 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
-2025-07-27 11:38:02,259 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:38:02,259 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
-2025-07-27 11:38:02,259 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
-2025-07-27 11:38:02,419 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
-2025-07-27 11:38:02,422 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples
-2025-07-27 11:38:02,422 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
-2025-07-27 11:38:02,570 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
-2025-07-27 11:38:02,572 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples
-2025-07-27 11:38:02,572 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
-2025-07-27 11:38:02,726 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
-2025-07-27 11:38:02,727 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples
-2025-07-27 11:38:02,727 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
-2025-07-27 11:38:02,903 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
-2025-07-27 11:38:02,905 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples
-2025-07-27 11:38:02,905 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
-2025-07-27 11:38:03,065 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
-2025-07-27 11:38:03,066 - data_processing.seed_iv_loader - INFO - Subject 5: 2505 samples
-2025-07-27 11:38:03,067 - data_processing.seed_iv_loader - INFO - Loading data for Subject 6 (all sessions)
-2025-07-27 11:38:03,274 - data_processing.seed_iv_loader - INFO - Loaded Subject 6: 2505 samples, 2 feature types
-2025-07-27 11:38:03,277 - data_processing.seed_iv_loader - INFO - Subject 6: 2505 samples
-2025-07-27 11:38:03,277 - data_processing.seed_iv_loader - INFO - Loading data for Subject 7 (all sessions)
-2025-07-27 11:38:03,436 - data_processing.seed_iv_loader - INFO - Loaded Subject 7: 2505 samples, 2 feature types
-2025-07-27 11:38:03,438 - data_processing.seed_iv_loader - INFO - Subject 7: 2505 samples
-2025-07-27 11:38:03,438 - data_processing.seed_iv_loader - INFO - Loading data for Subject 8 (all sessions)
-2025-07-27 11:38:03,627 - data_processing.seed_iv_loader - INFO - Loaded Subject 8: 2505 samples, 2 feature types
-2025-07-27 11:38:03,628 - data_processing.seed_iv_loader - INFO - Subject 8: 2505 samples
-2025-07-27 11:38:03,629 - data_processing.seed_iv_loader - INFO - Loading data for Subject 9 (all sessions)
-2025-07-27 11:38:03,800 - data_processing.seed_iv_loader - INFO - Loaded Subject 9: 2505 samples, 2 feature types
-2025-07-27 11:38:03,802 - data_processing.seed_iv_loader - INFO - Subject 9: 2505 samples
-2025-07-27 11:38:03,802 - data_processing.seed_iv_loader - INFO - Loading data for Subject 10 (all sessions)
-2025-07-27 11:38:03,959 - data_processing.seed_iv_loader - INFO - Loaded Subject 10: 2505 samples, 2 feature types
-2025-07-27 11:38:03,961 - data_processing.seed_iv_loader - INFO - Subject 10: 2505 samples
-2025-07-27 11:38:03,962 - data_processing.seed_iv_loader - INFO - Loading data for Subject 11 (all sessions)
-2025-07-27 11:38:04,120 - data_processing.seed_iv_loader - INFO - Loaded Subject 11: 2505 samples, 2 feature types
-2025-07-27 11:38:04,122 - data_processing.seed_iv_loader - INFO - Subject 11: 2505 samples
-2025-07-27 11:38:04,122 - data_processing.seed_iv_loader - INFO - Loading data for Subject 12 (all sessions)
-2025-07-27 11:38:04,283 - data_processing.seed_iv_loader - INFO - Loaded Subject 12: 2505 samples, 2 feature types
-2025-07-27 11:38:04,286 - data_processing.seed_iv_loader - INFO - Subject 12: 2505 samples
-2025-07-27 11:38:04,287 - data_processing.seed_iv_loader - INFO - Loading data for Subject 13 (all sessions)
-2025-07-27 11:38:04,449 - data_processing.seed_iv_loader - INFO - Loaded Subject 13: 2505 samples, 2 feature types
-2025-07-27 11:38:04,451 - data_processing.seed_iv_loader - INFO - Subject 13: 2505 samples
-2025-07-27 11:38:04,451 - data_processing.seed_iv_loader - INFO - Loading data for Subject 14 (all sessions)
-2025-07-27 11:38:04,600 - data_processing.seed_iv_loader - INFO - Loaded Subject 14: 2505 samples, 2 feature types
-2025-07-27 11:38:04,603 - data_processing.seed_iv_loader - INFO - Subject 14: 2505 samples
-2025-07-27 11:38:04,603 - data_processing.seed_iv_loader - INFO - Loading data for Subject 15 (all sessions)
-2025-07-27 11:38:04,765 - data_processing.seed_iv_loader - INFO - Loaded Subject 15: 2505 samples, 2 feature types
-2025-07-27 11:38:04,767 - data_processing.seed_iv_loader - INFO - Subject 15: 2505 samples
-2025-07-27 11:38:04,785 - data_processing.seed_iv_loader - INFO - Combined dataset: 37575 samples, 310 features
-2025-07-27 11:38:04,792 - models.stage1_traditional - INFO - Loaded 37575 samples from 37575 subjects
-2025-07-27 11:38:04,830 - models.stage1_traditional - INFO - Training traditional baseline model...
-2025-07-27 11:38:04,830 - models.stage1_traditional - INFO - Training data: 30060 samples, 310 features
-2025-07-27 11:38:04,830 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
-2025-07-27 11:38:04,830 - __main__ - ERROR - Stage 1 failed: 'Stage1Config' object has no attribute 'scaler_type'
-2025-07-27 11:38:04,830 - __main__ - ERROR - Detailed error:
+2025-07-27 17:05:19,949 - __main__ - INFO - Running Stage 1: Traditional Baseline
+2025-07-27 17:05:19,949 - __main__ - INFO - Target Accuracy: 75.0%
+2025-07-27 17:05:19,949 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
+2025-07-27 17:05:19,949 - models.stage1_traditional - INFO - Running Stage 1: Traditional Baseline Pipeline
+2025-07-27 17:05:19,949 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 17:05:19,949 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
+2025-07-27 17:05:19,949 - data_processing.seed_iv_loader - INFO - OPTIMIZED MODE: Using 5 subjects with 500 samples each (~2,500 total samples)
+2025-07-27 17:05:19,950 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
+2025-07-27 17:05:20,124 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
+2025-07-27 17:05:20,126 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 1 to 500 samples
+2025-07-27 17:05:20,126 - data_processing.seed_iv_loader - INFO - Subject 1: 500 samples
+2025-07-27 17:05:20,126 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
+2025-07-27 17:05:20,284 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
+2025-07-27 17:05:20,287 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 2 to 500 samples
+2025-07-27 17:05:20,287 - data_processing.seed_iv_loader - INFO - Subject 2: 500 samples
+2025-07-27 17:05:20,287 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
+2025-07-27 17:05:20,440 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
+2025-07-27 17:05:20,442 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 3 to 500 samples
+2025-07-27 17:05:20,442 - data_processing.seed_iv_loader - INFO - Subject 3: 500 samples
+2025-07-27 17:05:20,442 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
+2025-07-27 17:05:20,605 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
+2025-07-27 17:05:20,607 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 4 to 500 samples
+2025-07-27 17:05:20,607 - data_processing.seed_iv_loader - INFO - Subject 4: 500 samples
+2025-07-27 17:05:20,607 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
+2025-07-27 17:05:20,776 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
+2025-07-27 17:05:20,778 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 5 to 500 samples
+2025-07-27 17:05:20,778 - data_processing.seed_iv_loader - INFO - Subject 5: 500 samples
+2025-07-27 17:05:20,781 - data_processing.seed_iv_loader - INFO - Combined dataset: 2500 samples, 310 features
+2025-07-27 17:05:20,783 - models.stage1_traditional - INFO - Loaded 2500 samples from 2500 subjects
+2025-07-27 17:05:20,789 - models.stage1_traditional - INFO - Training traditional baseline model...
+2025-07-27 17:05:20,789 - models.stage1_traditional - INFO - Training data: 2000 samples, 310 features
+2025-07-27 17:05:20,789 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
+2025-07-27 17:05:20,789 - models.stage1_traditional - INFO - Pipeline created with 2 steps
+2025-07-27 17:05:27,101 - models.stage1_traditional - INFO - Training completed in 0.79 seconds
+2025-07-27 17:05:27,101 - models.stage1_traditional - INFO - CV Mean Accuracy: 0.8485 ± 0.0177
+2025-07-27 17:05:27,101 - models.stage1_traditional - INFO - Evaluating model on 500 test samples...
+2025-07-27 17:05:27,186 - models.stage1_traditional - INFO - Evaluation completed in 0.07 seconds
+2025-07-27 17:05:27,187 - models.stage1_traditional - INFO - Test Accuracy: 0.8600 (86.0%)
+2025-07-27 17:05:27,187 - models.stage1_traditional - INFO - F1 Score (Macro): 0.8568
+2025-07-27 17:05:27,187 - models.stage1_traditional - INFO - Target Achievement: [ACHIEVED]
+2025-07-27 17:05:27,193 - models.stage1_traditional - INFO - Model saved to: csv_data\stage1_results\traditional_baseline_model.joblib
+2025-07-27 17:05:28,073 - models.stage1_traditional - INFO - Results plot saved to: csv_data\stage1_results\stage1_results.png
+2025-07-27 17:06:01,643 - __main__ - INFO - Target accuracy ACHIEVED: 86.0% vs 75.0%
+2025-07-27 17:06:01,651 - __main__ - INFO - Checkpoint saved: csv_data\checkpoints\stage_1_checkpoint.joblib
+2025-07-27 17:06:01,652 - __main__ - INFO - Stage 1 completed in 41.7 seconds
+2025-07-27 17:06:01,664 - __main__ - INFO - Stage 1 result saved to: csv_data\stage_1_result.json
+2025-07-27 17:06:01,665 - __main__ - INFO - 
+============================================================
+2025-07-27 17:06:01,665 - __main__ - INFO - Running Stage 2: Enhanced Features
+2025-07-27 17:06:01,666 - __main__ - INFO - Target Accuracy: 80.0%
+2025-07-27 17:06:01,667 - models.stage2_enhanced - INFO - EnhancedFeaturesModel initialized with target accuracy: 77.5%
+2025-07-27 17:06:01,667 - models.stage2_enhanced - INFO - Running Stage 2: Enhanced Features Pipeline
+2025-07-27 17:06:01,668 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 17:06:01,668 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
+2025-07-27 17:06:01,668 - data_processing.seed_iv_loader - INFO - OPTIMIZED MODE: Using 5 subjects with 500 samples each (~2,500 total samples)
+2025-07-27 17:06:01,668 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
+2025-07-27 17:06:01,894 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
+2025-07-27 17:06:01,897 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 1 to 500 samples
+2025-07-27 17:06:01,897 - data_processing.seed_iv_loader - INFO - Subject 1: 500 samples
+2025-07-27 17:06:01,897 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
+2025-07-27 17:06:02,079 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
+2025-07-27 17:06:02,081 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 2 to 500 samples
+2025-07-27 17:06:02,082 - data_processing.seed_iv_loader - INFO - Subject 2: 500 samples
+2025-07-27 17:06:02,082 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
+2025-07-27 17:06:02,261 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
+2025-07-27 17:06:02,263 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 3 to 500 samples
+2025-07-27 17:06:02,263 - data_processing.seed_iv_loader - INFO - Subject 3: 500 samples
+2025-07-27 17:06:02,264 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
+2025-07-27 17:06:02,446 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
+2025-07-27 17:06:02,449 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 4 to 500 samples
+2025-07-27 17:06:02,450 - data_processing.seed_iv_loader - INFO - Subject 4: 500 samples
+2025-07-27 17:06:02,450 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
+2025-07-27 17:06:02,636 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
+2025-07-27 17:06:02,639 - data_processing.seed_iv_loader - INFO - OPTIMIZED: Limited Subject 5 to 500 samples
+2025-07-27 17:06:02,640 - data_processing.seed_iv_loader - INFO - Subject 5: 500 samples
+2025-07-27 17:06:02,643 - data_processing.seed_iv_loader - INFO - Combined dataset: 2500 samples, 310 features
+2025-07-27 17:06:02,647 - models.stage2_enhanced - INFO - Loaded 2500 samples from 2500 subjects
+2025-07-27 17:06:02,656 - models.stage2_enhanced - INFO - Training enhanced features model...
+2025-07-27 17:06:02,656 - models.stage2_enhanced - INFO - Training data: 2000 samples, 310 features
+2025-07-27 17:06:02,656 - models.stage2_enhanced - INFO - Extracting enhanced multi-domain features...
+2025-07-27 17:06:02,657 - data_processing.feature_engineering - INFO - AdvancedFeatureEngineer initialized: 62 channels, 5 frequency bands
+2025-07-27 17:06:02,657 - data_processing.feature_engineering - INFO - Extracting features: ['spatial', 'temporal', 'frequency', 'connectivity']
+2025-07-27 17:06:02,657 - data_processing.feature_engineering - INFO - Extracting spatial features...
+2025-07-27 17:06:03,633 - data_processing.feature_engineering - INFO - Extracted 20 spatial features
+2025-07-27 17:06:03,633 - data_processing.feature_engineering - INFO - Extracting temporal features...
+2025-07-27 17:06:05,662 - data_processing.feature_engineering - INFO - Extracted 14 temporal features
+2025-07-27 17:06:05,662 - data_processing.feature_engineering - INFO - Extracting frequency domain features...
+2025-07-27 17:06:06,160 - data_processing.feature_engineering - INFO - Extracted 8 frequency domain features
+2025-07-27 17:06:06,160 - data_processing.feature_engineering - INFO - Extracting connectivity features...
+2025-07-27 17:06:06,637 - data_processing.feature_engineering - INFO - Extracted 30 connectivity features
+2025-07-27 17:06:06,637 - data_processing.feature_engineering - INFO - Combined features shape: (2000, 72)
+2025-07-27 17:06:06,638 - models.stage2_enhanced - INFO - Enhanced features shape: (2000, 72)
+2025-07-27 17:06:06,638 - models.stage2_enhanced - INFO - Feature expansion: 310 -> 72 (0.2x)
+2025-07-27 17:06:06,640 - models.stage2_enhanced - INFO - Feature selection using mutual_info...
+2025-07-27 17:06:06,640 - models.stage2_enhanced - WARNING - Unknown feature selection method: mutual_info
+2025-07-27 17:06:06,640 - models.stage2_enhanced - INFO - Optimizing Random Forest hyperparameters...
+2025-07-27 17:08:48,872 - models.stage2_enhanced - INFO - Best parameters: {'n_estimators': 200, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 'log2', 'max_depth': 20, 'bootstrap': False}
+2025-07-27 17:08:48,872 - models.stage2_enhanced - INFO - Best CV score: 0.9725
+2025-07-27 17:08:57,675 - models.stage2_enhanced - INFO - Training completed in 166.22 seconds
+2025-07-27 17:08:57,675 - models.stage2_enhanced - INFO - Feature pipeline: 310 -> 72 -> 72
+2025-07-27 17:08:57,676 - models.stage2_enhanced - INFO - CV Mean Accuracy: 0.9740 ± 0.0102
+2025-07-27 17:08:57,676 - models.stage2_enhanced - INFO - Evaluating model on 500 test samples...
+2025-07-27 17:08:57,676 - data_processing.feature_engineering - INFO - Extracting features: ['spatial', 'temporal', 'frequency', 'connectivity']
+2025-07-27 17:08:57,676 - data_processing.feature_engineering - INFO - Extracting spatial features...
+2025-07-27 17:08:57,844 - data_processing.feature_engineering - INFO - Extracted 20 spatial features
+2025-07-27 17:08:57,844 - data_processing.feature_engineering - INFO - Extracting temporal features...
+2025-07-27 17:08:58,261 - data_processing.feature_engineering - INFO - Extracted 14 temporal features
+2025-07-27 17:08:58,262 - data_processing.feature_engineering - INFO - Extracting frequency domain features...
+2025-07-27 17:08:58,377 - data_processing.feature_engineering - INFO - Extracted 8 frequency domain features
+2025-07-27 17:08:58,377 - data_processing.feature_engineering - INFO - Extracting connectivity features...
+2025-07-27 17:08:58,472 - data_processing.feature_engineering - INFO - Extracted 30 connectivity features
+2025-07-27 17:08:58,472 - data_processing.feature_engineering - INFO - Combined features shape: (500, 72)
+2025-07-27 17:08:58,474 - __main__ - ERROR - Stage 2 failed: 'NoneType' object has no attribute 'transform'
+2025-07-27 17:08:58,475 - __main__ - ERROR - Detailed error:
 Traceback (most recent call last):
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\main.py", line 164, in run_stage
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\main.py", line 254, in run_stage
     result = model.run_complete_pipeline(
              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage1_traditional.py", line 566, in run_complete_pipeline
-    train_results = self.train(X_train, y_train, validation_strategy='cross_val')
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage1_traditional.py", line 178, in train
-    self.create_model()
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage1_traditional.py", line 124, in create_model
-    if self.stage_config.scaler_type == 'standard':
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'Stage1Config' object has no attribute 'scaler_type'
-2025-07-27 11:38:04,843 - __main__ - INFO - Stage 1 result saved to: csv_data\stage_1_result.json
-2025-07-27 11:38:04,843 - __main__ - INFO - 
-============================================================
-2025-07-27 11:38:04,845 - __main__ - INFO - Target Accuracy: 80.0%
-2025-07-27 11:38:04,845 - models.stage2_enhanced - INFO - EnhancedFeaturesModel initialized with target accuracy: 77.5%
-2025-07-27 11:38:04,847 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:38:04,847 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
-2025-07-27 11:38:04,847 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
-2025-07-27 11:38:05,009 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
-2025-07-27 11:38:05,011 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples
-2025-07-27 11:38:05,011 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
-2025-07-27 11:38:05,179 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
-2025-07-27 11:38:05,183 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples
-2025-07-27 11:38:05,183 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
-2025-07-27 11:38:05,343 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
-2025-07-27 11:38:05,345 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples
-2025-07-27 11:38:05,345 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
-2025-07-27 11:38:05,516 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
-2025-07-27 11:38:05,518 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples
-2025-07-27 11:38:05,519 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
-2025-07-27 11:38:05,672 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
-2025-07-27 11:38:05,673 - data_processing.seed_iv_loader - INFO - Subject 5: 2505 samples
-2025-07-27 11:38:05,674 - data_processing.seed_iv_loader - INFO - Loading data for Subject 6 (all sessions)
-2025-07-27 11:38:05,825 - data_processing.seed_iv_loader - INFO - Loaded Subject 6: 2505 samples, 2 feature types
-2025-07-27 11:38:05,827 - data_processing.seed_iv_loader - INFO - Subject 6: 2505 samples
-2025-07-27 11:38:05,827 - data_processing.seed_iv_loader - INFO - Loading data for Subject 7 (all sessions)
-2025-07-27 11:38:05,974 - data_processing.seed_iv_loader - INFO - Loaded Subject 7: 2505 samples, 2 feature types
-2025-07-27 11:38:05,975 - data_processing.seed_iv_loader - INFO - Subject 7: 2505 samples
-2025-07-27 11:38:05,976 - data_processing.seed_iv_loader - INFO - Loading data for Subject 8 (all sessions)
-2025-07-27 11:38:06,135 - data_processing.seed_iv_loader - INFO - Loaded Subject 8: 2505 samples, 2 feature types
-2025-07-27 11:38:06,136 - data_processing.seed_iv_loader - INFO - Subject 8: 2505 samples
-2025-07-27 11:38:06,136 - data_processing.seed_iv_loader - INFO - Loading data for Subject 9 (all sessions)
-2025-07-27 11:38:06,309 - data_processing.seed_iv_loader - INFO - Loaded Subject 9: 2505 samples, 2 feature types
-2025-07-27 11:38:06,312 - data_processing.seed_iv_loader - INFO - Subject 9: 2505 samples
-2025-07-27 11:38:06,312 - data_processing.seed_iv_loader - INFO - Loading data for Subject 10 (all sessions)
-2025-07-27 11:38:06,477 - data_processing.seed_iv_loader - INFO - Loaded Subject 10: 2505 samples, 2 feature types
-2025-07-27 11:38:06,480 - data_processing.seed_iv_loader - INFO - Subject 10: 2505 samples
-2025-07-27 11:38:06,480 - data_processing.seed_iv_loader - INFO - Loading data for Subject 11 (all sessions)
-2025-07-27 11:38:06,635 - data_processing.seed_iv_loader - INFO - Loaded Subject 11: 2505 samples, 2 feature types
-2025-07-27 11:38:06,636 - data_processing.seed_iv_loader - INFO - Subject 11: 2505 samples
-2025-07-27 11:38:06,636 - data_processing.seed_iv_loader - INFO - Loading data for Subject 12 (all sessions)
-2025-07-27 11:38:06,799 - data_processing.seed_iv_loader - INFO - Loaded Subject 12: 2505 samples, 2 feature types
-2025-07-27 11:38:06,801 - data_processing.seed_iv_loader - INFO - Subject 12: 2505 samples
-2025-07-27 11:38:06,801 - data_processing.seed_iv_loader - INFO - Loading data for Subject 13 (all sessions)
-2025-07-27 11:38:06,980 - data_processing.seed_iv_loader - INFO - Loaded Subject 13: 2505 samples, 2 feature types
-2025-07-27 11:38:06,983 - data_processing.seed_iv_loader - INFO - Subject 13: 2505 samples
-2025-07-27 11:38:06,984 - data_processing.seed_iv_loader - INFO - Loading data for Subject 14 (all sessions)
-2025-07-27 11:38:07,145 - data_processing.seed_iv_loader - INFO - Loaded Subject 14: 2505 samples, 2 feature types
-2025-07-27 11:38:07,147 - data_processing.seed_iv_loader - INFO - Subject 14: 2505 samples
-2025-07-27 11:38:07,147 - data_processing.seed_iv_loader - INFO - Loading data for Subject 15 (all sessions)
-2025-07-27 11:38:07,314 - data_processing.seed_iv_loader - INFO - Loaded Subject 15: 2505 samples, 2 feature types
-2025-07-27 11:38:07,316 - data_processing.seed_iv_loader - INFO - Subject 15: 2505 samples
-2025-07-27 11:38:07,343 - data_processing.seed_iv_loader - INFO - Combined dataset: 37575 samples, 310 features
-2025-07-27 11:38:07,351 - models.stage2_enhanced - INFO - Loaded 37575 samples from 37575 subjects
-2025-07-27 11:38:07,393 - models.stage2_enhanced - INFO - Training enhanced features model...
-2025-07-27 11:38:07,393 - models.stage2_enhanced - INFO - Training data: 30060 samples, 310 features
-2025-07-27 11:38:07,393 - models.stage2_enhanced - INFO - Extracting enhanced multi-domain features...
-2025-07-27 11:38:07,393 - data_processing.feature_engineering - INFO - AdvancedFeatureEngineer initialized: 62 channels, 5 frequency bands
-2025-07-27 11:38:07,393 - data_processing.feature_engineering - INFO - Extracting features: ['spatial', 'temporal', 'frequency', 'connectivity']
-2025-07-27 11:38:07,393 - data_processing.feature_engineering - INFO - Extracting spatial features...
-2025-07-27 11:38:07,394 - __main__ - ERROR - Stage 2 failed: cannot reshape array of size 62 into shape (8,newaxis)
-2025-07-27 11:38:07,394 - __main__ - ERROR - Detailed error:
-Traceback (most recent call last):
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\main.py", line 171, in run_stage
-    result = model.run_complete_pipeline(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 661, in run_complete_pipeline
-    train_results = self.train(X_train, y_train, optimize_hyperparams=True)
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 276, in train
-    enhanced_features = self.extract_enhanced_features(X_train)
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 129, in extract_enhanced_features
-    enhanced_features = self.feature_engineer.extract_all_features(X)
-                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\data_processing\feature_engineering.py", line 442, in extract_all_features
-    spatial_features = self.extract_spatial_features(eeg_data)
-                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\data_processing\feature_engineering.py", line 136, in extract_spatial_features
-    channel_matrix = channel_data.reshape(8, -1)  # Approximate 2D layout
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-ValueError: cannot reshape array of size 62 into shape (8,newaxis)
-2025-07-27 11:38:07,406 - __main__ - INFO - Stage 2 result saved to: csv_data\stage_2_result.json
-2025-07-27 11:39:55,930 - __main__ - INFO - Output directory: csv_data
-2025-07-27 11:39:55,933 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:39:55,933 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
-2025-07-27 11:39:55,934 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
-2025-07-27 11:39:55,934 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
-2025-07-27 11:39:55,935 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
-2025-07-27 11:39:55,935 - data_processing.seed_iv_loader - INFO - Total files found: 45
-2025-07-27 11:39:55,936 - __main__ - INFO - 
-============================================================
-2025-07-27 11:39:55,938 - __main__ - INFO - Target Accuracy: 75.0%
-2025-07-27 11:39:55,938 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
-2025-07-27 11:39:55,941 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:39:55,941 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
-2025-07-27 11:39:55,941 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
-2025-07-27 11:39:56,131 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
-2025-07-27 11:39:56,133 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples
-2025-07-27 11:39:56,133 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
-2025-07-27 11:39:56,321 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
-2025-07-27 11:39:56,324 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples
-2025-07-27 11:39:56,325 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
-2025-07-27 11:39:56,518 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
-2025-07-27 11:39:56,521 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples
-2025-07-27 11:39:56,521 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
-2025-07-27 11:39:56,705 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
-2025-07-27 11:39:56,707 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples
-2025-07-27 11:39:56,707 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
-2025-07-27 11:39:56,892 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
-2025-07-27 11:39:56,895 - data_processing.seed_iv_loader - INFO - Subject 5: 2505 samples
-2025-07-27 11:39:56,895 - data_processing.seed_iv_loader - INFO - Loading data for Subject 6 (all sessions)
-2025-07-27 11:39:57,088 - data_processing.seed_iv_loader - INFO - Loaded Subject 6: 2505 samples, 2 feature types
-2025-07-27 11:39:57,090 - data_processing.seed_iv_loader - INFO - Subject 6: 2505 samples
-2025-07-27 11:39:57,091 - data_processing.seed_iv_loader - INFO - Loading data for Subject 7 (all sessions)
-2025-07-27 11:39:57,343 - data_processing.seed_iv_loader - INFO - Loaded Subject 7: 2505 samples, 2 feature types
-2025-07-27 11:39:57,348 - data_processing.seed_iv_loader - INFO - Subject 7: 2505 samples
-2025-07-27 11:39:57,348 - data_processing.seed_iv_loader - INFO - Loading data for Subject 8 (all sessions)
-2025-07-27 11:39:57,547 - data_processing.seed_iv_loader - INFO - Loaded Subject 8: 2505 samples, 2 feature types
-2025-07-27 11:39:57,549 - data_processing.seed_iv_loader - INFO - Subject 8: 2505 samples
-2025-07-27 11:39:57,550 - data_processing.seed_iv_loader - INFO - Loading data for Subject 9 (all sessions)
-2025-07-27 11:39:57,751 - data_processing.seed_iv_loader - INFO - Loaded Subject 9: 2505 samples, 2 feature types
-2025-07-27 11:39:57,754 - data_processing.seed_iv_loader - INFO - Subject 9: 2505 samples
-2025-07-27 11:39:57,754 - data_processing.seed_iv_loader - INFO - Loading data for Subject 10 (all sessions)
-2025-07-27 11:39:57,951 - data_processing.seed_iv_loader - INFO - Loaded Subject 10: 2505 samples, 2 feature types
-2025-07-27 11:39:57,953 - data_processing.seed_iv_loader - INFO - Subject 10: 2505 samples
-2025-07-27 11:39:57,953 - data_processing.seed_iv_loader - INFO - Loading data for Subject 11 (all sessions)
-2025-07-27 11:39:58,134 - data_processing.seed_iv_loader - INFO - Loaded Subject 11: 2505 samples, 2 feature types
-2025-07-27 11:39:58,135 - data_processing.seed_iv_loader - INFO - Subject 11: 2505 samples
-2025-07-27 11:39:58,136 - data_processing.seed_iv_loader - INFO - Loading data for Subject 12 (all sessions)
-2025-07-27 11:39:58,310 - data_processing.seed_iv_loader - INFO - Loaded Subject 12: 2505 samples, 2 feature types
-2025-07-27 11:39:58,312 - data_processing.seed_iv_loader - INFO - Subject 12: 2505 samples
-2025-07-27 11:39:58,312 - data_processing.seed_iv_loader - INFO - Loading data for Subject 13 (all sessions)
-2025-07-27 11:39:58,488 - data_processing.seed_iv_loader - INFO - Loaded Subject 13: 2505 samples, 2 feature types
-2025-07-27 11:39:58,491 - data_processing.seed_iv_loader - INFO - Subject 13: 2505 samples
-2025-07-27 11:39:58,491 - data_processing.seed_iv_loader - INFO - Loading data for Subject 14 (all sessions)
-2025-07-27 11:39:58,679 - data_processing.seed_iv_loader - INFO - Loaded Subject 14: 2505 samples, 2 feature types
-2025-07-27 11:39:58,681 - data_processing.seed_iv_loader - INFO - Subject 14: 2505 samples
-2025-07-27 11:39:58,681 - data_processing.seed_iv_loader - INFO - Loading data for Subject 15 (all sessions)
-2025-07-27 11:39:58,879 - data_processing.seed_iv_loader - INFO - Loaded Subject 15: 2505 samples, 2 feature types
-2025-07-27 11:39:58,881 - data_processing.seed_iv_loader - INFO - Subject 15: 2505 samples
-2025-07-27 11:39:58,910 - data_processing.seed_iv_loader - INFO - Combined dataset: 37575 samples, 310 features
-2025-07-27 11:39:58,919 - models.stage1_traditional - INFO - Loaded 37575 samples from 37575 subjects
-2025-07-27 11:39:58,976 - models.stage1_traditional - INFO - Training traditional baseline model...
-2025-07-27 11:39:58,976 - models.stage1_traditional - INFO - Training data: 30060 samples, 310 features
-2025-07-27 11:39:58,976 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
-2025-07-27 11:39:58,976 - models.stage1_traditional - INFO - Pipeline created with 2 steps
-2025-07-27 11:39:58,976 - __main__ - ERROR - Stage 1 failed: 'Stage1Config' object has no attribute 'use_grid_search'
-2025-07-27 11:39:58,976 - __main__ - ERROR - Detailed error:
-Traceback (most recent call last):
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\main.py", line 164, in run_stage
-    result = model.run_complete_pipeline(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage1_traditional.py", line 566, in run_complete_pipeline
-    train_results = self.train(X_train, y_train, validation_strategy='cross_val')
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage1_traditional.py", line 181, in train
-    if self.stage_config.use_grid_search:
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'Stage1Config' object has no attribute 'use_grid_search'
-2025-07-27 11:39:58,991 - __main__ - INFO - Stage 1 result saved to: csv_data\stage_1_result.json
-2025-07-27 11:39:58,992 - __main__ - INFO - 
-============================================================
-2025-07-27 11:39:58,995 - __main__ - INFO - Target Accuracy: 80.0%
-2025-07-27 11:39:58,995 - models.stage2_enhanced - INFO - EnhancedFeaturesModel initialized with target accuracy: 77.5%
-2025-07-27 11:39:58,997 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:39:58,997 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
-2025-07-27 11:39:58,997 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
-2025-07-27 11:39:59,217 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
-2025-07-27 11:39:59,222 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples
-2025-07-27 11:39:59,222 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
-2025-07-27 11:39:59,434 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
-2025-07-27 11:39:59,438 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples
-2025-07-27 11:39:59,439 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
-2025-07-27 11:39:59,650 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
-2025-07-27 11:39:59,651 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples
-2025-07-27 11:39:59,651 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
-2025-07-27 11:39:59,863 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
-2025-07-27 11:39:59,867 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples
-2025-07-27 11:39:59,867 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
-2025-07-27 11:40:00,068 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
-2025-07-27 11:40:00,070 - data_processing.seed_iv_loader - INFO - Subject 5: 2505 samples
-2025-07-27 11:40:00,070 - data_processing.seed_iv_loader - INFO - Loading data for Subject 6 (all sessions)
-2025-07-27 11:40:00,242 - data_processing.seed_iv_loader - INFO - Loaded Subject 6: 2505 samples, 2 feature types
-2025-07-27 11:40:00,245 - data_processing.seed_iv_loader - INFO - Subject 6: 2505 samples
-2025-07-27 11:40:00,245 - data_processing.seed_iv_loader - INFO - Loading data for Subject 7 (all sessions)
-2025-07-27 11:40:00,414 - data_processing.seed_iv_loader - INFO - Loaded Subject 7: 2505 samples, 2 feature types
-2025-07-27 11:40:00,415 - data_processing.seed_iv_loader - INFO - Subject 7: 2505 samples
-2025-07-27 11:40:00,416 - data_processing.seed_iv_loader - INFO - Loading data for Subject 8 (all sessions)
-2025-07-27 11:40:00,586 - data_processing.seed_iv_loader - INFO - Loaded Subject 8: 2505 samples, 2 feature types
-2025-07-27 11:40:00,588 - data_processing.seed_iv_loader - INFO - Subject 8: 2505 samples
-2025-07-27 11:40:00,588 - data_processing.seed_iv_loader - INFO - Loading data for Subject 9 (all sessions)
-2025-07-27 11:40:00,753 - data_processing.seed_iv_loader - INFO - Loaded Subject 9: 2505 samples, 2 feature types
-2025-07-27 11:40:00,755 - data_processing.seed_iv_loader - INFO - Subject 9: 2505 samples
-2025-07-27 11:40:00,755 - data_processing.seed_iv_loader - INFO - Loading data for Subject 10 (all sessions)
-2025-07-27 11:40:00,932 - data_processing.seed_iv_loader - INFO - Loaded Subject 10: 2505 samples, 2 feature types
-2025-07-27 11:40:00,935 - data_processing.seed_iv_loader - INFO - Subject 10: 2505 samples
-2025-07-27 11:40:00,936 - data_processing.seed_iv_loader - INFO - Loading data for Subject 11 (all sessions)
-2025-07-27 11:40:01,111 - data_processing.seed_iv_loader - INFO - Loaded Subject 11: 2505 samples, 2 feature types
-2025-07-27 11:40:01,114 - data_processing.seed_iv_loader - INFO - Subject 11: 2505 samples
-2025-07-27 11:40:01,115 - data_processing.seed_iv_loader - INFO - Loading data for Subject 12 (all sessions)
-2025-07-27 11:40:01,286 - data_processing.seed_iv_loader - INFO - Loaded Subject 12: 2505 samples, 2 feature types
-2025-07-27 11:40:01,288 - data_processing.seed_iv_loader - INFO - Subject 12: 2505 samples
-2025-07-27 11:40:01,288 - data_processing.seed_iv_loader - INFO - Loading data for Subject 13 (all sessions)
-2025-07-27 11:40:01,449 - data_processing.seed_iv_loader - INFO - Loaded Subject 13: 2505 samples, 2 feature types
-2025-07-27 11:40:01,451 - data_processing.seed_iv_loader - INFO - Subject 13: 2505 samples
-2025-07-27 11:40:01,451 - data_processing.seed_iv_loader - INFO - Loading data for Subject 14 (all sessions)
-2025-07-27 11:40:01,621 - data_processing.seed_iv_loader - INFO - Loaded Subject 14: 2505 samples, 2 feature types
-2025-07-27 11:40:01,622 - data_processing.seed_iv_loader - INFO - Subject 14: 2505 samples
-2025-07-27 11:40:01,623 - data_processing.seed_iv_loader - INFO - Loading data for Subject 15 (all sessions)
-2025-07-27 11:40:01,802 - data_processing.seed_iv_loader - INFO - Loaded Subject 15: 2505 samples, 2 feature types
-2025-07-27 11:40:01,806 - data_processing.seed_iv_loader - INFO - Subject 15: 2505 samples
-2025-07-27 11:40:01,830 - data_processing.seed_iv_loader - INFO - Combined dataset: 37575 samples, 310 features
-2025-07-27 11:40:01,838 - models.stage2_enhanced - INFO - Loaded 37575 samples from 37575 subjects
-2025-07-27 11:40:01,886 - models.stage2_enhanced - INFO - Training enhanced features model...
-2025-07-27 11:40:01,886 - models.stage2_enhanced - INFO - Training data: 30060 samples, 310 features
-2025-07-27 11:40:01,886 - models.stage2_enhanced - INFO - Extracting enhanced multi-domain features...
-2025-07-27 11:40:01,886 - data_processing.feature_engineering - INFO - AdvancedFeatureEngineer initialized: 62 channels, 5 frequency bands
-2025-07-27 11:40:01,886 - data_processing.feature_engineering - INFO - Extracting features: ['spatial', 'temporal', 'frequency', 'connectivity']
-2025-07-27 11:40:01,886 - data_processing.feature_engineering - INFO - Extracting spatial features...
-2025-07-27 11:40:13,868 - data_processing.feature_engineering - INFO - Extracted 20 spatial features
-2025-07-27 11:40:13,868 - data_processing.feature_engineering - INFO - Extracting temporal features...
-2025-07-27 11:40:41,965 - data_processing.feature_engineering - INFO - Extracted 14 temporal features
-2025-07-27 11:40:41,965 - data_processing.feature_engineering - INFO - Extracting frequency domain features...
-2025-07-27 11:40:48,851 - data_processing.feature_engineering - INFO - Extracted 8 frequency domain features
-2025-07-27 11:40:48,852 - data_processing.feature_engineering - INFO - Extracting connectivity features...
-2025-07-27 11:40:54,592 - data_processing.feature_engineering - INFO - Extracted 30 connectivity features
-2025-07-27 11:40:54,600 - data_processing.feature_engineering - INFO - Combined features shape: (30060, 72)
-2025-07-27 11:40:54,601 - models.stage2_enhanced - INFO - Enhanced features shape: (30060, 72)
-2025-07-27 11:40:54,604 - __main__ - ERROR - Stage 2 failed: 'Stage2Config' object has no attribute 'scaler_type'
-2025-07-27 11:40:54,604 - __main__ - ERROR - Detailed error:
-Traceback (most recent call last):
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\main.py", line 171, in run_stage
-    result = model.run_complete_pipeline(
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 661, in run_complete_pipeline
-    train_results = self.train(X_train, y_train, optimize_hyperparams=True)
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 279, in train
-    if self.stage_config.scaler_type == 'standard':
-       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-AttributeError: 'Stage2Config' object has no attribute 'scaler_type'
-2025-07-27 11:40:54,619 - __main__ - INFO - Stage 2 result saved to: csv_data\stage_2_result.json
-2025-07-27 11:43:37,870 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
-2025-07-27 11:43:37,870 - __main__ - INFO - Output directory: csv_data
-2025-07-27 11:43:37,871 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
-2025-07-27 11:43:37,871 - __main__ - INFO - Validating data access...
-2025-07-27 11:43:37,871 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:43:37,872 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
-2025-07-27 11:43:37,872 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
-2025-07-27 11:43:37,872 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
-2025-07-27 11:43:37,873 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
-2025-07-27 11:43:37,873 - data_processing.seed_iv_loader - INFO - Total files found: 45
-2025-07-27 11:43:37,873 - __main__ - INFO - Data validation successful. Found 3 subjects
-2025-07-27 11:43:37,873 - __main__ - INFO - 
-============================================================
-2025-07-27 11:43:37,873 - __main__ - INFO - Running Stage 1: Traditional Baseline
-2025-07-27 11:43:37,873 - __main__ - INFO - Target Accuracy: 75.0%
-2025-07-27 11:43:37,873 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
-2025-07-27 11:43:37,874 - models.stage1_traditional - INFO - Running Stage 1: Traditional Baseline Pipeline
-2025-07-27 11:43:37,874 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:43:37,874 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
-2025-07-27 11:43:37,874 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
-2025-07-27 11:43:38,037 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
-2025-07-27 11:43:38,038 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples
-2025-07-27 11:43:38,038 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
-2025-07-27 11:43:38,195 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
-2025-07-27 11:43:38,197 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples
-2025-07-27 11:43:38,197 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
-2025-07-27 11:43:38,363 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
-2025-07-27 11:43:38,365 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples
-2025-07-27 11:43:38,365 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
-2025-07-27 11:43:38,518 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
-2025-07-27 11:43:38,519 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples
-2025-07-27 11:43:38,519 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
-2025-07-27 11:43:38,679 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
-2025-07-27 11:43:38,680 - data_processing.seed_iv_loader - INFO - Subject 5: 2505 samples
-2025-07-27 11:43:38,680 - data_processing.seed_iv_loader - INFO - Loading data for Subject 6 (all sessions)
-2025-07-27 11:43:38,842 - data_processing.seed_iv_loader - INFO - Loaded Subject 6: 2505 samples, 2 feature types
-2025-07-27 11:43:38,844 - data_processing.seed_iv_loader - INFO - Subject 6: 2505 samples
-2025-07-27 11:43:38,844 - data_processing.seed_iv_loader - INFO - Loading data for Subject 7 (all sessions)
-2025-07-27 11:43:38,999 - data_processing.seed_iv_loader - INFO - Loaded Subject 7: 2505 samples, 2 feature types
-2025-07-27 11:43:39,001 - data_processing.seed_iv_loader - INFO - Subject 7: 2505 samples
-2025-07-27 11:43:39,001 - data_processing.seed_iv_loader - INFO - Loading data for Subject 8 (all sessions)
-2025-07-27 11:43:39,171 - data_processing.seed_iv_loader - INFO - Loaded Subject 8: 2505 samples, 2 feature types
-2025-07-27 11:43:39,173 - data_processing.seed_iv_loader - INFO - Subject 8: 2505 samples
-2025-07-27 11:43:39,173 - data_processing.seed_iv_loader - INFO - Loading data for Subject 9 (all sessions)
-2025-07-27 11:43:39,332 - data_processing.seed_iv_loader - INFO - Loaded Subject 9: 2505 samples, 2 feature types
-2025-07-27 11:43:39,335 - data_processing.seed_iv_loader - INFO - Subject 9: 2505 samples
-2025-07-27 11:43:39,335 - data_processing.seed_iv_loader - INFO - Loading data for Subject 10 (all sessions)
-2025-07-27 11:43:39,485 - data_processing.seed_iv_loader - INFO - Loaded Subject 10: 2505 samples, 2 feature types
-2025-07-27 11:43:39,487 - data_processing.seed_iv_loader - INFO - Subject 10: 2505 samples
-2025-07-27 11:43:39,487 - data_processing.seed_iv_loader - INFO - Loading data for Subject 11 (all sessions)
-2025-07-27 11:43:39,642 - data_processing.seed_iv_loader - INFO - Loaded Subject 11: 2505 samples, 2 feature types
-2025-07-27 11:43:39,644 - data_processing.seed_iv_loader - INFO - Subject 11: 2505 samples
-2025-07-27 11:43:39,644 - data_processing.seed_iv_loader - INFO - Loading data for Subject 12 (all sessions)
-2025-07-27 11:43:39,797 - data_processing.seed_iv_loader - INFO - Loaded Subject 12: 2505 samples, 2 feature types
-2025-07-27 11:43:39,799 - data_processing.seed_iv_loader - INFO - Subject 12: 2505 samples
-2025-07-27 11:43:39,799 - data_processing.seed_iv_loader - INFO - Loading data for Subject 13 (all sessions)
-2025-07-27 11:43:39,955 - data_processing.seed_iv_loader - INFO - Loaded Subject 13: 2505 samples, 2 feature types
-2025-07-27 11:43:39,957 - data_processing.seed_iv_loader - INFO - Subject 13: 2505 samples
-2025-07-27 11:43:39,957 - data_processing.seed_iv_loader - INFO - Loading data for Subject 14 (all sessions)
-2025-07-27 11:43:40,107 - data_processing.seed_iv_loader - INFO - Loaded Subject 14: 2505 samples, 2 feature types
-2025-07-27 11:43:40,111 - data_processing.seed_iv_loader - INFO - Subject 14: 2505 samples
-2025-07-27 11:43:40,111 - data_processing.seed_iv_loader - INFO - Loading data for Subject 15 (all sessions)
-2025-07-27 11:43:40,290 - data_processing.seed_iv_loader - INFO - Loaded Subject 15: 2505 samples, 2 feature types
-2025-07-27 11:43:40,292 - data_processing.seed_iv_loader - INFO - Subject 15: 2505 samples
-2025-07-27 11:43:40,310 - data_processing.seed_iv_loader - INFO - Combined dataset: 37575 samples, 310 features
-2025-07-27 11:43:40,315 - models.stage1_traditional - INFO - Loaded 37575 samples from 37575 subjects
-2025-07-27 11:43:40,352 - models.stage1_traditional - INFO - Training traditional baseline model...
-2025-07-27 11:43:40,353 - models.stage1_traditional - INFO - Training data: 30060 samples, 310 features
-2025-07-27 11:43:40,353 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
-2025-07-27 11:43:40,353 - models.stage1_traditional - INFO - Pipeline created with 2 steps
-2025-07-27 11:47:14,740 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
-2025-07-27 11:47:14,740 - __main__ - INFO - Output directory: csv_data
-2025-07-27 11:47:14,740 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
-2025-07-27 11:47:14,741 - __main__ - INFO - Validating data access...
-2025-07-27 11:47:14,741 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:47:14,741 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
-2025-07-27 11:47:14,742 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
-2025-07-27 11:47:14,742 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
-2025-07-27 11:47:14,742 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
-2025-07-27 11:47:14,742 - data_processing.seed_iv_loader - INFO - Total files found: 45
-2025-07-27 11:47:14,743 - __main__ - INFO - Data validation successful. Found 3 subjects
-2025-07-27 11:47:14,743 - __main__ - INFO - 
-============================================================
-2025-07-27 11:47:14,743 - __main__ - INFO - Running Stage 1: Traditional Baseline
-2025-07-27 11:47:14,743 - __main__ - INFO - Target Accuracy: 75.0%
-2025-07-27 11:47:14,743 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
-2025-07-27 11:47:14,743 - models.stage1_traditional - INFO - Running Stage 1: Traditional Baseline Pipeline
-2025-07-27 11:47:14,744 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:47:14,744 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
-2025-07-27 11:47:14,744 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
-2025-07-27 11:47:14,907 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
-2025-07-27 11:47:14,909 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples
-2025-07-27 11:47:14,909 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
-2025-07-27 11:47:15,058 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
-2025-07-27 11:47:15,060 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples
-2025-07-27 11:47:15,060 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
-2025-07-27 11:47:15,218 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
-2025-07-27 11:47:15,220 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples
-2025-07-27 11:47:15,221 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
-2025-07-27 11:47:15,372 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
-2025-07-27 11:47:15,374 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples
-2025-07-27 11:47:15,374 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
-2025-07-27 11:47:15,525 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
-2025-07-27 11:47:15,527 - data_processing.seed_iv_loader - INFO - Subject 5: 2505 samples
-2025-07-27 11:47:15,527 - data_processing.seed_iv_loader - INFO - Loading data for Subject 6 (all sessions)
-2025-07-27 11:47:15,682 - data_processing.seed_iv_loader - INFO - Loaded Subject 6: 2505 samples, 2 feature types
-2025-07-27 11:47:15,684 - data_processing.seed_iv_loader - INFO - Subject 6: 2505 samples
-2025-07-27 11:47:15,684 - data_processing.seed_iv_loader - INFO - Loading data for Subject 7 (all sessions)
-2025-07-27 11:47:15,830 - data_processing.seed_iv_loader - INFO - Loaded Subject 7: 2505 samples, 2 feature types
-2025-07-27 11:47:15,831 - data_processing.seed_iv_loader - INFO - Subject 7: 2505 samples
-2025-07-27 11:47:15,831 - data_processing.seed_iv_loader - INFO - Loading data for Subject 8 (all sessions)
-2025-07-27 11:47:15,984 - data_processing.seed_iv_loader - INFO - Loaded Subject 8: 2505 samples, 2 feature types
-2025-07-27 11:47:15,986 - data_processing.seed_iv_loader - INFO - Subject 8: 2505 samples
-2025-07-27 11:47:15,987 - data_processing.seed_iv_loader - INFO - Loading data for Subject 9 (all sessions)
-2025-07-27 11:47:16,136 - data_processing.seed_iv_loader - INFO - Loaded Subject 9: 2505 samples, 2 feature types
-2025-07-27 11:47:16,138 - data_processing.seed_iv_loader - INFO - Subject 9: 2505 samples
-2025-07-27 11:47:16,138 - data_processing.seed_iv_loader - INFO - Loading data for Subject 10 (all sessions)
-2025-07-27 11:47:16,291 - data_processing.seed_iv_loader - INFO - Loaded Subject 10: 2505 samples, 2 feature types
-2025-07-27 11:47:16,292 - data_processing.seed_iv_loader - INFO - Subject 10: 2505 samples
-2025-07-27 11:47:16,292 - data_processing.seed_iv_loader - INFO - Loading data for Subject 11 (all sessions)
-2025-07-27 11:47:16,442 - data_processing.seed_iv_loader - INFO - Loaded Subject 11: 2505 samples, 2 feature types
-2025-07-27 11:47:16,444 - data_processing.seed_iv_loader - INFO - Subject 11: 2505 samples
-2025-07-27 11:47:16,444 - data_processing.seed_iv_loader - INFO - Loading data for Subject 12 (all sessions)
-2025-07-27 11:47:16,590 - data_processing.seed_iv_loader - INFO - Loaded Subject 12: 2505 samples, 2 feature types
-2025-07-27 11:47:16,592 - data_processing.seed_iv_loader - INFO - Subject 12: 2505 samples
-2025-07-27 11:47:16,592 - data_processing.seed_iv_loader - INFO - Loading data for Subject 13 (all sessions)
-2025-07-27 11:47:16,742 - data_processing.seed_iv_loader - INFO - Loaded Subject 13: 2505 samples, 2 feature types
-2025-07-27 11:47:16,744 - data_processing.seed_iv_loader - INFO - Subject 13: 2505 samples
-2025-07-27 11:47:16,744 - data_processing.seed_iv_loader - INFO - Loading data for Subject 14 (all sessions)
-2025-07-27 11:47:16,891 - data_processing.seed_iv_loader - INFO - Loaded Subject 14: 2505 samples, 2 feature types
-2025-07-27 11:47:16,893 - data_processing.seed_iv_loader - INFO - Subject 14: 2505 samples
-2025-07-27 11:47:16,893 - data_processing.seed_iv_loader - INFO - Loading data for Subject 15 (all sessions)
-2025-07-27 11:47:17,051 - data_processing.seed_iv_loader - INFO - Loaded Subject 15: 2505 samples, 2 feature types
-2025-07-27 11:47:17,053 - data_processing.seed_iv_loader - INFO - Subject 15: 2505 samples
-2025-07-27 11:47:17,073 - data_processing.seed_iv_loader - INFO - Combined dataset: 37575 samples, 310 features
-2025-07-27 11:47:17,079 - models.stage1_traditional - INFO - Loaded 37575 samples from 37575 subjects
-2025-07-27 11:47:17,115 - models.stage1_traditional - INFO - Training traditional baseline model...
-2025-07-27 11:47:17,115 - models.stage1_traditional - INFO - Training data: 30060 samples, 310 features
-2025-07-27 11:47:17,115 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
-2025-07-27 11:47:17,115 - models.stage1_traditional - INFO - Pipeline created with 2 steps
-2025-07-27 11:58:18,083 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
-2025-07-27 11:58:18,083 - __main__ - INFO - Output directory: csv_data
-2025-07-27 11:58:18,083 - __main__ - INFO - Checkpoint directory: csv_data\checkpoints
-2025-07-27 11:58:18,084 - __main__ - INFO - Checkpoint Status:
-2025-07-27 11:58:18,090 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
-2025-07-27 11:58:18,090 - __main__ - INFO - Validating data access...
-2025-07-27 11:58:18,090 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:58:18,090 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
-2025-07-27 11:58:18,091 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
-2025-07-27 11:58:18,091 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
-2025-07-27 11:58:18,092 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
-2025-07-27 11:58:18,092 - data_processing.seed_iv_loader - INFO - Total files found: 45
-2025-07-27 11:58:18,092 - __main__ - INFO - Data validation successful. Found 3 subjects
-2025-07-27 11:58:18,092 - __main__ - INFO - 
-============================================================
-2025-07-27 11:58:18,092 - __main__ - INFO - Running Stage 1: Traditional Baseline
-2025-07-27 11:58:18,092 - __main__ - INFO - Target Accuracy: 75.0%
-2025-07-27 11:58:18,093 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
-2025-07-27 11:58:18,093 - models.stage1_traditional - INFO - Running Stage 1: Traditional Baseline Pipeline
-2025-07-27 11:58:18,093 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:58:18,093 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
-2025-07-27 11:58:18,093 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
-2025-07-27 11:58:18,253 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
-2025-07-27 11:58:18,254 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples
-2025-07-27 11:58:18,255 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
-2025-07-27 11:58:18,402 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
-2025-07-27 11:58:18,405 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples
-2025-07-27 11:58:18,405 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
-2025-07-27 11:58:18,560 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
-2025-07-27 11:58:18,561 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples
-2025-07-27 11:58:18,561 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
-2025-07-27 11:58:18,722 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
-2025-07-27 11:58:18,724 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples
-2025-07-27 11:58:18,724 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
-2025-07-27 11:58:18,886 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
-2025-07-27 11:58:18,887 - data_processing.seed_iv_loader - INFO - Subject 5: 2505 samples
-2025-07-27 11:58:18,887 - data_processing.seed_iv_loader - INFO - Loading data for Subject 6 (all sessions)
-2025-07-27 11:58:19,044 - data_processing.seed_iv_loader - INFO - Loaded Subject 6: 2505 samples, 2 feature types
-2025-07-27 11:58:19,046 - data_processing.seed_iv_loader - INFO - Subject 6: 2505 samples
-2025-07-27 11:58:19,046 - data_processing.seed_iv_loader - INFO - Loading data for Subject 7 (all sessions)
-2025-07-27 11:58:19,236 - data_processing.seed_iv_loader - INFO - Loaded Subject 7: 2505 samples, 2 feature types
-2025-07-27 11:58:19,238 - data_processing.seed_iv_loader - INFO - Subject 7: 2505 samples
-2025-07-27 11:58:19,238 - data_processing.seed_iv_loader - INFO - Loading data for Subject 8 (all sessions)
-2025-07-27 11:58:19,392 - data_processing.seed_iv_loader - INFO - Loaded Subject 8: 2505 samples, 2 feature types
-2025-07-27 11:58:19,394 - data_processing.seed_iv_loader - INFO - Subject 8: 2505 samples
-2025-07-27 11:58:19,395 - data_processing.seed_iv_loader - INFO - Loading data for Subject 9 (all sessions)
-2025-07-27 11:58:19,542 - data_processing.seed_iv_loader - INFO - Loaded Subject 9: 2505 samples, 2 feature types
-2025-07-27 11:58:19,544 - data_processing.seed_iv_loader - INFO - Subject 9: 2505 samples
-2025-07-27 11:58:19,545 - data_processing.seed_iv_loader - INFO - Loading data for Subject 10 (all sessions)
-2025-07-27 11:58:19,698 - data_processing.seed_iv_loader - INFO - Loaded Subject 10: 2505 samples, 2 feature types
-2025-07-27 11:58:19,702 - data_processing.seed_iv_loader - INFO - Subject 10: 2505 samples
-2025-07-27 11:58:19,702 - data_processing.seed_iv_loader - INFO - Loading data for Subject 11 (all sessions)
-2025-07-27 11:58:19,865 - data_processing.seed_iv_loader - INFO - Loaded Subject 11: 2505 samples, 2 feature types
-2025-07-27 11:58:19,867 - data_processing.seed_iv_loader - INFO - Subject 11: 2505 samples
-2025-07-27 11:58:19,867 - data_processing.seed_iv_loader - INFO - Loading data for Subject 12 (all sessions)
-2025-07-27 11:58:20,021 - data_processing.seed_iv_loader - INFO - Loaded Subject 12: 2505 samples, 2 feature types
-2025-07-27 11:58:20,023 - data_processing.seed_iv_loader - INFO - Subject 12: 2505 samples
-2025-07-27 11:58:20,024 - data_processing.seed_iv_loader - INFO - Loading data for Subject 13 (all sessions)
-2025-07-27 11:58:20,184 - data_processing.seed_iv_loader - INFO - Loaded Subject 13: 2505 samples, 2 feature types
-2025-07-27 11:58:20,186 - data_processing.seed_iv_loader - INFO - Subject 13: 2505 samples
-2025-07-27 11:58:20,187 - data_processing.seed_iv_loader - INFO - Loading data for Subject 14 (all sessions)
-2025-07-27 11:58:20,332 - data_processing.seed_iv_loader - INFO - Loaded Subject 14: 2505 samples, 2 feature types
-2025-07-27 11:58:20,334 - data_processing.seed_iv_loader - INFO - Subject 14: 2505 samples
-2025-07-27 11:58:20,334 - data_processing.seed_iv_loader - INFO - Loading data for Subject 15 (all sessions)
-2025-07-27 11:58:20,495 - data_processing.seed_iv_loader - INFO - Loaded Subject 15: 2505 samples, 2 feature types
-2025-07-27 11:58:20,497 - data_processing.seed_iv_loader - INFO - Subject 15: 2505 samples
-2025-07-27 11:58:20,515 - data_processing.seed_iv_loader - INFO - Combined dataset: 37575 samples, 310 features
-2025-07-27 11:58:20,521 - models.stage1_traditional - INFO - Loaded 37575 samples from 37575 subjects
-2025-07-27 11:58:20,560 - models.stage1_traditional - INFO - Training traditional baseline model...
-2025-07-27 11:58:20,560 - models.stage1_traditional - INFO - Training data: 30060 samples, 310 features
-2025-07-27 11:58:20,560 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
-2025-07-27 11:58:20,561 - models.stage1_traditional - INFO - Pipeline created with 2 steps
-2025-07-27 11:58:57,611 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
-2025-07-27 11:58:57,611 - __main__ - INFO - Output directory: csv_data
-2025-07-27 11:58:57,611 - __main__ - INFO - Checkpoint directory: csv_data\checkpoints
-2025-07-27 11:58:57,611 - __main__ - INFO - Checkpoint Status:
-2025-07-27 11:58:57,620 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
-2025-07-27 11:58:57,620 - __main__ - INFO - Validating data access...
-2025-07-27 11:58:57,620 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:58:57,620 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
-2025-07-27 11:58:57,621 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
-2025-07-27 11:58:57,622 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
-2025-07-27 11:58:57,623 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
-2025-07-27 11:58:57,623 - data_processing.seed_iv_loader - INFO - Total files found: 45
-2025-07-27 11:58:57,623 - __main__ - INFO - Data validation successful. Found 3 subjects
-2025-07-27 11:58:57,623 - __main__ - INFO - 
-============================================================
-2025-07-27 11:58:57,624 - __main__ - INFO - Running Stage 1: Traditional Baseline
-2025-07-27 11:58:57,624 - __main__ - INFO - Target Accuracy: 75.0%
-2025-07-27 11:58:57,624 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
-2025-07-27 11:58:57,624 - models.stage1_traditional - INFO - Running Stage 1: Traditional Baseline Pipeline
-2025-07-27 11:58:57,625 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 11:58:57,625 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
-2025-07-27 11:58:57,625 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
-2025-07-27 11:58:57,784 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
-2025-07-27 11:58:57,786 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples
-2025-07-27 11:58:57,786 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
-2025-07-27 11:58:57,939 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
-2025-07-27 11:58:57,941 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples
-2025-07-27 11:58:57,941 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
-2025-07-27 11:58:58,090 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
-2025-07-27 11:58:58,092 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples
-2025-07-27 11:58:58,092 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
-2025-07-27 11:58:58,261 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
-2025-07-27 11:58:58,262 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples
-2025-07-27 11:58:58,263 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
-2025-07-27 11:58:58,413 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
-2025-07-27 11:58:58,415 - data_processing.seed_iv_loader - INFO - Subject 5: 2505 samples
-2025-07-27 11:58:58,415 - data_processing.seed_iv_loader - INFO - Loading data for Subject 6 (all sessions)
-2025-07-27 11:58:58,564 - data_processing.seed_iv_loader - INFO - Loaded Subject 6: 2505 samples, 2 feature types
-2025-07-27 11:58:58,565 - data_processing.seed_iv_loader - INFO - Subject 6: 2505 samples
-2025-07-27 11:58:58,565 - data_processing.seed_iv_loader - INFO - Loading data for Subject 7 (all sessions)
-2025-07-27 11:58:58,708 - data_processing.seed_iv_loader - INFO - Loaded Subject 7: 2505 samples, 2 feature types
-2025-07-27 11:58:58,709 - data_processing.seed_iv_loader - INFO - Subject 7: 2505 samples
-2025-07-27 11:58:58,709 - data_processing.seed_iv_loader - INFO - Loading data for Subject 8 (all sessions)
-2025-07-27 11:58:58,856 - data_processing.seed_iv_loader - INFO - Loaded Subject 8: 2505 samples, 2 feature types
-2025-07-27 11:58:58,860 - data_processing.seed_iv_loader - INFO - Subject 8: 2505 samples
-2025-07-27 11:58:58,860 - data_processing.seed_iv_loader - INFO - Loading data for Subject 9 (all sessions)
-2025-07-27 11:58:59,009 - data_processing.seed_iv_loader - INFO - Loaded Subject 9: 2505 samples, 2 feature types
-2025-07-27 11:58:59,010 - data_processing.seed_iv_loader - INFO - Subject 9: 2505 samples
-2025-07-27 11:58:59,010 - data_processing.seed_iv_loader - INFO - Loading data for Subject 10 (all sessions)
-2025-07-27 11:58:59,154 - data_processing.seed_iv_loader - INFO - Loaded Subject 10: 2505 samples, 2 feature types
-2025-07-27 11:58:59,156 - data_processing.seed_iv_loader - INFO - Subject 10: 2505 samples
-2025-07-27 11:58:59,156 - data_processing.seed_iv_loader - INFO - Loading data for Subject 11 (all sessions)
-2025-07-27 11:58:59,303 - data_processing.seed_iv_loader - INFO - Loaded Subject 11: 2505 samples, 2 feature types
-2025-07-27 11:58:59,306 - data_processing.seed_iv_loader - INFO - Subject 11: 2505 samples
-2025-07-27 11:58:59,306 - data_processing.seed_iv_loader - INFO - Loading data for Subject 12 (all sessions)
-2025-07-27 11:58:59,468 - data_processing.seed_iv_loader - INFO - Loaded Subject 12: 2505 samples, 2 feature types
-2025-07-27 11:58:59,470 - data_processing.seed_iv_loader - INFO - Subject 12: 2505 samples
-2025-07-27 11:58:59,471 - data_processing.seed_iv_loader - INFO - Loading data for Subject 13 (all sessions)
-2025-07-27 11:58:59,621 - data_processing.seed_iv_loader - INFO - Loaded Subject 13: 2505 samples, 2 feature types
-2025-07-27 11:58:59,624 - data_processing.seed_iv_loader - INFO - Subject 13: 2505 samples
-2025-07-27 11:58:59,625 - data_processing.seed_iv_loader - INFO - Loading data for Subject 14 (all sessions)
-2025-07-27 11:58:59,785 - data_processing.seed_iv_loader - INFO - Loaded Subject 14: 2505 samples, 2 feature types
-2025-07-27 11:58:59,786 - data_processing.seed_iv_loader - INFO - Subject 14: 2505 samples
-2025-07-27 11:58:59,786 - data_processing.seed_iv_loader - INFO - Loading data for Subject 15 (all sessions)
-2025-07-27 11:58:59,938 - data_processing.seed_iv_loader - INFO - Loaded Subject 15: 2505 samples, 2 feature types
-2025-07-27 11:58:59,940 - data_processing.seed_iv_loader - INFO - Subject 15: 2505 samples
-2025-07-27 11:58:59,958 - data_processing.seed_iv_loader - INFO - Combined dataset: 37575 samples, 310 features
-2025-07-27 11:58:59,962 - models.stage1_traditional - INFO - Loaded 37575 samples from 37575 subjects
-2025-07-27 11:59:00,011 - models.stage1_traditional - INFO - Training traditional baseline model...
-2025-07-27 11:59:00,012 - models.stage1_traditional - INFO - Training data: 30060 samples, 310 features
-2025-07-27 11:59:00,012 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
-2025-07-27 11:59:00,012 - models.stage1_traditional - INFO - Pipeline created with 2 steps
-2025-07-27 12:03:23,955 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
-2025-07-27 12:03:23,956 - __main__ - INFO - Output directory: csv_data
-2025-07-27 12:03:23,956 - __main__ - INFO - Checkpoint directory: csv_data\checkpoints
-2025-07-27 12:03:23,956 - __main__ - INFO - Checkpoint Status:
-2025-07-27 12:03:23,956 - __main__ - INFO -   Stage 1: [Not found]
-2025-07-27 12:03:23,956 - __main__ - INFO -   Stage 2: [Not found]
-2025-07-27 12:03:23,957 - __main__ - INFO -   Stage 3: [Not found]
-2025-07-27 12:03:23,957 - __main__ - INFO -   Stage 4: [Not found]
-2025-07-27 12:03:23,957 - __main__ - INFO -   Stage 5: [Not found]
-2025-07-27 12:03:23,957 - __main__ - INFO -   Stage 6: [Not found]
-2025-07-27 12:03:23,957 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
-2025-07-27 12:03:23,957 - __main__ - INFO - Validating data access...
-2025-07-27 12:03:23,957 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 12:03:23,957 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
-2025-07-27 12:03:23,958 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
-2025-07-27 12:03:23,958 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
-2025-07-27 12:03:23,961 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
-2025-07-27 12:03:23,961 - data_processing.seed_iv_loader - INFO - Total files found: 45
-2025-07-27 12:03:23,961 - __main__ - INFO - Data validation successful. Found 3 subjects
-2025-07-27 12:03:23,961 - __main__ - INFO - 
-============================================================
-2025-07-27 12:03:23,962 - __main__ - INFO - Running Stage 1: Traditional Baseline
-2025-07-27 12:03:23,962 - __main__ - INFO - Target Accuracy: 75.0%
-2025-07-27 12:03:23,962 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
-2025-07-27 12:03:23,962 - models.stage1_traditional - INFO - Running Stage 1: Traditional Baseline Pipeline
-2025-07-27 12:03:23,962 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 12:03:23,963 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
-2025-07-27 12:03:23,964 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
-2025-07-27 12:03:24,137 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
-2025-07-27 12:03:24,139 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples
-2025-07-27 12:03:24,139 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
-2025-07-27 12:03:24,288 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
-2025-07-27 12:03:24,290 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples
-2025-07-27 12:03:24,290 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
-2025-07-27 12:03:24,455 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
-2025-07-27 12:03:24,456 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples
-2025-07-27 12:03:24,456 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
-2025-07-27 12:03:24,606 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
-2025-07-27 12:03:24,611 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples
-2025-07-27 12:03:24,611 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
-2025-07-27 12:03:24,763 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
-2025-07-27 12:03:24,764 - data_processing.seed_iv_loader - INFO - Subject 5: 2505 samples
-2025-07-27 12:03:24,764 - data_processing.seed_iv_loader - INFO - Loading data for Subject 6 (all sessions)
-2025-07-27 12:03:24,912 - data_processing.seed_iv_loader - INFO - Loaded Subject 6: 2505 samples, 2 feature types
-2025-07-27 12:03:24,914 - data_processing.seed_iv_loader - INFO - Subject 6: 2505 samples
-2025-07-27 12:03:24,915 - data_processing.seed_iv_loader - INFO - Loading data for Subject 7 (all sessions)
-2025-07-27 12:03:25,063 - data_processing.seed_iv_loader - INFO - Loaded Subject 7: 2505 samples, 2 feature types
-2025-07-27 12:03:25,066 - data_processing.seed_iv_loader - INFO - Subject 7: 2505 samples
-2025-07-27 12:03:25,066 - data_processing.seed_iv_loader - INFO - Loading data for Subject 8 (all sessions)
-2025-07-27 12:03:25,217 - data_processing.seed_iv_loader - INFO - Loaded Subject 8: 2505 samples, 2 feature types
-2025-07-27 12:03:25,219 - data_processing.seed_iv_loader - INFO - Subject 8: 2505 samples
-2025-07-27 12:03:25,219 - data_processing.seed_iv_loader - INFO - Loading data for Subject 9 (all sessions)
-2025-07-27 12:03:31,674 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
-2025-07-27 12:03:31,674 - __main__ - INFO - Output directory: csv_data
-2025-07-27 12:03:31,675 - __main__ - INFO - Checkpoint directory: csv_data\checkpoints
-2025-07-27 12:03:31,675 - __main__ - INFO - Checkpoint Status:
-2025-07-27 12:03:31,675 - __main__ - INFO -   Stage 1: [Not found]
-2025-07-27 12:03:31,675 - __main__ - INFO -   Stage 2: [Not found]
-2025-07-27 12:03:31,675 - __main__ - INFO -   Stage 3: [Not found]
-2025-07-27 12:03:31,675 - __main__ - INFO -   Stage 4: [Not found]
-2025-07-27 12:03:31,676 - __main__ - INFO -   Stage 5: [Not found]
-2025-07-27 12:03:31,676 - __main__ - INFO -   Stage 6: [Not found]
-2025-07-27 12:03:31,676 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
-2025-07-27 12:03:31,676 - __main__ - INFO - Validating data access...
-2025-07-27 12:03:31,677 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 12:03:31,677 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
-2025-07-27 12:03:31,678 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
-2025-07-27 12:03:31,678 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
-2025-07-27 12:03:31,678 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
-2025-07-27 12:03:31,678 - data_processing.seed_iv_loader - INFO - Total files found: 45
-2025-07-27 12:03:31,678 - __main__ - INFO - Data validation successful. Found 3 subjects
-2025-07-27 12:03:31,679 - __main__ - INFO - 
-============================================================
-2025-07-27 12:03:31,679 - __main__ - INFO - Running Stage 1: Traditional Baseline
-2025-07-27 12:03:31,679 - __main__ - INFO - Target Accuracy: 75.0%
-2025-07-27 12:03:31,679 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
-2025-07-27 12:03:31,679 - models.stage1_traditional - INFO - Running Stage 1: Traditional Baseline Pipeline
-2025-07-27 12:03:31,680 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 12:03:31,680 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
-2025-07-27 12:03:31,680 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
-2025-07-27 12:03:31,835 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
-2025-07-27 12:03:31,837 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples
-2025-07-27 12:03:31,837 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
-2025-07-27 12:03:31,989 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
-2025-07-27 12:03:31,992 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples
-2025-07-27 12:03:31,992 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
-2025-07-27 12:03:32,176 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
-2025-07-27 12:03:32,177 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples
-2025-07-27 12:03:32,177 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
-2025-07-27 12:03:32,325 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
-2025-07-27 12:03:32,328 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples
-2025-07-27 12:03:32,328 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
-2025-07-27 12:03:32,479 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
-2025-07-27 12:03:32,481 - data_processing.seed_iv_loader - INFO - Subject 5: 2505 samples
-2025-07-27 12:03:32,481 - data_processing.seed_iv_loader - INFO - Loading data for Subject 6 (all sessions)
-2025-07-27 12:03:32,630 - data_processing.seed_iv_loader - INFO - Loaded Subject 6: 2505 samples, 2 feature types
-2025-07-27 12:03:32,632 - data_processing.seed_iv_loader - INFO - Subject 6: 2505 samples
-2025-07-27 12:03:32,632 - data_processing.seed_iv_loader - INFO - Loading data for Subject 7 (all sessions)
-2025-07-27 12:03:32,776 - data_processing.seed_iv_loader - INFO - Loaded Subject 7: 2505 samples, 2 feature types
-2025-07-27 12:03:32,778 - data_processing.seed_iv_loader - INFO - Subject 7: 2505 samples
-2025-07-27 12:03:32,778 - data_processing.seed_iv_loader - INFO - Loading data for Subject 8 (all sessions)
-2025-07-27 12:03:32,922 - data_processing.seed_iv_loader - INFO - Loaded Subject 8: 2505 samples, 2 feature types
-2025-07-27 12:03:32,924 - data_processing.seed_iv_loader - INFO - Subject 8: 2505 samples
-2025-07-27 12:03:32,924 - data_processing.seed_iv_loader - INFO - Loading data for Subject 9 (all sessions)
-2025-07-27 12:03:33,083 - data_processing.seed_iv_loader - INFO - Loaded Subject 9: 2505 samples, 2 feature types
-2025-07-27 12:03:33,085 - data_processing.seed_iv_loader - INFO - Subject 9: 2505 samples
-2025-07-27 12:03:33,085 - data_processing.seed_iv_loader - INFO - Loading data for Subject 10 (all sessions)
-2025-07-27 12:03:33,234 - data_processing.seed_iv_loader - INFO - Loaded Subject 10: 2505 samples, 2 feature types
-2025-07-27 12:03:33,237 - data_processing.seed_iv_loader - INFO - Subject 10: 2505 samples
-2025-07-27 12:03:33,237 - data_processing.seed_iv_loader - INFO - Loading data for Subject 11 (all sessions)
-2025-07-27 12:03:33,397 - data_processing.seed_iv_loader - INFO - Loaded Subject 11: 2505 samples, 2 feature types
-2025-07-27 12:03:33,399 - data_processing.seed_iv_loader - INFO - Subject 11: 2505 samples
-2025-07-27 12:03:33,399 - data_processing.seed_iv_loader - INFO - Loading data for Subject 12 (all sessions)
-2025-07-27 12:03:33,545 - data_processing.seed_iv_loader - INFO - Loaded Subject 12: 2505 samples, 2 feature types
-2025-07-27 12:03:33,547 - data_processing.seed_iv_loader - INFO - Subject 12: 2505 samples
-2025-07-27 12:03:33,548 - data_processing.seed_iv_loader - INFO - Loading data for Subject 13 (all sessions)
-2025-07-27 12:03:33,708 - data_processing.seed_iv_loader - INFO - Loaded Subject 13: 2505 samples, 2 feature types
-2025-07-27 12:03:33,709 - data_processing.seed_iv_loader - INFO - Subject 13: 2505 samples
-2025-07-27 12:03:33,710 - data_processing.seed_iv_loader - INFO - Loading data for Subject 14 (all sessions)
-2025-07-27 12:03:33,875 - data_processing.seed_iv_loader - INFO - Loaded Subject 14: 2505 samples, 2 feature types
-2025-07-27 12:03:33,877 - data_processing.seed_iv_loader - INFO - Subject 14: 2505 samples
-2025-07-27 12:03:33,877 - data_processing.seed_iv_loader - INFO - Loading data for Subject 15 (all sessions)
-2025-07-27 12:03:34,031 - data_processing.seed_iv_loader - INFO - Loaded Subject 15: 2505 samples, 2 feature types
-2025-07-27 12:03:34,034 - data_processing.seed_iv_loader - INFO - Subject 15: 2505 samples
-2025-07-27 12:03:34,056 - data_processing.seed_iv_loader - INFO - Combined dataset: 37575 samples, 310 features
-2025-07-27 12:03:34,062 - models.stage1_traditional - INFO - Loaded 37575 samples from 37575 subjects
-2025-07-27 12:03:34,101 - models.stage1_traditional - INFO - Training traditional baseline model...
-2025-07-27 12:03:34,102 - models.stage1_traditional - INFO - Training data: 30060 samples, 310 features
-2025-07-27 12:03:34,102 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
-2025-07-27 12:03:34,102 - models.stage1_traditional - INFO - Pipeline created with 2 steps
-2025-07-27 12:33:33,708 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
-2025-07-27 12:33:33,708 - __main__ - INFO - Output directory: csv_data
-2025-07-27 12:33:33,708 - __main__ - INFO - Checkpoint directory: csv_data\checkpoints
-2025-07-27 12:33:33,708 - __main__ - INFO - Checkpoint Status:
-2025-07-27 12:33:33,708 - __main__ - INFO -   Stage 1: [Not found]
-2025-07-27 12:33:33,709 - __main__ - INFO -   Stage 2: [Not found]
-2025-07-27 12:33:33,709 - __main__ - INFO -   Stage 3: [Not found]
-2025-07-27 12:33:33,709 - __main__ - INFO -   Stage 4: [Not found]
-2025-07-27 12:33:33,709 - __main__ - INFO -   Stage 5: [Not found]
-2025-07-27 12:33:33,709 - __main__ - INFO -   Stage 6: [Not found]
-2025-07-27 12:33:33,709 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
-2025-07-27 12:33:33,709 - __main__ - INFO - Validating data access...
-2025-07-27 12:33:33,709 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 12:33:33,710 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
-2025-07-27 12:33:33,710 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
-2025-07-27 12:33:33,710 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
-2025-07-27 12:33:33,711 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
-2025-07-27 12:33:33,711 - data_processing.seed_iv_loader - INFO - Total files found: 45
-2025-07-27 12:33:33,711 - __main__ - INFO - Data validation successful. Found 3 subjects
-2025-07-27 12:33:33,711 - __main__ - INFO - 
-============================================================
-2025-07-27 12:33:33,711 - __main__ - INFO - Running Stage 1: Traditional Baseline
-2025-07-27 12:33:33,711 - __main__ - INFO - Target Accuracy: 75.0%
-2025-07-27 12:33:33,711 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
-2025-07-27 12:33:33,711 - models.stage1_traditional - INFO - Running Stage 1: Traditional Baseline Pipeline
-2025-07-27 12:33:33,711 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
-2025-07-27 12:33:33,712 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
-2025-07-27 12:33:33,712 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
-2025-07-27 12:33:33,874 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
-2025-07-27 12:33:33,875 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples
-2025-07-27 12:33:33,875 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
-2025-07-27 12:33:34,018 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
-2025-07-27 12:33:34,021 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples
-2025-07-27 12:33:34,021 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
-2025-07-27 12:33:34,178 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
-2025-07-27 12:33:34,181 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples
-2025-07-27 12:33:34,181 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
-2025-07-27 12:33:34,335 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
-2025-07-27 12:33:34,337 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples
-2025-07-27 12:33:34,337 - data_processing.seed_iv_loader - INFO - Loading data for Subject 5 (all sessions)
-2025-07-27 12:33:34,487 - data_processing.seed_iv_loader - INFO - Loaded Subject 5: 2505 samples, 2 feature types
-2025-07-27 12:33:34,488 - data_processing.seed_iv_loader - INFO - Subject 5: 2505 samples
-2025-07-27 12:33:34,489 - data_processing.seed_iv_loader - INFO - Loading data for Subject 6 (all sessions)
-2025-07-27 12:33:34,639 - data_processing.seed_iv_loader - INFO - Loaded Subject 6: 2505 samples, 2 feature types
-2025-07-27 12:33:34,641 - data_processing.seed_iv_loader - INFO - Subject 6: 2505 samples
-2025-07-27 12:33:34,641 - data_processing.seed_iv_loader - INFO - Loading data for Subject 7 (all sessions)
-2025-07-27 12:33:34,786 - data_processing.seed_iv_loader - INFO - Loaded Subject 7: 2505 samples, 2 feature types
-2025-07-27 12:33:34,790 - data_processing.seed_iv_loader - INFO - Subject 7: 2505 samples
-2025-07-27 12:33:34,790 - data_processing.seed_iv_loader - INFO - Loading data for Subject 8 (all sessions)
-2025-07-27 12:33:34,946 - data_processing.seed_iv_loader - INFO - Loaded Subject 8: 2505 samples, 2 feature types
-2025-07-27 12:33:34,948 - data_processing.seed_iv_loader - INFO - Subject 8: 2505 samples
-2025-07-27 12:33:34,948 - data_processing.seed_iv_loader - INFO - Loading data for Subject 9 (all sessions)
-2025-07-27 12:33:35,093 - data_processing.seed_iv_loader - INFO - Loaded Subject 9: 2505 samples, 2 feature types
-2025-07-27 12:33:35,098 - data_processing.seed_iv_loader - INFO - Subject 9: 2505 samples
-2025-07-27 12:33:35,098 - data_processing.seed_iv_loader - INFO - Loading data for Subject 10 (all sessions)
-2025-07-27 12:33:35,274 - data_processing.seed_iv_loader - INFO - Loaded Subject 10: 2505 samples, 2 feature types
-2025-07-27 12:33:35,275 - data_processing.seed_iv_loader - INFO - Subject 10: 2505 samples
-2025-07-27 12:33:35,275 - data_processing.seed_iv_loader - INFO - Loading data for Subject 11 (all sessions)
-2025-07-27 12:33:35,422 - data_processing.seed_iv_loader - INFO - Loaded Subject 11: 2505 samples, 2 feature types
-2025-07-27 12:33:35,423 - data_processing.seed_iv_loader - INFO - Subject 11: 2505 samples
-2025-07-27 12:33:35,424 - data_processing.seed_iv_loader - INFO - Loading data for Subject 12 (all sessions)
-2025-07-27 12:33:35,580 - data_processing.seed_iv_loader - INFO - Loaded Subject 12: 2505 samples, 2 feature types
-2025-07-27 12:33:35,582 - data_processing.seed_iv_loader - INFO - Subject 12: 2505 samples
-2025-07-27 12:33:35,582 - data_processing.seed_iv_loader - INFO - Loading data for Subject 13 (all sessions)
-2025-07-27 12:33:35,750 - data_processing.seed_iv_loader - INFO - Loaded Subject 13: 2505 samples, 2 feature types
-2025-07-27 12:33:35,753 - data_processing.seed_iv_loader - INFO - Subject 13: 2505 samples
-2025-07-27 12:33:35,753 - data_processing.seed_iv_loader - INFO - Loading data for Subject 14 (all sessions)
-2025-07-27 12:33:35,909 - data_processing.seed_iv_loader - INFO - Loaded Subject 14: 2505 samples, 2 feature types
-2025-07-27 12:33:35,911 - data_processing.seed_iv_loader - INFO - Subject 14: 2505 samples
-2025-07-27 12:33:35,911 - data_processing.seed_iv_loader - INFO - Loading data for Subject 15 (all sessions)
-2025-07-27 12:33:36,056 - data_processing.seed_iv_loader - INFO - Loaded Subject 15: 2505 samples, 2 feature types
-2025-07-27 12:33:36,058 - data_processing.seed_iv_loader - INFO - Subject 15: 2505 samples
-2025-07-27 12:33:36,075 - data_processing.seed_iv_loader - INFO - Combined dataset: 37575 samples, 310 features
-2025-07-27 12:33:36,081 - models.stage1_traditional - INFO - Loaded 37575 samples from 37575 subjects
-2025-07-27 12:33:36,120 - models.stage1_traditional - INFO - Training traditional baseline model...
-2025-07-27 12:33:36,121 - models.stage1_traditional - INFO - Training data: 30060 samples, 310 features
-2025-07-27 12:33:36,121 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
-2025-07-27 12:33:36,121 - models.stage1_traditional - INFO - Pipeline created with 2 steps
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 664, in run_complete_pipeline
+    eval_results = self.evaluate(X_test, y_test)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 377, in evaluate
+    selected_features = self.feature_selector.transform(enhanced_features_scaled)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'transform'
+2025-07-27 17:08:58,478 - __main__ - INFO - Stage 2 result saved to: csv_data\stage_2_result.json
+2025-07-27 17:08:58,478 - __main__ - INFO - Generating comprehensive report...
+2025-07-27 17:08:58,480 - __main__ - INFO - Report saved to: csv_data\comprehensive_report.txt
+2025-07-27 17:08:58,480 - __main__ - INFO - Pipeline completed in 218.5 seconds

@@ -1,0 +1,379 @@
+2025-07-27 16:52:02,124 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
+2025-07-27 16:52:02,124 - __main__ - INFO - Output directory: csv_data
+2025-07-27 16:52:02,125 - __main__ - INFO - Checkpoint directory: csv_data\checkpoints
+2025-07-27 16:52:02,125 - __main__ - INFO - Checkpoint Status:
+2025-07-27 16:52:02,125 - __main__ - INFO -   Stage 1: [Not found]
+2025-07-27 16:52:02,125 - __main__ - INFO -   Stage 2: [Not found]
+2025-07-27 16:52:02,125 - __main__ - INFO -   Stage 3: [Not found]
+2025-07-27 16:52:02,125 - __main__ - INFO -   Stage 4: [Not found]
+2025-07-27 16:52:02,126 - __main__ - INFO -   Stage 5: [Not found]
+2025-07-27 16:52:02,126 - __main__ - INFO -   Stage 6: [Not found]
+2025-07-27 16:52:02,126 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
+2025-07-27 16:52:02,126 - __main__ - INFO - Validating data access...
+2025-07-27 16:52:02,127 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 16:52:02,127 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
+2025-07-27 16:52:02,128 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
+2025-07-27 16:52:02,128 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
+2025-07-27 16:52:02,128 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
+2025-07-27 16:52:02,129 - data_processing.seed_iv_loader - INFO - Total files found: 45
+2025-07-27 16:52:02,129 - __main__ - INFO - Data validation successful. Found 3 subjects
+2025-07-27 16:52:02,129 - __main__ - INFO - 
+============================================================
+2025-07-27 16:52:02,129 - __main__ - INFO - Running Stage 1: Traditional Baseline
+2025-07-27 16:52:02,130 - __main__ - INFO - Target Accuracy: 75.0%
+2025-07-27 16:52:02,130 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
+2025-07-27 16:52:02,130 - models.stage1_traditional - INFO - Running Stage 1: Traditional Baseline Pipeline
+2025-07-27 16:52:02,131 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 16:52:02,131 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
+2025-07-27 16:52:02,131 - data_processing.seed_iv_loader - INFO - TESTING MODE: Using only 2 subjects with limited samples
+2025-07-27 16:52:02,131 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
+2025-07-27 16:52:02,312 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
+2025-07-27 16:52:02,314 - data_processing.seed_iv_loader - INFO - TESTING: Limited Subject 1 to 100 samples
+2025-07-27 16:52:02,314 - data_processing.seed_iv_loader - INFO - Subject 1: 100 samples
+2025-07-27 16:52:02,314 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
+2025-07-27 16:52:02,488 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
+2025-07-27 16:52:02,490 - data_processing.seed_iv_loader - INFO - TESTING: Limited Subject 2 to 100 samples
+2025-07-27 16:52:02,490 - data_processing.seed_iv_loader - INFO - Subject 2: 100 samples
+2025-07-27 16:52:02,491 - data_processing.seed_iv_loader - INFO - Combined dataset: 200 samples, 310 features
+2025-07-27 16:52:02,492 - models.stage1_traditional - INFO - Loaded 200 samples from 200 subjects
+2025-07-27 16:52:02,493 - models.stage1_traditional - INFO - Training traditional baseline model...
+2025-07-27 16:52:02,493 - models.stage1_traditional - INFO - Training data: 160 samples, 310 features
+2025-07-27 16:52:02,493 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
+2025-07-27 16:52:02,494 - models.stage1_traditional - INFO - Pipeline created with 2 steps
+2025-07-27 16:52:02,551 - models.stage1_traditional - INFO - Training completed in 0.00 seconds
+2025-07-27 16:52:02,551 - models.stage1_traditional - INFO - CV Mean Accuracy: 0.8812 ± 0.0538
+2025-07-27 16:52:02,551 - models.stage1_traditional - INFO - Evaluating model on 40 test samples...
+2025-07-27 16:52:02,559 - models.stage1_traditional - INFO - Evaluation completed in 0.00 seconds
+2025-07-27 16:52:02,559 - models.stage1_traditional - INFO - Test Accuracy: 0.9750 (97.5%)
+2025-07-27 16:52:02,559 - models.stage1_traditional - INFO - F1 Score (Macro): 0.9726
+2025-07-27 16:52:02,559 - models.stage1_traditional - INFO - Target Achievement: [ACHIEVED]
+2025-07-27 16:52:02,562 - models.stage1_traditional - INFO - Model saved to: csv_data\stage1_results\traditional_baseline_model.joblib
+2025-07-27 16:52:03,284 - __main__ - ERROR - Stage 1 failed: '0'
+2025-07-27 16:52:03,286 - __main__ - ERROR - Detailed error:
+Traceback (most recent call last):
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\main.py", line 247, in run_stage
+    result = model.run_complete_pipeline(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage1_traditional.py", line 595, in run_complete_pipeline
+    self.plot_results(save_path=output_dir / "stage1_results.png")
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage1_traditional.py", line 392, in plot_results
+    f1_scores = [class_report[str(i)]['f1-score'] for i in range(len(emotions))]
+                 ~~~~~~~~~~~~^^^^^^^^
+KeyError: '0'
+2025-07-27 16:52:03,287 - __main__ - INFO - Stage 1 result saved to: csv_data\stage_1_result.json
+2025-07-27 16:52:03,288 - __main__ - INFO - 
+============================================================
+2025-07-27 16:52:03,288 - __main__ - INFO - Running Stage 2: Enhanced Features
+2025-07-27 16:52:03,288 - __main__ - INFO - Target Accuracy: 80.0%
+2025-07-27 16:52:03,289 - models.stage2_enhanced - INFO - EnhancedFeaturesModel initialized with target accuracy: 77.5%
+2025-07-27 16:52:03,289 - models.stage2_enhanced - INFO - Running Stage 2: Enhanced Features Pipeline
+2025-07-27 16:52:03,289 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 16:52:03,290 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
+2025-07-27 16:52:03,290 - data_processing.seed_iv_loader - INFO - TESTING MODE: Using only 2 subjects with limited samples
+2025-07-27 16:52:03,290 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
+2025-07-27 16:52:03,458 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
+2025-07-27 16:52:03,459 - data_processing.seed_iv_loader - INFO - TESTING: Limited Subject 1 to 100 samples
+2025-07-27 16:52:03,460 - data_processing.seed_iv_loader - INFO - Subject 1: 100 samples
+2025-07-27 16:52:03,460 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
+2025-07-27 16:52:03,621 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
+2025-07-27 16:52:03,623 - data_processing.seed_iv_loader - INFO - TESTING: Limited Subject 2 to 100 samples
+2025-07-27 16:52:03,623 - data_processing.seed_iv_loader - INFO - Subject 2: 100 samples
+2025-07-27 16:52:03,623 - data_processing.seed_iv_loader - INFO - Combined dataset: 200 samples, 310 features
+2025-07-27 16:52:03,624 - models.stage2_enhanced - INFO - Loaded 200 samples from 200 subjects
+2025-07-27 16:52:03,626 - models.stage2_enhanced - INFO - Training enhanced features model...
+2025-07-27 16:52:03,627 - models.stage2_enhanced - INFO - Training data: 160 samples, 310 features
+2025-07-27 16:52:03,627 - models.stage2_enhanced - INFO - Extracting enhanced multi-domain features...
+2025-07-27 16:52:03,627 - data_processing.feature_engineering - INFO - AdvancedFeatureEngineer initialized: 62 channels, 5 frequency bands
+2025-07-27 16:52:03,627 - data_processing.feature_engineering - INFO - Extracting features: ['spatial', 'temporal', 'frequency', 'connectivity']
+2025-07-27 16:52:03,628 - data_processing.feature_engineering - INFO - Extracting spatial features...
+2025-07-27 16:52:03,687 - data_processing.feature_engineering - INFO - Extracted 20 spatial features
+2025-07-27 16:52:03,688 - data_processing.feature_engineering - INFO - Extracting temporal features...
+2025-07-27 16:52:03,847 - data_processing.feature_engineering - INFO - Extracted 14 temporal features
+2025-07-27 16:52:03,848 - data_processing.feature_engineering - INFO - Extracting frequency domain features...
+2025-07-27 16:52:03,882 - data_processing.feature_engineering - INFO - Extracted 8 frequency domain features
+2025-07-27 16:52:03,882 - data_processing.feature_engineering - INFO - Extracting connectivity features...
+2025-07-27 16:52:03,915 - data_processing.feature_engineering - INFO - Extracted 30 connectivity features
+2025-07-27 16:52:03,916 - data_processing.feature_engineering - INFO - Combined features shape: (160, 72)
+2025-07-27 16:52:03,916 - models.stage2_enhanced - INFO - Enhanced features shape: (160, 72)
+2025-07-27 16:52:03,916 - models.stage2_enhanced - INFO - Feature expansion: 310 -> 72 (0.2x)
+2025-07-27 16:52:03,917 - models.stage2_enhanced - INFO - Feature selection using mutual_info...
+2025-07-27 16:52:03,917 - models.stage2_enhanced - WARNING - Unknown feature selection method: mutual_info
+2025-07-27 16:52:03,917 - models.stage2_enhanced - INFO - Optimizing Random Forest hyperparameters...
+2025-07-27 16:52:03,917 - __main__ - ERROR - Stage 2 failed: 'Stage2Config' object has no attribute 'use_randomized_search'
+2025-07-27 16:52:03,918 - __main__ - ERROR - Detailed error:
+Traceback (most recent call last):
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\main.py", line 254, in run_stage
+    result = model.run_complete_pipeline(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 661, in run_complete_pipeline
+    train_results = self.train(X_train, y_train, optimize_hyperparams=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 293, in train
+    self.model = self.optimize_hyperparameters(selected_features, y_train)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 222, in optimize_hyperparameters
+    if self.stage_config.use_randomized_search:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Stage2Config' object has no attribute 'use_randomized_search'
+2025-07-27 16:52:03,920 - __main__ - INFO - Stage 2 result saved to: csv_data\stage_2_result.json
+2025-07-27 16:52:03,920 - __main__ - INFO - Generating comprehensive report...
+2025-07-27 16:52:03,921 - __main__ - INFO - Report saved to: csv_data\comprehensive_report.txt
+2025-07-27 16:52:03,921 - __main__ - INFO - Pipeline completed in 1.8 seconds
+2025-07-27 16:53:40,466 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
+2025-07-27 16:53:40,466 - __main__ - INFO - Output directory: csv_data
+2025-07-27 16:53:40,466 - __main__ - INFO - Checkpoint directory: csv_data\checkpoints
+2025-07-27 16:53:40,466 - __main__ - INFO - Checkpoint Status:
+2025-07-27 16:53:40,466 - __main__ - INFO -   Stage 1: [Not found]
+2025-07-27 16:53:40,466 - __main__ - INFO -   Stage 2: [Not found]
+2025-07-27 16:53:40,467 - __main__ - INFO -   Stage 3: [Not found]
+2025-07-27 16:53:40,467 - __main__ - INFO -   Stage 4: [Not found]
+2025-07-27 16:53:40,467 - __main__ - INFO -   Stage 5: [Not found]
+2025-07-27 16:53:40,467 - __main__ - INFO -   Stage 6: [Not found]
+2025-07-27 16:53:40,467 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
+2025-07-27 16:53:40,467 - __main__ - INFO - Validating data access...
+2025-07-27 16:53:40,467 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 16:53:40,467 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
+2025-07-27 16:53:40,468 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
+2025-07-27 16:53:40,468 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
+2025-07-27 16:53:40,468 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
+2025-07-27 16:53:40,469 - data_processing.seed_iv_loader - INFO - Total files found: 45
+2025-07-27 16:53:40,469 - __main__ - INFO - Data validation successful. Found 3 subjects
+2025-07-27 16:53:40,469 - __main__ - INFO - 
+============================================================
+2025-07-27 16:53:40,469 - __main__ - INFO - Running Stage 1: Traditional Baseline
+2025-07-27 16:53:40,469 - __main__ - INFO - Target Accuracy: 75.0%
+2025-07-27 16:53:40,469 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
+2025-07-27 16:53:40,469 - models.stage1_traditional - INFO - Running Stage 1: Traditional Baseline Pipeline
+2025-07-27 16:53:40,469 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 16:53:40,470 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
+2025-07-27 16:53:40,470 - data_processing.seed_iv_loader - INFO - TESTING MODE: Using only 2 subjects with limited samples
+2025-07-27 16:53:40,470 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
+2025-07-27 16:53:40,638 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
+2025-07-27 16:53:40,639 - data_processing.seed_iv_loader - INFO - TESTING: Limited Subject 1 to 100 samples
+2025-07-27 16:53:40,639 - data_processing.seed_iv_loader - INFO - Subject 1: 100 samples
+2025-07-27 16:53:40,639 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
+2025-07-27 16:53:40,799 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
+2025-07-27 16:53:40,800 - data_processing.seed_iv_loader - INFO - TESTING: Limited Subject 2 to 100 samples
+2025-07-27 16:53:40,801 - data_processing.seed_iv_loader - INFO - Subject 2: 100 samples
+2025-07-27 16:53:40,801 - data_processing.seed_iv_loader - INFO - Combined dataset: 200 samples, 310 features
+2025-07-27 16:53:40,802 - models.stage1_traditional - INFO - Loaded 200 samples from 200 subjects
+2025-07-27 16:53:40,803 - models.stage1_traditional - INFO - Training traditional baseline model...
+2025-07-27 16:53:40,804 - models.stage1_traditional - INFO - Training data: 160 samples, 310 features
+2025-07-27 16:53:40,804 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
+2025-07-27 16:53:40,804 - models.stage1_traditional - INFO - Pipeline created with 2 steps
+2025-07-27 16:53:40,859 - models.stage1_traditional - INFO - Training completed in 0.00 seconds
+2025-07-27 16:53:40,859 - models.stage1_traditional - INFO - CV Mean Accuracy: 0.8812 ± 0.0538
+2025-07-27 16:53:40,859 - models.stage1_traditional - INFO - Evaluating model on 40 test samples...
+2025-07-27 16:53:40,868 - models.stage1_traditional - INFO - Evaluation completed in 0.00 seconds
+2025-07-27 16:53:40,868 - models.stage1_traditional - INFO - Test Accuracy: 0.9750 (97.5%)
+2025-07-27 16:53:40,868 - models.stage1_traditional - INFO - F1 Score (Macro): 0.9726
+2025-07-27 16:53:40,868 - models.stage1_traditional - INFO - Target Achievement: [ACHIEVED]
+2025-07-27 16:53:40,870 - models.stage1_traditional - INFO - Model saved to: csv_data\stage1_results\traditional_baseline_model.joblib
+2025-07-27 16:53:41,091 - __main__ - ERROR - Stage 1 failed: shape mismatch: objects cannot be broadcast to a single shape.  Mismatch is between arg 0 with shape (4,) and arg 1 with shape (3,).
+2025-07-27 16:53:41,091 - __main__ - ERROR - Detailed error:
+Traceback (most recent call last):
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\main.py", line 247, in run_stage
+    result = model.run_complete_pipeline(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage1_traditional.py", line 601, in run_complete_pipeline
+    self.plot_results(save_path=output_dir / "stage1_results.png")
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage1_traditional.py", line 403, in plot_results
+    axes[0, 1].bar(x_pos_acc, accuracies, 0.4, label='Accuracy', alpha=0.8)
+  File "D:\eeg-python-code\eeg-seed-IV\.venv\Lib\site-packages\matplotlib\__init__.py", line 1521, in inner
+    return func(
+           ^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\.venv\Lib\site-packages\matplotlib\axes\_axes.py", line 2583, in bar
+    x, height, width, y, linewidth, hatch = np.broadcast_arrays(
+                                            ^^^^^^^^^^^^^^^^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\.venv\Lib\site-packages\numpy\lib\stride_tricks.py", line 540, in broadcast_arrays
+    shape = _broadcast_shape(*args)
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\.venv\Lib\site-packages\numpy\lib\stride_tricks.py", line 422, in _broadcast_shape
+    b = np.broadcast(*args[:32])
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: shape mismatch: objects cannot be broadcast to a single shape.  Mismatch is between arg 0 with shape (4,) and arg 1 with shape (3,).
+2025-07-27 16:53:41,131 - __main__ - INFO - Stage 1 result saved to: csv_data\stage_1_result.json
+2025-07-27 16:53:41,131 - __main__ - INFO - 
+============================================================
+2025-07-27 16:53:41,131 - __main__ - INFO - Running Stage 2: Enhanced Features
+2025-07-27 16:53:41,131 - __main__ - INFO - Target Accuracy: 80.0%
+2025-07-27 16:53:41,131 - models.stage2_enhanced - INFO - EnhancedFeaturesModel initialized with target accuracy: 77.5%
+2025-07-27 16:53:41,131 - models.stage2_enhanced - INFO - Running Stage 2: Enhanced Features Pipeline
+2025-07-27 16:53:41,132 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 16:53:41,132 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
+2025-07-27 16:53:41,132 - data_processing.seed_iv_loader - INFO - TESTING MODE: Using only 2 subjects with limited samples
+2025-07-27 16:53:41,132 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
+2025-07-27 16:53:41,313 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
+2025-07-27 16:53:41,315 - data_processing.seed_iv_loader - INFO - TESTING: Limited Subject 1 to 100 samples
+2025-07-27 16:53:41,315 - data_processing.seed_iv_loader - INFO - Subject 1: 100 samples
+2025-07-27 16:53:41,315 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
+2025-07-27 16:53:41,470 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
+2025-07-27 16:53:41,471 - data_processing.seed_iv_loader - INFO - TESTING: Limited Subject 2 to 100 samples
+2025-07-27 16:53:41,471 - data_processing.seed_iv_loader - INFO - Subject 2: 100 samples
+2025-07-27 16:53:41,472 - data_processing.seed_iv_loader - INFO - Combined dataset: 200 samples, 310 features
+2025-07-27 16:53:41,473 - models.stage2_enhanced - INFO - Loaded 200 samples from 200 subjects
+2025-07-27 16:53:41,474 - models.stage2_enhanced - INFO - Training enhanced features model...
+2025-07-27 16:53:41,474 - models.stage2_enhanced - INFO - Training data: 160 samples, 310 features
+2025-07-27 16:53:41,475 - models.stage2_enhanced - INFO - Extracting enhanced multi-domain features...
+2025-07-27 16:53:41,475 - data_processing.feature_engineering - INFO - AdvancedFeatureEngineer initialized: 62 channels, 5 frequency bands
+2025-07-27 16:53:41,475 - data_processing.feature_engineering - INFO - Extracting features: ['spatial', 'temporal', 'frequency', 'connectivity']
+2025-07-27 16:53:41,475 - data_processing.feature_engineering - INFO - Extracting spatial features...
+2025-07-27 16:53:41,533 - data_processing.feature_engineering - INFO - Extracted 20 spatial features
+2025-07-27 16:53:41,533 - data_processing.feature_engineering - INFO - Extracting temporal features...
+2025-07-27 16:53:41,691 - data_processing.feature_engineering - INFO - Extracted 14 temporal features
+2025-07-27 16:53:41,691 - data_processing.feature_engineering - INFO - Extracting frequency domain features...
+2025-07-27 16:53:41,727 - data_processing.feature_engineering - INFO - Extracted 8 frequency domain features
+2025-07-27 16:53:41,727 - data_processing.feature_engineering - INFO - Extracting connectivity features...
+2025-07-27 16:53:41,756 - data_processing.feature_engineering - INFO - Extracted 30 connectivity features
+2025-07-27 16:53:41,756 - data_processing.feature_engineering - INFO - Combined features shape: (160, 72)
+2025-07-27 16:53:41,756 - models.stage2_enhanced - INFO - Enhanced features shape: (160, 72)
+2025-07-27 16:53:41,756 - models.stage2_enhanced - INFO - Feature expansion: 310 -> 72 (0.2x)
+2025-07-27 16:53:41,757 - models.stage2_enhanced - INFO - Feature selection using mutual_info...
+2025-07-27 16:53:41,757 - models.stage2_enhanced - WARNING - Unknown feature selection method: mutual_info
+2025-07-27 16:53:41,757 - models.stage2_enhanced - INFO - Optimizing Random Forest hyperparameters...
+2025-07-27 16:53:41,758 - __main__ - ERROR - Stage 2 failed: 'Stage2Config' object has no attribute 'use_randomized_search'
+2025-07-27 16:53:41,758 - __main__ - ERROR - Detailed error:
+Traceback (most recent call last):
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\main.py", line 254, in run_stage
+    result = model.run_complete_pipeline(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 661, in run_complete_pipeline
+    train_results = self.train(X_train, y_train, optimize_hyperparams=True)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 293, in train
+    self.model = self.optimize_hyperparameters(selected_features, y_train)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 222, in optimize_hyperparameters
+    if self.stage_config.use_randomized_search:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Stage2Config' object has no attribute 'use_randomized_search'
+2025-07-27 16:53:41,759 - __main__ - INFO - Stage 2 result saved to: csv_data\stage_2_result.json
+2025-07-27 16:53:41,760 - __main__ - INFO - Generating comprehensive report...
+2025-07-27 16:53:41,760 - __main__ - INFO - Report saved to: csv_data\comprehensive_report.txt
+2025-07-27 16:53:41,760 - __main__ - INFO - Pipeline completed in 1.3 seconds
+2025-07-27 16:54:51,272 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
+2025-07-27 16:54:51,273 - __main__ - INFO - Output directory: csv_data
+2025-07-27 16:54:51,273 - __main__ - INFO - Checkpoint directory: csv_data\checkpoints
+2025-07-27 16:54:51,273 - __main__ - INFO - Checkpoint Status:
+2025-07-27 16:54:51,273 - __main__ - INFO -   Stage 1: [Not found]
+2025-07-27 16:54:51,273 - __main__ - INFO -   Stage 2: [Not found]
+2025-07-27 16:54:51,273 - __main__ - INFO -   Stage 3: [Not found]
+2025-07-27 16:54:51,273 - __main__ - INFO -   Stage 4: [Not found]
+2025-07-27 16:54:51,274 - __main__ - INFO -   Stage 5: [Not found]
+2025-07-27 16:54:51,274 - __main__ - INFO -   Stage 6: [Not found]
+2025-07-27 16:54:51,274 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
+2025-07-27 16:54:51,274 - __main__ - INFO - Validating data access...
+2025-07-27 16:54:51,274 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 16:54:51,274 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
+2025-07-27 16:54:51,275 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
+2025-07-27 16:54:51,275 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
+2025-07-27 16:54:51,275 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
+2025-07-27 16:54:51,275 - data_processing.seed_iv_loader - INFO - Total files found: 45
+2025-07-27 16:54:51,276 - __main__ - INFO - Data validation successful. Found 3 subjects
+2025-07-27 16:54:51,276 - __main__ - INFO - 
+============================================================
+2025-07-27 16:54:51,276 - __main__ - INFO - Running Stage 1: Traditional Baseline
+2025-07-27 16:54:51,276 - __main__ - INFO - Target Accuracy: 75.0%
+2025-07-27 16:54:51,276 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
+2025-07-27 16:54:51,276 - models.stage1_traditional - INFO - Running Stage 1: Traditional Baseline Pipeline
+2025-07-27 16:54:51,276 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 16:54:51,276 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
+2025-07-27 16:54:51,276 - data_processing.seed_iv_loader - INFO - TESTING MODE: Using only 2 subjects with limited samples
+2025-07-27 16:54:51,277 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
+2025-07-27 16:54:51,451 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
+2025-07-27 16:54:51,453 - data_processing.seed_iv_loader - INFO - TESTING: Limited Subject 1 to 100 samples
+2025-07-27 16:54:51,455 - data_processing.seed_iv_loader - INFO - Subject 1: 100 samples
+2025-07-27 16:54:51,455 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
+2025-07-27 16:54:51,633 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
+2025-07-27 16:54:51,634 - data_processing.seed_iv_loader - INFO - TESTING: Limited Subject 2 to 100 samples
+2025-07-27 16:54:51,634 - data_processing.seed_iv_loader - INFO - Subject 2: 100 samples
+2025-07-27 16:54:51,635 - data_processing.seed_iv_loader - INFO - Combined dataset: 200 samples, 310 features
+2025-07-27 16:54:51,636 - models.stage1_traditional - INFO - Loaded 200 samples from 200 subjects
+2025-07-27 16:54:51,637 - models.stage1_traditional - INFO - Training traditional baseline model...
+2025-07-27 16:54:51,637 - models.stage1_traditional - INFO - Training data: 160 samples, 310 features
+2025-07-27 16:54:51,637 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
+2025-07-27 16:54:51,637 - models.stage1_traditional - INFO - Pipeline created with 2 steps
+2025-07-27 16:54:51,694 - models.stage1_traditional - INFO - Training completed in 0.01 seconds
+2025-07-27 16:54:51,694 - models.stage1_traditional - INFO - CV Mean Accuracy: 0.8812 ± 0.0538
+2025-07-27 16:54:51,694 - models.stage1_traditional - INFO - Evaluating model on 40 test samples...
+2025-07-27 16:54:51,702 - models.stage1_traditional - INFO - Evaluation completed in 0.00 seconds
+2025-07-27 16:54:51,702 - models.stage1_traditional - INFO - Test Accuracy: 0.9750 (97.5%)
+2025-07-27 16:54:51,703 - models.stage1_traditional - INFO - F1 Score (Macro): 0.9726
+2025-07-27 16:54:51,703 - models.stage1_traditional - INFO - Target Achievement: [ACHIEVED]
+2025-07-27 16:54:51,705 - models.stage1_traditional - INFO - Model saved to: csv_data\stage1_results\traditional_baseline_model.joblib
+2025-07-27 16:54:52,513 - models.stage1_traditional - INFO - Results plot saved to: csv_data\stage1_results\stage1_results.png
+2025-07-27 16:55:05,252 - __main__ - INFO - Target accuracy ACHIEVED: 97.5% vs 75.0%
+2025-07-27 16:55:05,257 - __main__ - INFO - Checkpoint saved: csv_data\checkpoints\stage_1_checkpoint.joblib
+2025-07-27 16:55:05,257 - __main__ - INFO - Stage 1 completed in 14.0 seconds
+2025-07-27 16:55:05,264 - __main__ - INFO - Stage 1 result saved to: csv_data\stage_1_result.json
+2025-07-27 16:55:05,265 - __main__ - INFO - 
+============================================================
+2025-07-27 16:55:05,265 - __main__ - INFO - Running Stage 2: Enhanced Features
+2025-07-27 16:55:05,265 - __main__ - INFO - Target Accuracy: 80.0%
+2025-07-27 16:55:05,266 - models.stage2_enhanced - INFO - EnhancedFeaturesModel initialized with target accuracy: 77.5%
+2025-07-27 16:55:05,266 - models.stage2_enhanced - INFO - Running Stage 2: Enhanced Features Pipeline
+2025-07-27 16:55:05,266 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-27 16:55:05,266 - data_processing.seed_iv_loader - INFO - Loading all subjects with feature type: de_LDS
+2025-07-27 16:55:05,267 - data_processing.seed_iv_loader - INFO - TESTING MODE: Using only 2 subjects with limited samples
+2025-07-27 16:55:05,267 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
+2025-07-27 16:55:05,427 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
+2025-07-27 16:55:05,428 - data_processing.seed_iv_loader - INFO - TESTING: Limited Subject 1 to 100 samples
+2025-07-27 16:55:05,428 - data_processing.seed_iv_loader - INFO - Subject 1: 100 samples
+2025-07-27 16:55:05,428 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
+2025-07-27 16:55:05,591 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
+2025-07-27 16:55:05,595 - data_processing.seed_iv_loader - INFO - TESTING: Limited Subject 2 to 100 samples
+2025-07-27 16:55:05,596 - data_processing.seed_iv_loader - INFO - Subject 2: 100 samples
+2025-07-27 16:55:05,596 - data_processing.seed_iv_loader - INFO - Combined dataset: 200 samples, 310 features
+2025-07-27 16:55:05,597 - models.stage2_enhanced - INFO - Loaded 200 samples from 200 subjects
+2025-07-27 16:55:05,600 - models.stage2_enhanced - INFO - Training enhanced features model...
+2025-07-27 16:55:05,601 - models.stage2_enhanced - INFO - Training data: 160 samples, 310 features
+2025-07-27 16:55:05,601 - models.stage2_enhanced - INFO - Extracting enhanced multi-domain features...
+2025-07-27 16:55:05,601 - data_processing.feature_engineering - INFO - AdvancedFeatureEngineer initialized: 62 channels, 5 frequency bands
+2025-07-27 16:55:05,601 - data_processing.feature_engineering - INFO - Extracting features: ['spatial', 'temporal', 'frequency', 'connectivity']
+2025-07-27 16:55:05,601 - data_processing.feature_engineering - INFO - Extracting spatial features...
+2025-07-27 16:55:05,674 - data_processing.feature_engineering - INFO - Extracted 20 spatial features
+2025-07-27 16:55:05,674 - data_processing.feature_engineering - INFO - Extracting temporal features...
+2025-07-27 16:55:05,830 - data_processing.feature_engineering - INFO - Extracted 14 temporal features
+2025-07-27 16:55:05,830 - data_processing.feature_engineering - INFO - Extracting frequency domain features...
+2025-07-27 16:55:05,873 - data_processing.feature_engineering - INFO - Extracted 8 frequency domain features
+2025-07-27 16:55:05,873 - data_processing.feature_engineering - INFO - Extracting connectivity features...
+2025-07-27 16:55:05,909 - data_processing.feature_engineering - INFO - Extracted 30 connectivity features
+2025-07-27 16:55:05,910 - data_processing.feature_engineering - INFO - Combined features shape: (160, 72)
+2025-07-27 16:55:05,910 - models.stage2_enhanced - INFO - Enhanced features shape: (160, 72)
+2025-07-27 16:55:05,910 - models.stage2_enhanced - INFO - Feature expansion: 310 -> 72 (0.2x)
+2025-07-27 16:55:05,911 - models.stage2_enhanced - INFO - Feature selection using mutual_info...
+2025-07-27 16:55:05,911 - models.stage2_enhanced - WARNING - Unknown feature selection method: mutual_info
+2025-07-27 16:55:05,911 - models.stage2_enhanced - INFO - Optimizing Random Forest hyperparameters...
+2025-07-27 16:55:21,742 - models.stage2_enhanced - INFO - Best parameters: {'n_estimators': 300, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': None, 'max_depth': 20, 'bootstrap': True}
+2025-07-27 16:55:21,742 - models.stage2_enhanced - INFO - Best CV score: 0.9750
+2025-07-27 16:55:26,716 - models.stage2_enhanced - INFO - Training completed in 16.14 seconds
+2025-07-27 16:55:26,716 - models.stage2_enhanced - INFO - Feature pipeline: 310 -> 72 -> 72
+2025-07-27 16:55:26,716 - models.stage2_enhanced - INFO - CV Mean Accuracy: 0.9750 ± 0.0234
+2025-07-27 16:55:26,716 - models.stage2_enhanced - INFO - Evaluating model on 40 test samples...
+2025-07-27 16:55:26,717 - data_processing.feature_engineering - INFO - Extracting features: ['spatial', 'temporal', 'frequency', 'connectivity']
+2025-07-27 16:55:26,717 - data_processing.feature_engineering - INFO - Extracting spatial features...
+2025-07-27 16:55:26,731 - data_processing.feature_engineering - INFO - Extracted 20 spatial features
+2025-07-27 16:55:26,731 - data_processing.feature_engineering - INFO - Extracting temporal features...
+2025-07-27 16:55:26,769 - data_processing.feature_engineering - INFO - Extracted 14 temporal features
+2025-07-27 16:55:26,769 - data_processing.feature_engineering - INFO - Extracting frequency domain features...
+2025-07-27 16:55:26,782 - data_processing.feature_engineering - INFO - Extracted 8 frequency domain features
+2025-07-27 16:55:26,782 - data_processing.feature_engineering - INFO - Extracting connectivity features...
+2025-07-27 16:55:26,791 - data_processing.feature_engineering - INFO - Extracted 30 connectivity features
+2025-07-27 16:55:26,791 - data_processing.feature_engineering - INFO - Combined features shape: (40, 72)
+2025-07-27 16:55:26,793 - __main__ - ERROR - Stage 2 failed: 'NoneType' object has no attribute 'transform'
+2025-07-27 16:55:26,793 - __main__ - ERROR - Detailed error:
+Traceback (most recent call last):
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\main.py", line 254, in run_stage
+    result = model.run_complete_pipeline(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 664, in run_complete_pipeline
+    eval_results = self.evaluate(X_test, y_test)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\eeg-python-code\eeg-seed-IV\comprehensive_emotion_recognition\models\stage2_enhanced.py", line 377, in evaluate
+    selected_features = self.feature_selector.transform(enhanced_features_scaled)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'transform'
+2025-07-27 16:55:26,795 - __main__ - INFO - Stage 2 result saved to: csv_data\stage_2_result.json
+2025-07-27 16:55:26,795 - __main__ - INFO - Generating comprehensive report...
+2025-07-27 16:55:26,795 - __main__ - INFO - Report saved to: csv_data\comprehensive_report.txt
+2025-07-27 16:55:26,796 - __main__ - INFO - Pipeline completed in 35.5 seconds

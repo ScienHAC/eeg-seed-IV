@@ -29,7 +29,7 @@ import warnings
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
+# import seaborn as sns  # Temporarily commented out
 
 # Configure logging
 logging.basicConfig(
@@ -46,9 +46,9 @@ logger = logging.getLogger(__name__)
 warnings.filterwarnings('ignore', category=UserWarning)
 warnings.filterwarnings('ignore', category=FutureWarning)
 
-# Set style for better plots
-plt.style.use('seaborn-v0_8-darkgrid')
-sns.set_palette("husl")
+# Set style for better plots  
+# plt.style.use('seaborn-v0_8-darkgrid')  # Temporarily disabled
+# sns.set_palette("husl")  # Temporarily commented out
 
 # Add current directory to path for imports
 current_dir = Path(__file__).parent

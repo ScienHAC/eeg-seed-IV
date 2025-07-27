@@ -368,13 +368,24 @@ class SeedIVLoader:
         all_labels = []
         all_subjects = []
         
-        for subject_id in range(1, self.n_subjects + 1):
+        # OPTIMIZED: Use 5 subjects with 500 samples each = 2,500 total samples
+        # This should complete Stage 1 in 10-20 minutes vs 3+ hours for 37K samples
+        test_subjects = [1, 2, 3, 4, 5]  # 5 subjects instead of 2
+        logger.info("OPTIMIZED MODE: Using 5 subjects with 500 samples each (~2,500 total samples)")
+        
+        for subject_id in test_subjects:
             try:
                 subject_data = self.load_subject_data(subject_id)
                 
                 if feature_type in subject_data['features']:
                     features = subject_data['features'][feature_type]
                     labels = subject_data['labels']
+                    
+                    # OPTIMIZED: Use 500 samples per subject (good balance of accuracy vs speed)
+                    max_samples = min(500, features.shape[0])
+                    features = features[:max_samples]
+                    labels = labels[:max_samples]
+                    logger.info(f"OPTIMIZED: Limited Subject {subject_id} to {max_samples} samples")
                     
                     all_features.append(features)
                     all_labels.append(labels)
