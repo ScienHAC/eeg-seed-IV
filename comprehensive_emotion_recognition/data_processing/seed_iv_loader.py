@@ -23,6 +23,7 @@ import logging
 from typing import Dict, List, Tuple, Optional, Union
 import joblib
 from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler
+from sklearn.model_selection import train_test_split
 from sklearn.feature_selection import SelectKBest, f_classif, mutual_info_classif
 import warnings
 warnings.filterwarnings('ignore')
@@ -243,12 +244,16 @@ class SeedIVLoader:
         --------
         np.ndarray : Emotion labels
         """
-        # SEED-IV emotion sequence (24 trials)
-        # This is the standard SEED-IV emotion sequence
-        emotion_sequence = [
-            1, 2, 3, 0, 2, 0, 0, 1, 0, 1, 2, 1,  # Trials 1-12
-            1, 2, 3, 0, 2, 0, 0, 1, 0, 1, 2, 1   # Trials 13-24
-        ]
+        # SEED-IV emotion sequence (24 trials per session)
+        # Based on official SEED-IV dataset labels
+        session_labels = {
+            1: [1,2,3,0,2,0,0,1,0,1,2,1,1,1,2,3,2,2,3,3,0,3,0,3],
+            2: [2,1,3,0,0,2,0,2,3,3,2,3,2,0,1,1,2,1,0,3,0,1,3,1], 
+            3: [1,2,2,1,3,3,3,1,1,2,1,0,2,3,3,0,2,3,0,0,2,0,1,0]
+        }
+        
+        # For this simplified version, use session 1 labels (balanced)
+        emotion_sequence = session_labels[1]
         
         # Calculate samples per trial
         samples_per_trial = n_samples // len(emotion_sequence)
@@ -381,9 +386,23 @@ class SeedIVLoader:
                     features = subject_data['features'][feature_type]
                     labels = subject_data['labels']
                     
-                    # OPTIMIZED: Use 500 samples per subject (good balance of accuracy vs speed)
+                    # OPTIMIZED: Use stratified sampling to maintain class balance
                     max_samples = min(500, features.shape[0])
-                    features = features[:max_samples]
+                    
+                    if features.shape[0] > max_samples:
+                        # Stratified sampling to maintain balanced classes
+                        from sklearn.model_selection import train_test_split
+                        _, features_sampled, _, labels_sampled = train_test_split(
+                            features, labels, 
+                            test_size=max_samples, 
+                            stratify=labels, 
+                            random_state=42
+                        )
+                        features = features_sampled
+                        labels = labels_sampled
+                    else:
+                        # Use all samples if less than max_samples
+                        pass
                     labels = labels[:max_samples]
                     logger.info(f"OPTIMIZED: Limited Subject {subject_id} to {max_samples} samples")
                     
