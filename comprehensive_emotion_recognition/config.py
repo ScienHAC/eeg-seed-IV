@@ -103,8 +103,8 @@ class Stage2Config:
     use_spatial_features: bool = True
     use_temporal_features: bool = True
     use_connectivity_features: bool = True
-    feature_selection_method: str = "mutual_info"
-    n_selected_features: int = 500
+    feature_selection_method: str = "optimized_medical"  # Use optimized 60 features
+    n_selected_features: int = 60  # Medical-grade feature count
     
     # Hyperparameter optimization
     use_randomized_search: bool = True

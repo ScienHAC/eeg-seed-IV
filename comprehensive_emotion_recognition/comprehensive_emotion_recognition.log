@@ -579,3 +579,5 @@ AttributeError: 'NoneType' object has no attribute 'transform'
 2025-07-27 17:42:25,432 - __main__ - INFO - Generating comprehensive report...
 2025-07-27 17:42:25,433 - __main__ - INFO - Report saved to: csv_data\comprehensive_report.txt
 2025-07-27 17:42:25,433 - __main__ - INFO - Pipeline completed in 415.9 seconds
+2025-07-30 12:58:25,981 - main - ERROR - Import error: No module named 'seaborn'
+2025-07-30 12:58:25,981 - main - ERROR - Make sure all required modules are in the correct directories
