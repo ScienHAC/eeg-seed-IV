@@ -581,3 +581,267 @@ AttributeError: 'NoneType' object has no attribute 'transform'
 2025-07-27 17:42:25,433 - __main__ - INFO - Pipeline completed in 415.9 seconds
 2025-07-30 12:58:25,981 - main - ERROR - Import error: No module named 'seaborn'
 2025-07-30 12:58:25,981 - main - ERROR - Make sure all required modules are in the correct directories
+2025-07-30 14:07:26,794 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
+2025-07-30 14:07:26,795 - __main__ - INFO - Output directory: csv_data
+2025-07-30 14:07:26,795 - __main__ - INFO - Checkpoint directory: csv_data\checkpoints
+2025-07-30 14:07:26,795 - __main__ - INFO - Checkpoint Status:
+2025-07-30 14:07:26,795 - __main__ - INFO -   Stage 1: [Not found]
+2025-07-30 14:07:26,795 - __main__ - INFO -   Stage 2: [Not found]
+2025-07-30 14:07:26,795 - __main__ - INFO -   Stage 3: [Not found]
+2025-07-30 14:07:26,795 - __main__ - INFO -   Stage 4: [Not found]
+2025-07-30 14:07:26,796 - __main__ - INFO -   Stage 5: [Not found]
+2025-07-30 14:07:26,796 - __main__ - INFO -   Stage 6: [Not found]
+2025-07-30 14:07:26,796 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
+2025-07-30 14:07:26,796 - __main__ - INFO - Validating data access...
+2025-07-30 14:07:26,796 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-30 14:07:26,797 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
+2025-07-30 14:07:26,797 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
+2025-07-30 14:07:26,797 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
+2025-07-30 14:07:26,798 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
+2025-07-30 14:07:26,798 - data_processing.seed_iv_loader - INFO - Total files found: 45
+2025-07-30 14:07:26,798 - __main__ - INFO - Data validation successful. Found 3 subjects
+2025-07-30 14:07:26,798 - __main__ - INFO - 
+============================================================
+2025-07-30 14:07:26,799 - __main__ - INFO - Running Stage 1: Traditional Baseline
+2025-07-30 14:07:26,799 - __main__ - INFO - Target Accuracy: 75.0%
+2025-07-30 14:07:26,799 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
+2025-07-30 14:07:26,799 - models.stage1_traditional - INFO - Running Stage 1: Traditional Baseline Pipeline
+2025-07-30 14:07:26,800 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-30 14:07:26,800 - data_processing.seed_iv_loader - INFO - Loading subjects with balanced sampling from .mat files
+2025-07-30 14:07:26,800 - data_processing.seed_iv_loader - INFO - Feature type: de_LDS
+2025-07-30 14:07:26,800 - data_processing.seed_iv_loader - INFO - BALANCED SAMPLING MODE:
+2025-07-30 14:07:26,800 - data_processing.seed_iv_loader - INFO -   Selected males: [1, 2, 6, 7] (4 subjects)
+2025-07-30 14:07:26,800 - data_processing.seed_iv_loader - INFO -   Selected females: [3, 4, 5, 8, 9, 10] (6 subjects)
+2025-07-30 14:07:26,800 - data_processing.seed_iv_loader - INFO -   Total subjects: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] (10 subjects)
+2025-07-30 14:07:26,800 - data_processing.seed_iv_loader - INFO -   Gender ratio: 4/6 = 0.67
+2025-07-30 14:07:26,800 - data_processing.seed_iv_loader - INFO - Loading Subject 1...
+2025-07-30 14:07:26,800 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
+2025-07-30 14:07:26,953 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
+2025-07-30 14:07:26,954 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples (natural, no truncation)
+2025-07-30 14:07:26,954 - data_processing.seed_iv_loader - INFO -   Emotion distribution: Neutral=628, Sad=628, Fear=627, Happy=622
+2025-07-30 14:07:26,955 - data_processing.seed_iv_loader - INFO -   Cumulative samples: 2505
+2025-07-30 14:07:26,955 - data_processing.seed_iv_loader - INFO - Loading Subject 2...
+2025-07-30 14:07:26,955 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
+2025-07-30 14:07:27,111 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
+2025-07-30 14:07:27,112 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples (natural, no truncation)
+2025-07-30 14:07:27,112 - data_processing.seed_iv_loader - INFO -   Emotion distribution: Neutral=628, Sad=628, Fear=627, Happy=622
+2025-07-30 14:07:27,113 - data_processing.seed_iv_loader - INFO -   Cumulative samples: 5010
+2025-07-30 14:07:27,113 - data_processing.seed_iv_loader - INFO - Loading Subject 3...
+2025-07-30 14:07:27,113 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
+2025-07-30 14:07:27,280 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
+2025-07-30 14:07:27,282 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples (natural, no truncation)
+2025-07-30 14:07:27,282 - data_processing.seed_iv_loader - INFO -   Emotion distribution: Neutral=628, Sad=628, Fear=627, Happy=622
+2025-07-30 14:07:27,282 - data_processing.seed_iv_loader - INFO -   Cumulative samples: 7515
+2025-07-30 14:07:27,282 - data_processing.seed_iv_loader - INFO - Loading Subject 4...
+2025-07-30 14:07:27,282 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
+2025-07-30 14:07:27,432 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
+2025-07-30 14:07:27,433 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples (natural, no truncation)
+2025-07-30 14:07:27,434 - data_processing.seed_iv_loader - INFO -   Emotion distribution: Neutral=628, Sad=628, Fear=627, Happy=622
+2025-07-30 14:07:27,434 - data_processing.seed_iv_loader - INFO -   Cumulative samples: 10020
+2025-07-30 14:07:27,434 - data_processing.seed_iv_loader - INFO - Reached target samples (10000), stopping at Subject 4
+2025-07-30 14:07:27,439 - data_processing.seed_iv_loader - INFO - 
+=== FINAL DATASET SUMMARY ===
+2025-07-30 14:07:27,439 - data_processing.seed_iv_loader - INFO - Total samples: 10020
+2025-07-30 14:07:27,439 - data_processing.seed_iv_loader - INFO - Feature dimensions: (10020, 310)
+2025-07-30 14:07:27,440 - data_processing.seed_iv_loader - INFO - Subjects loaded: [1, 2, 3, 4]
+2025-07-30 14:07:27,440 - data_processing.seed_iv_loader - INFO - Gender balance: 4 males + 6 females
+2025-07-30 14:07:27,440 - data_processing.seed_iv_loader - INFO - 
+Emotion Distribution:
+2025-07-30 14:07:27,440 - data_processing.seed_iv_loader - INFO -   Neutral (0): 2512 (25.1%)
+2025-07-30 14:07:27,440 - data_processing.seed_iv_loader - INFO -   Sad (1):     2512 (25.1%)
+2025-07-30 14:07:27,441 - data_processing.seed_iv_loader - INFO -   Fear (2):    2508 (25.0%)
+2025-07-30 14:07:27,441 - data_processing.seed_iv_loader - INFO -   Happy (3):   2488 (24.8%)
+2025-07-30 14:07:27,441 - data_processing.seed_iv_loader - INFO - Emotion balance score: 0.998 (1.0 = perfect balance)
+2025-07-30 14:07:27,446 - data_processing.seed_iv_loader - INFO - Data source: Natural .mat files (no artificial truncation)
+2025-07-30 14:07:27,446 - data_processing.seed_iv_loader - INFO - ===============================
+
+2025-07-30 14:07:27,447 - models.stage1_traditional - INFO - Loaded 10020 samples from 10020 subjects
+2025-07-30 14:07:27,460 - models.stage1_traditional - INFO - Training traditional baseline model...
+2025-07-30 14:07:27,461 - models.stage1_traditional - INFO - Training data: 8016 samples, 310 features
+2025-07-30 14:07:27,461 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
+2025-07-30 14:07:27,461 - models.stage1_traditional - INFO - Pipeline created with 2 steps
+2025-07-30 14:09:13,337 - __main__ - INFO - Comprehensive Emotion Recognition System Initialized
+2025-07-30 14:09:13,337 - __main__ - INFO - Output directory: csv_data
+2025-07-30 14:09:13,338 - __main__ - INFO - Checkpoint directory: csv_data\checkpoints
+2025-07-30 14:09:13,338 - __main__ - INFO - Checkpoint Status:
+2025-07-30 14:09:13,338 - __main__ - INFO -   Stage 1: [Not found]
+2025-07-30 14:09:13,338 - __main__ - INFO -   Stage 2: [Not found]
+2025-07-30 14:09:13,338 - __main__ - INFO -   Stage 3: [Not found]
+2025-07-30 14:09:13,338 - __main__ - INFO -   Stage 4: [Not found]
+2025-07-30 14:09:13,339 - __main__ - INFO -   Stage 5: [Not found]
+2025-07-30 14:09:13,339 - __main__ - INFO -   Stage 6: [Not found]
+2025-07-30 14:09:13,339 - __main__ - INFO - Starting comprehensive pipeline for stages: [1, 2]
+2025-07-30 14:09:13,339 - __main__ - INFO - Validating data access...
+2025-07-30 14:09:13,339 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-30 14:09:13,339 - data_processing.seed_iv_loader - INFO - Scanning SEED-IV dataset...
+2025-07-30 14:09:13,340 - data_processing.seed_iv_loader - INFO - Session 1: Found 15 .mat files
+2025-07-30 14:09:13,340 - data_processing.seed_iv_loader - INFO - Session 2: Found 15 .mat files
+2025-07-30 14:09:13,340 - data_processing.seed_iv_loader - INFO - Session 3: Found 15 .mat files
+2025-07-30 14:09:13,340 - data_processing.seed_iv_loader - INFO - Total files found: 45
+2025-07-30 14:09:13,341 - __main__ - INFO - Data validation successful. Found 3 subjects
+2025-07-30 14:09:13,341 - __main__ - INFO - 
+============================================================
+2025-07-30 14:09:13,341 - __main__ - INFO - Running Stage 1: Traditional Baseline
+2025-07-30 14:09:13,341 - __main__ - INFO - Target Accuracy: 75.0%
+2025-07-30 14:09:13,341 - models.stage1_traditional - INFO - TraditionalBaseline initialized with target accuracy: 72.5%
+2025-07-30 14:09:13,341 - models.stage1_traditional - INFO - Running Stage 1: Traditional Baseline Pipeline
+2025-07-30 14:09:13,341 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-30 14:09:13,342 - data_processing.seed_iv_loader - INFO - Loading subjects with balanced sampling from .mat files
+2025-07-30 14:09:13,342 - data_processing.seed_iv_loader - INFO - Feature type: de_LDS
+2025-07-30 14:09:13,342 - data_processing.seed_iv_loader - INFO - BALANCED SAMPLING MODE:
+2025-07-30 14:09:13,342 - data_processing.seed_iv_loader - INFO -   Selected males: [1, 2, 6, 7] (4 subjects)
+2025-07-30 14:09:13,342 - data_processing.seed_iv_loader - INFO -   Selected females: [3, 4, 5, 8, 9, 10] (6 subjects)
+2025-07-30 14:09:13,342 - data_processing.seed_iv_loader - INFO -   Total subjects: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] (10 subjects)
+2025-07-30 14:09:13,342 - data_processing.seed_iv_loader - INFO -   Gender ratio: 4/6 = 0.67
+2025-07-30 14:09:13,342 - data_processing.seed_iv_loader - INFO - Loading Subject 1...
+2025-07-30 14:09:13,342 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
+2025-07-30 14:09:13,541 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
+2025-07-30 14:09:13,543 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples (natural, no truncation)
+2025-07-30 14:09:13,543 - data_processing.seed_iv_loader - INFO -   Emotion distribution: Neutral=628, Sad=628, Fear=627, Happy=622
+2025-07-30 14:09:13,544 - data_processing.seed_iv_loader - INFO -   Cumulative samples: 2505
+2025-07-30 14:09:13,544 - data_processing.seed_iv_loader - INFO - Loading Subject 2...
+2025-07-30 14:09:13,544 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
+2025-07-30 14:09:13,697 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
+2025-07-30 14:09:13,699 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples (natural, no truncation)
+2025-07-30 14:09:13,700 - data_processing.seed_iv_loader - INFO -   Emotion distribution: Neutral=628, Sad=628, Fear=627, Happy=622
+2025-07-30 14:09:13,700 - data_processing.seed_iv_loader - INFO -   Cumulative samples: 5010
+2025-07-30 14:09:13,701 - data_processing.seed_iv_loader - INFO - Loading Subject 3...
+2025-07-30 14:09:13,701 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
+2025-07-30 14:09:13,846 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
+2025-07-30 14:09:13,849 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples (natural, no truncation)
+2025-07-30 14:09:13,849 - data_processing.seed_iv_loader - INFO -   Emotion distribution: Neutral=628, Sad=628, Fear=627, Happy=622
+2025-07-30 14:09:13,849 - data_processing.seed_iv_loader - INFO -   Cumulative samples: 7515
+2025-07-30 14:09:13,850 - data_processing.seed_iv_loader - INFO - Loading Subject 4...
+2025-07-30 14:09:13,850 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
+2025-07-30 14:09:13,995 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
+2025-07-30 14:09:13,997 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples (natural, no truncation)
+2025-07-30 14:09:13,997 - data_processing.seed_iv_loader - INFO -   Emotion distribution: Neutral=628, Sad=628, Fear=627, Happy=622
+2025-07-30 14:09:13,998 - data_processing.seed_iv_loader - INFO -   Cumulative samples: 10020
+2025-07-30 14:09:13,998 - data_processing.seed_iv_loader - INFO - Reached target samples (10000), stopping at Subject 4
+2025-07-30 14:09:14,003 - data_processing.seed_iv_loader - INFO - 
+=== FINAL DATASET SUMMARY ===
+2025-07-30 14:09:14,003 - data_processing.seed_iv_loader - INFO - Total samples: 10020
+2025-07-30 14:09:14,004 - data_processing.seed_iv_loader - INFO - Feature dimensions: (10020, 310)
+2025-07-30 14:09:14,005 - data_processing.seed_iv_loader - INFO - Subjects loaded: [1, 2, 3, 4]
+2025-07-30 14:09:14,005 - data_processing.seed_iv_loader - INFO - Gender balance: 4 males + 6 females
+2025-07-30 14:09:14,005 - data_processing.seed_iv_loader - INFO - 
+Emotion Distribution:
+2025-07-30 14:09:14,005 - data_processing.seed_iv_loader - INFO -   Neutral (0): 2512 (25.1%)
+2025-07-30 14:09:14,006 - data_processing.seed_iv_loader - INFO -   Sad (1):     2512 (25.1%)
+2025-07-30 14:09:14,006 - data_processing.seed_iv_loader - INFO -   Fear (2):    2508 (25.0%)
+2025-07-30 14:09:14,006 - data_processing.seed_iv_loader - INFO -   Happy (3):   2488 (24.8%)
+2025-07-30 14:09:14,006 - data_processing.seed_iv_loader - INFO - Emotion balance score: 0.998 (1.0 = perfect balance)
+2025-07-30 14:09:14,006 - data_processing.seed_iv_loader - INFO - EXCELLENT emotion balance achieved!
+2025-07-30 14:09:14,007 - data_processing.seed_iv_loader - INFO - Data source: Natural .mat files (no artificial truncation)
+2025-07-30 14:09:14,007 - data_processing.seed_iv_loader - INFO - ===============================
+
+2025-07-30 14:09:14,009 - models.stage1_traditional - INFO - Loaded 10020 samples from 10020 subjects
+2025-07-30 14:09:14,025 - models.stage1_traditional - INFO - Training traditional baseline model...
+2025-07-30 14:09:14,025 - models.stage1_traditional - INFO - Training data: 8016 samples, 310 features
+2025-07-30 14:09:14,025 - models.stage1_traditional - INFO - Creating traditional baseline pipeline...
+2025-07-30 14:09:14,026 - models.stage1_traditional - INFO - Pipeline created with 2 steps
+2025-07-30 14:13:04,103 - models.stage1_traditional - INFO - Training completed in 29.40 seconds
+2025-07-30 14:13:04,104 - models.stage1_traditional - INFO - CV Mean Accuracy: 0.7744 ± 0.0099
+2025-07-30 14:13:04,104 - models.stage1_traditional - INFO - Evaluating model on 2004 test samples...
+2025-07-30 14:13:05,382 - models.stage1_traditional - INFO - Evaluation completed in 1.27 seconds
+2025-07-30 14:13:05,382 - models.stage1_traditional - INFO - Test Accuracy: 0.7764 (77.6%)
+2025-07-30 14:13:05,383 - models.stage1_traditional - INFO - F1 Score (Macro): 0.7747
+2025-07-30 14:13:05,383 - models.stage1_traditional - INFO - Target Achievement: [ACHIEVED]
+2025-07-30 14:13:05,392 - models.stage1_traditional - INFO - Model saved to: csv_data\stage1_results\traditional_baseline_model.joblib
+2025-07-30 14:13:06,240 - models.stage1_traditional - INFO - Results plot saved to: csv_data\stage1_results\stage1_results.png
+2025-07-30 14:14:19,814 - __main__ - INFO - Target accuracy ACHIEVED: 77.6% vs 75.0%
+2025-07-30 14:14:19,832 - __main__ - INFO - Checkpoint saved: csv_data\checkpoints\stage_1_checkpoint.joblib
+2025-07-30 14:14:19,833 - __main__ - INFO - Stage 1 completed in 306.5 seconds
+2025-07-30 14:14:19,849 - __main__ - INFO - Stage 1 result saved to: csv_data\stage_1_result.json
+2025-07-30 14:14:19,849 - __main__ - INFO - 
+============================================================
+2025-07-30 14:14:19,849 - __main__ - INFO - Running Stage 2: Enhanced Features
+2025-07-30 14:14:19,849 - __main__ - INFO - Target Accuracy: 80.0%
+2025-07-30 14:14:19,850 - models.stage2_enhanced - INFO - EnhancedFeaturesModel initialized with target accuracy: 77.5%
+2025-07-30 14:14:19,850 - models.stage2_enhanced - INFO - Running Stage 2: Enhanced Features Pipeline
+2025-07-30 14:14:19,850 - data_processing.seed_iv_loader - INFO - SeedIVLoader initialized with base path: C:\Users\piyus\Downloads\SEED_IV\SEED_IV\eeg_feature_smooth
+2025-07-30 14:14:19,850 - data_processing.seed_iv_loader - INFO - Loading subjects with balanced sampling from .mat files
+2025-07-30 14:14:19,850 - data_processing.seed_iv_loader - INFO - Feature type: de_LDS
+2025-07-30 14:14:19,850 - data_processing.seed_iv_loader - INFO - BALANCED SAMPLING MODE:
+2025-07-30 14:14:19,850 - data_processing.seed_iv_loader - INFO -   Selected males: [1, 2, 6, 7] (4 subjects)
+2025-07-30 14:14:19,851 - data_processing.seed_iv_loader - INFO -   Selected females: [3, 4, 5, 8, 9, 10] (6 subjects)
+2025-07-30 14:14:19,851 - data_processing.seed_iv_loader - INFO -   Total subjects: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] (10 subjects)
+2025-07-30 14:14:19,851 - data_processing.seed_iv_loader - INFO -   Gender ratio: 4/6 = 0.67
+2025-07-30 14:14:19,851 - data_processing.seed_iv_loader - INFO - Loading Subject 1...
+2025-07-30 14:14:19,851 - data_processing.seed_iv_loader - INFO - Loading data for Subject 1 (all sessions)
+2025-07-30 14:14:20,077 - data_processing.seed_iv_loader - INFO - Loaded Subject 1: 2505 samples, 2 feature types
+2025-07-30 14:14:20,084 - data_processing.seed_iv_loader - INFO - Subject 1: 2505 samples (natural, no truncation)
+2025-07-30 14:14:20,085 - data_processing.seed_iv_loader - INFO -   Emotion distribution: Neutral=628, Sad=628, Fear=627, Happy=622
+2025-07-30 14:14:20,085 - data_processing.seed_iv_loader - INFO -   Cumulative samples: 2505
+2025-07-30 14:14:20,085 - data_processing.seed_iv_loader - INFO - Loading Subject 2...
+2025-07-30 14:14:20,085 - data_processing.seed_iv_loader - INFO - Loading data for Subject 2 (all sessions)
+2025-07-30 14:14:20,254 - data_processing.seed_iv_loader - INFO - Loaded Subject 2: 2505 samples, 2 feature types
+2025-07-30 14:14:20,257 - data_processing.seed_iv_loader - INFO - Subject 2: 2505 samples (natural, no truncation)
+2025-07-30 14:14:20,257 - data_processing.seed_iv_loader - INFO -   Emotion distribution: Neutral=628, Sad=628, Fear=627, Happy=622
+2025-07-30 14:14:20,257 - data_processing.seed_iv_loader - INFO -   Cumulative samples: 5010
+2025-07-30 14:14:20,257 - data_processing.seed_iv_loader - INFO - Loading Subject 3...
+2025-07-30 14:14:20,258 - data_processing.seed_iv_loader - INFO - Loading data for Subject 3 (all sessions)
+2025-07-30 14:14:20,417 - data_processing.seed_iv_loader - INFO - Loaded Subject 3: 2505 samples, 2 feature types
+2025-07-30 14:14:20,420 - data_processing.seed_iv_loader - INFO - Subject 3: 2505 samples (natural, no truncation)
+2025-07-30 14:14:20,420 - data_processing.seed_iv_loader - INFO -   Emotion distribution: Neutral=628, Sad=628, Fear=627, Happy=622
+2025-07-30 14:14:20,420 - data_processing.seed_iv_loader - INFO -   Cumulative samples: 7515
+2025-07-30 14:14:20,420 - data_processing.seed_iv_loader - INFO - Loading Subject 4...
+2025-07-30 14:14:20,421 - data_processing.seed_iv_loader - INFO - Loading data for Subject 4 (all sessions)
+2025-07-30 14:14:20,576 - data_processing.seed_iv_loader - INFO - Loaded Subject 4: 2505 samples, 2 feature types
+2025-07-30 14:14:20,579 - data_processing.seed_iv_loader - INFO - Subject 4: 2505 samples (natural, no truncation)
+2025-07-30 14:14:20,580 - data_processing.seed_iv_loader - INFO -   Emotion distribution: Neutral=628, Sad=628, Fear=627, Happy=622
+2025-07-30 14:14:20,580 - data_processing.seed_iv_loader - INFO -   Cumulative samples: 10020
+2025-07-30 14:14:20,580 - data_processing.seed_iv_loader - INFO - Reached target samples (10000), stopping at Subject 4
+2025-07-30 14:14:20,585 - data_processing.seed_iv_loader - INFO - 
+=== FINAL DATASET SUMMARY ===
+2025-07-30 14:14:20,586 - data_processing.seed_iv_loader - INFO - Total samples: 10020
+2025-07-30 14:14:20,586 - data_processing.seed_iv_loader - INFO - Feature dimensions: (10020, 310)
+2025-07-30 14:14:20,586 - data_processing.seed_iv_loader - INFO - Subjects loaded: [1, 2, 3, 4]
+2025-07-30 14:14:20,586 - data_processing.seed_iv_loader - INFO - Gender balance: 4 males + 6 females
+2025-07-30 14:14:20,586 - data_processing.seed_iv_loader - INFO - 
+Emotion Distribution:
+2025-07-30 14:14:20,586 - data_processing.seed_iv_loader - INFO -   Neutral (0): 2512 (25.1%)
+2025-07-30 14:14:20,586 - data_processing.seed_iv_loader - INFO -   Sad (1):     2512 (25.1%)
+2025-07-30 14:14:20,586 - data_processing.seed_iv_loader - INFO -   Fear (2):    2508 (25.0%)
+2025-07-30 14:14:20,586 - data_processing.seed_iv_loader - INFO -   Happy (3):   2488 (24.8%)
+2025-07-30 14:14:20,587 - data_processing.seed_iv_loader - INFO - Emotion balance score: 0.998 (1.0 = perfect balance)
+2025-07-30 14:14:20,587 - data_processing.seed_iv_loader - INFO - EXCELLENT emotion balance achieved!
+2025-07-30 14:14:20,587 - data_processing.seed_iv_loader - INFO - Data source: Natural .mat files (no artificial truncation)
+2025-07-30 14:14:20,587 - data_processing.seed_iv_loader - INFO - ===============================
+
+2025-07-30 14:14:20,588 - models.stage2_enhanced - INFO - Loaded 10020 samples from 10020 subjects
+2025-07-30 14:14:20,599 - models.stage2_enhanced - INFO - Training enhanced features model...
+2025-07-30 14:14:20,599 - models.stage2_enhanced - INFO - Training data: 8016 samples, 310 features
+2025-07-30 14:14:20,599 - models.stage2_enhanced - INFO - Using optimized medical features - skipping feature enhancement
+2025-07-30 14:14:20,599 - models.stage2_enhanced - INFO - Applying optimized feature selection directly to raw 310 DE features
+2025-07-30 14:14:20,630 - models.stage2_enhanced - INFO - Feature selection using optimized_medical...
+2025-07-30 14:14:20,630 - models.stage2_enhanced - INFO - Using optimized medical-grade feature selection (60 features)
+2025-07-30 14:14:20,630 - models.stage2_enhanced - INFO - Based on comprehensive feature selection achieving 97.9% accuracy
+2025-07-30 14:14:20,631 - data_processing.optimized_features - INFO - Creating balanced medical-grade feature selector:
+2025-07-30 14:14:20,631 - data_processing.optimized_features - INFO -   Features: 60
+2025-07-30 14:14:20,631 - data_processing.optimized_features - INFO -   Expected accuracy: 9780.0%
+2025-07-30 14:14:20,631 - data_processing.optimized_features - INFO -   Use case: Clinical applications, research-grade devices
+2025-07-30 14:14:20,631 - data_processing.optimized_features - INFO - Using top 60 optimized features
+2025-07-30 14:14:20,634 - models.stage2_enhanced - INFO - Selected 60 from 310 features
+2025-07-30 14:14:20,634 - models.stage2_enhanced - INFO - Reduction: 80.6%
+2025-07-30 14:14:20,634 - models.stage2_enhanced - INFO - Expected accuracy: 9780.0%
+2025-07-30 14:14:20,634 - models.stage2_enhanced - INFO - Optimizing Random Forest hyperparameters...
+2025-07-30 14:42:19,191 - models.stage2_enhanced - INFO - Best parameters: {'n_estimators': 500, 'min_samples_split': 10, 'min_samples_leaf': 1, 'max_features': 'sqrt', 'max_depth': 30, 'bootstrap': False}
+2025-07-30 14:42:19,191 - models.stage2_enhanced - INFO - Best CV score: 0.9722
+2025-07-30 14:47:13,798 - models.stage2_enhanced - INFO - Training completed in 1678.59 seconds
+2025-07-30 14:47:13,798 - models.stage2_enhanced - INFO - Feature pipeline: 310 -> 310 -> 60
+2025-07-30 14:47:13,798 - models.stage2_enhanced - INFO - CV Mean Accuracy: 0.9736 ± 0.0019
+2025-07-30 14:47:13,801 - models.stage2_enhanced - INFO - Evaluating model on 2004 test samples...
+2025-07-30 14:47:14,079 - models.stage2_enhanced - INFO - Evaluation completed in 0.25 seconds
+2025-07-30 14:47:14,080 - models.stage2_enhanced - INFO - Test Accuracy: 0.9770 (97.7%)
+2025-07-30 14:47:14,080 - models.stage2_enhanced - INFO - F1 Score (Macro): 0.9771
+2025-07-30 14:47:14,080 - models.stage2_enhanced - INFO - Target Achievement: [ACHIEVED]
+2025-07-30 14:47:14,198 - models.stage2_enhanced - INFO - Enhanced features model saved to: csv_data\stage2_results\enhanced_features_model.joblib
+2025-07-30 14:47:15,286 - models.stage2_enhanced - INFO - Results plot saved to: csv_data\stage2_results\stage2_results.png
+2025-07-30 14:47:24,460 - __main__ - INFO - Target accuracy ACHIEVED: 97.7% vs 80.0%
+2025-07-30 14:47:24,581 - __main__ - INFO - Checkpoint saved: csv_data\checkpoints\stage_2_checkpoint.joblib
+2025-07-30 14:47:24,581 - __main__ - INFO - Stage 2 completed in 1984.6 seconds
+2025-07-30 14:47:24,594 - __main__ - INFO - Stage 2 result saved to: csv_data\stage_2_result.json
+2025-07-30 14:47:24,595 - __main__ - INFO - Generating comprehensive report...
+2025-07-30 14:47:24,595 - __main__ - INFO - Report saved to: csv_data\comprehensive_report.txt
+2025-07-30 14:47:24,595 - __main__ - INFO - Pipeline completed in 2291.3 seconds

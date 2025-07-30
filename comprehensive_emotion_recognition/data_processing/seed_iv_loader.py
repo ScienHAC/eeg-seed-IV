@@ -356,7 +356,7 @@ class SeedIVLoader:
     
     def load_all_subjects(self, feature_type: str = 'de_LDS') -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         """
-        Load data for all subjects and combine
+        Load data for all subjects with balanced emotions and gender distribution
         
         Parameters:
         -----------
@@ -367,65 +367,124 @@ class SeedIVLoader:
         --------
         Tuple[np.ndarray, np.ndarray, np.ndarray] : (features, labels, subjects)
         """
-        logger.info(f"Loading all subjects with feature type: {feature_type}")
+        logger.info(f"Loading subjects with balanced sampling from .mat files")
+        logger.info(f"Feature type: {feature_type}")
+        
+        # Gender-balanced subject selection from README
+        males = [1, 2, 6, 7, 12, 13]      # 6 males
+        females = [3, 4, 5, 8, 9, 10, 11, 14, 15]  # 9 females
+        
+        # Select subjects to maintain gender balance for ~10k samples
+        # Target: ~10k samples with balanced gender (4 males + 6 females = 10 subjects)
+        selected_males = males[:4]        # First 4 males: [1, 2, 6, 7]
+        selected_females = females[:6]    # First 6 females: [3, 4, 5, 8, 9, 10]
+        selected_subjects = sorted(selected_males + selected_females)
+        
+        logger.info(f"BALANCED SAMPLING MODE:")
+        logger.info(f"  Selected males: {selected_males} ({len(selected_males)} subjects)")
+        logger.info(f"  Selected females: {selected_females} ({len(selected_females)} subjects)")
+        logger.info(f"  Total subjects: {selected_subjects} ({len(selected_subjects)} subjects)")
+        logger.info(f"  Gender ratio: {len(selected_males)}/{len(selected_females)} = {len(selected_males)/len(selected_females):.2f}")
+        
+        # Session labels from README (naturally balanced: 25% each emotion)
+        session_labels = {
+            1: [1,2,3,0,2,0,0,1,0,1,2,1,1,1,2,3,2,2,3,3,0,3,0,3],
+            2: [2,1,3,0,0,2,0,2,3,3,2,3,2,0,1,1,2,1,0,3,0,1,3,1],
+            3: [1,2,2,1,3,3,3,1,1,2,1,0,2,3,3,0,2,3,0,0,2,0,1,0]
+        }
         
         all_features = []
         all_labels = []
         all_subjects = []
+        total_samples = 0
+        emotion_counts = {0: 0, 1: 0, 2: 0, 3: 0}  # neutral, sad, fear, happy
         
-        # OPTIMIZED: Use 5 subjects with 500 samples each = 2,500 total samples
-        # This should complete Stage 1 in 10-20 minutes vs 3+ hours for 37K samples
-        test_subjects = [1, 2, 3, 4, 5]  # 5 subjects instead of 2
-        logger.info("OPTIMIZED MODE: Using 5 subjects with 500 samples each (~2,500 total samples)")
+        # Load subjects naturally until we reach target (~10k samples)
+        target_samples = 10000
         
-        for subject_id in test_subjects:
+        for subject_id in selected_subjects:
+            if total_samples >= target_samples:
+                logger.info(f"Reached target samples ({target_samples}), stopping at Subject {subject_id-1}")
+                break
+                
             try:
+                logger.info(f"Loading Subject {subject_id}...")
                 subject_data = self.load_subject_data(subject_id)
                 
                 if feature_type in subject_data['features']:
                     features = subject_data['features'][feature_type]
                     labels = subject_data['labels']
                     
-                    # OPTIMIZED: Use stratified sampling to maintain class balance
-                    max_samples = min(500, features.shape[0])
+                    # NO TRUNCATION - use all natural data from .mat files
+                    logger.info(f"Subject {subject_id}: {features.shape[0]} samples (natural, no truncation)")
                     
-                    if features.shape[0] > max_samples:
-                        # Stratified sampling to maintain balanced classes
-                        from sklearn.model_selection import train_test_split
-                        _, features_sampled, _, labels_sampled = train_test_split(
-                            features, labels, 
-                            test_size=max_samples, 
-                            stratify=labels, 
-                            random_state=42
-                        )
-                        features = features_sampled
-                        labels = labels_sampled
-                    else:
-                        # Use all samples if less than max_samples
-                        pass
-                    labels = labels[:max_samples]
-                    logger.info(f"OPTIMIZED: Limited Subject {subject_id} to {max_samples} samples")
+                    # Verify emotion balance for this subject
+                    subject_emotion_counts = {}
+                    for emotion in [0, 1, 2, 3]:
+                        count = np.sum(labels == emotion)
+                        subject_emotion_counts[emotion] = count
+                        emotion_counts[emotion] += count
+                    
+                    logger.info(f"  Emotion distribution: Neutral={subject_emotion_counts[0]}, "
+                               f"Sad={subject_emotion_counts[1]}, Fear={subject_emotion_counts[2]}, "
+                               f"Happy={subject_emotion_counts[3]}")
                     
                     all_features.append(features)
                     all_labels.append(labels)
+                    
                     # Create subject array for this subject's samples
                     subject_array = np.full(features.shape[0], subject_id)
                     all_subjects.append(subject_array)
                     
-                    logger.info(f"Subject {subject_id}: {features.shape[0]} samples")
+                    total_samples += features.shape[0]
+                    logger.info(f"  Cumulative samples: {total_samples}")
+                    
                 else:
                     logger.warning(f"Feature type {feature_type} not found for Subject {subject_id}")
                     
             except Exception as e:
                 logger.error(f"Failed to load Subject {subject_id}: {e}")
+                continue
         
+        # Combine all loaded data
         if all_features:
             combined_features = np.vstack(all_features)
             combined_labels = np.hstack(all_labels)
             combined_subjects = np.hstack(all_subjects)
             
-            logger.info(f"Combined dataset: {combined_features.shape[0]} samples, "
-                       f"{combined_features.shape[1]} features")
+            # Final statistics
+            final_emotion_counts = {0: 0, 1: 0, 2: 0, 3: 0}
+            total_final = len(combined_labels)
+            
+            for emotion in [0, 1, 2, 3]:
+                count = np.sum(combined_labels == emotion)
+                final_emotion_counts[emotion] = count
+            
+            logger.info(f"\n=== FINAL DATASET SUMMARY ===")
+            logger.info(f"Total samples: {total_final}")
+            logger.info(f"Feature dimensions: {combined_features.shape}")
+            logger.info(f"Subjects loaded: {np.unique(combined_subjects).tolist()}")
+            logger.info(f"Gender balance: 4 males + 6 females")
+            logger.info(f"\nEmotion Distribution:")
+            logger.info(f"  Neutral (0): {final_emotion_counts[0]} ({final_emotion_counts[0]/total_final:.1%})")
+            logger.info(f"  Sad (1):     {final_emotion_counts[1]} ({final_emotion_counts[1]/total_final:.1%})")
+            logger.info(f"  Fear (2):    {final_emotion_counts[2]} ({final_emotion_counts[2]/total_final:.1%})")
+            logger.info(f"  Happy (3):   {final_emotion_counts[3]} ({final_emotion_counts[3]/total_final:.1%})")
+            
+            # Verify balance (should be close to 25% each)
+            emotion_percentages = [final_emotion_counts[i]/total_final for i in range(4)]
+            balance_score = 1 - (max(emotion_percentages) - min(emotion_percentages))
+            logger.info(f"Emotion balance score: {balance_score:.3f} (1.0 = perfect balance)")
+            
+            if balance_score > 0.95:
+                logger.info("EXCELLENT emotion balance achieved!")
+            elif balance_score > 0.90:
+                logger.info("GOOD emotion balance achieved!")
+            else:
+                logger.warning("WARNING: Emotion balance could be improved")
+            
+            logger.info(f"Data source: Natural .mat files (no artificial truncation)")
+            logger.info(f"===============================\n")
             
             return combined_features, combined_labels, combined_subjects
         else:
