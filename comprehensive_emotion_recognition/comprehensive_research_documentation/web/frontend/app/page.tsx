@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { AlertCircle, Brain, Activity, TrendingUp, Database, FileText, BarChart3, Settings } from 'lucide-react'
+import { useToast } from '@/components/ui/use-toast'
 import Navbar from '@/components/Navbar'
 
 // Types for our data structures
@@ -44,6 +45,7 @@ export default function EEGResearchDashboard() {
   const [eegData, setEEGData] = useState<EEGData[]>([])
   const [modelResults, setModelResults] = useState<ModelResults | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
+  const { toast } = useToast()
 
   // Constants from your research
   const SUBJECTS = Array.from({length: 15}, (_, i) => i + 1)
@@ -69,6 +71,19 @@ export default function EEGResearchDashboard() {
     loadMockData()
     loadModelResults()
   }, [])
+
+  // Auto-reload data when parameters change (with debounce)
+  useEffect(() => {
+    console.log(`🔄 Parameter changed: Subject ${selectedSubject}, Session ${selectedSession}, Trial ${selectedTrial}, Band ${selectedFrequencyBand}`)
+    
+    // Add a small delay to prevent rapid API calls
+    const timeoutId = setTimeout(() => {
+      loadMatFile()
+    }, 300) // 300ms delay
+    
+    // Cleanup timeout if parameters change again before the delay
+    return () => clearTimeout(timeoutId)
+  }, [selectedSubject, selectedSession, selectedTrial, selectedFrequencyBand])
 
   const loadMockData = () => {
     // Simulate loading .mat file data
@@ -186,6 +201,12 @@ export default function EEGResearchDashboard() {
         console.log(`✅ Loaded real data: ${result.metadata.n_samples} samples from ${result.metadata.data_source}`)
         console.log(`📊 Subject: ${selectedSubject}, Session: ${selectedSession}, Trial: ${selectedTrial}`)
         console.log(`🎯 Emotion: ${result.metadata.emotion_name} (${result.metadata.emotion_id})`)
+        
+        // Show success toast
+        toast({
+          title: "Data Loaded Successfully",
+          description: `${result.metadata.n_samples} samples loaded for Subject ${selectedSubject}, Session ${selectedSession}, Trial ${selectedTrial}`,
+        })
       } else {
         throw new Error('Backend returned unsuccessful response')
       }
@@ -311,32 +332,42 @@ export default function EEGResearchDashboard() {
                 </Select>
               </div>
 
-              <div className="flex items-end">
-                <Button onClick={loadMatFile} disabled={loading} className="w-full">
-                  {loading ? (
-                    <div className="flex items-center space-x-2">
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                      <span>Loading...</span>
-                    </div>
-                  ) : (
-                    <div className="flex items-center space-x-2">
-                      <Database className="h-4 w-4" />
-                      <span>Load Data</span>
-                    </div>
-                  )}
+              <div className="flex flex-col items-center space-y-2">
+                {loading ? (
+                  <div className="flex items-center space-x-2 text-sm text-blue-600">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                    <span>Auto-loading data...</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center space-x-2 text-sm text-green-600">
+                    <Activity className="h-4 w-4" />
+                    <span>Auto-refresh enabled</span>
+                  </div>
+                )}
+                <Button onClick={loadMatFile} disabled={loading} variant="outline" size="sm" className="w-full">
+                  <div className="flex items-center space-x-2">
+                    <Database className="h-4 w-4" />
+                    <span>Manual Reload</span>
+                  </div>
                 </Button>
               </div>
             </div>
 
             {/* Current Selection Display */}
             <div className="flex flex-wrap items-center gap-2 pt-4 border-t">
-              <span className="text-sm text-slate-600">Current Selection:</span>
+              <div className="flex items-center space-x-2">
+                <span className="text-sm text-slate-600">Live Selection:</span>
+                {loading && <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>}
+              </div>
               <Badge variant="outline">Subject {selectedSubject}</Badge>
               <Badge variant="outline">Session {selectedSession}</Badge>
               <Badge variant="outline">Trial {selectedTrial}</Badge>
               <Badge variant="outline" style={{ backgroundColor: FREQUENCY_BANDS.find(b => b.name === selectedFrequencyBand)?.color + '20' }}>
                 {FREQUENCY_BANDS.find(b => b.name === selectedFrequencyBand)?.label}
               </Badge>
+              <div className="text-xs text-slate-500 ml-2">
+                Changes automatically reload data
+              </div>
             </div>
           </CardContent>
         </Card>
