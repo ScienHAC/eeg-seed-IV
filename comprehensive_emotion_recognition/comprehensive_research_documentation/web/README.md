@@ -23,13 +23,14 @@ The system consists of two main components:
 ### Backend (FastAPI + Python)
 - **Location**: `./backend/`  
 - **Technology**: FastAPI, Python, scipy, numpy, pandas
+- **Package Manager**: uv (modern Python dependency management)
 - **Purpose**: Process .mat files using the same logic as the main research pipeline
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - **Node.js** 18+ (for frontend)
-- **Python** 3.8+ (for backend)
+- **uv** (modern Python package manager) - [Installation Guide](https://docs.astral.sh/uv/getting-started/installation/)
 - **pnpm** (recommended) or npm
 
 ### Method 1: Start Both Services Automatically
@@ -48,15 +49,29 @@ The system consists of two main components:
 
 ### Method 2: Start Services Individually
 
-#### 1. Start the Backend (FastAPI)
+#### 1. Start the Backend (FastAPI with uv)
 
 ```bash
 cd backend
 
-# Install dependencies
-pip install -r requirements.txt
+# Quick start (recommended)
+./start.bat          # Windows
+./start.sh           # Linux/Mac
 
-# Start the backend server
+# Or manually:
+uv sync              # Install/sync dependencies
+uv run uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+**Development Options:**
+```bash
+# Using the development helper
+uv run python dev.py server    # Start with dev helper
+uv run python dev.py test      # Quick functionality test
+uv run python dev.py deps      # Show dependency tree
+
+# Legacy method (still supported)
+pip install -r requirements.txt
 python main.py
 ```
 
@@ -196,10 +211,19 @@ This dashboard directly integrates with your main research pipeline:
 
 ### Backend Issues
 
+**"uv command not found"**
+```bash
+# Install uv first
+pip install uv
+# Or follow: https://docs.astral.sh/uv/getting-started/installation/
+```
+
 **"No module named fastapi"**
 ```bash
 cd backend
-pip install -r requirements.txt
+uv sync              # Modern approach (recommended)
+# OR
+pip install -r requirements.txt  # Legacy approach
 ```
 
 **"No data found for Subject X"**

@@ -1,45 +1,36 @@
-#!/bin/bash
-
-# EEG Emotion Recognition Backend Startup Script
+# EEG Emotion Recognition Backend Startup Script (uv-managed)
 
 echo "🧠 EEG Emotion Recognition Backend Setup"
 echo "========================================="
 
-# Check if Python is available
-if ! command -v python &> /dev/null; then
-    echo "❌ Python not found. Please install Python 3.8 or higher."
+# Check if uv is available
+if ! command -v uv &> /dev/null; then
+    echo "❌ uv not found. Please install uv: https://docs.astral.sh/uv/getting-started/installation/"
+    echo "   Or run: pip install uv"
     exit 1
 fi
 
-echo "✅ Python found: $(python --version)"
+echo "✅ uv found: $(uv --version)"
 
-# Check if pip is available
-if ! command -v pip &> /dev/null; then
-    echo "❌ pip not found. Please install pip."
-    exit 1
-fi
-
-echo "✅ pip found: $(pip --version)"
-
-# Install dependencies
+# Sync dependencies with uv
 echo ""
-echo "📦 Installing dependencies..."
-pip install -r requirements.txt
+echo "📦 Syncing dependencies with uv..."
+uv sync
 
 if [ $? -eq 0 ]; then
-    echo "✅ Dependencies installed successfully"
+    echo "✅ Dependencies synced successfully"
 else
-    echo "❌ Failed to install dependencies"
+    echo "❌ Failed to sync dependencies with uv"
     exit 1
 fi
 
 echo ""
-echo "🚀 Starting FastAPI server..."
+echo "🚀 Starting FastAPI server with uv..."
 echo "Server will be available at: http://localhost:8000"
 echo "API documentation at: http://localhost:8000/docs"
 echo ""
 echo "Press Ctrl+C to stop the server"
 echo ""
 
-# Start the server
-python main.py
+# Start the server using uv run
+uv run uvicorn main:app --reload --host 0.0.0.0 --port 8000

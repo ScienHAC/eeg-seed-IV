@@ -50,7 +50,7 @@ app.add_middleware(
 
 # Configuration - Update these paths to match your SEED-IV dataset location
 SEED_IV_BASE_PATH = Path("d:/eeg-python-code/eeg-seed-IV/csv")  # Path to processed CSV files
-SEED_IV_MAT_PATH = Path("d:/eeg-python-code/eeg-seed-IV")  # Path to original .mat files
+SEED_IV_MAT_PATH = Path("C:/Users/piyus/Downloads/SEED_IV/SEED_IV/eeg_feature_smooth")  # Path to original .mat files
 
 # Dataset constants (from your research)
 N_SUBJECTS = 15
@@ -125,21 +125,27 @@ class SeedIVMatLoader:
     def find_mat_file(self, subject: int, session: int) -> Optional[Path]:
         """
         Find the .mat file for a specific subject and session
+        Based on your structure: C:\\Users\\piyus\\Downloads\\SEED_IV\\SEED_IV\\eeg_feature_smooth\\1\\13_20151115.mat
         
         Returns:
         --------
         Optional[Path] : Path to the .mat file if found
         """
-        # Check in original .mat structure first
+        # Check in your MATLAB file structure: session_dir/subject_date.mat
         session_dir = self.base_path / str(session)
         if session_dir.exists():
-            # Look for pattern like "1_20160518.mat"
+            # Look for pattern like "13_20151115.mat" (subject_date.mat)
             pattern = f"{subject}_*.mat"
             mat_files = list(session_dir.glob(pattern))
             if mat_files:
+                logger.info(f"Found .mat file: {mat_files[0]}")
                 return mat_files[0]  # Return first match
+            
+            # Debug: show what files are actually in the directory
+            all_files = list(session_dir.glob("*.mat"))
+            logger.info(f"Available .mat files in session {session}: {[f.name for f in all_files]}")
         
-        # If not found, check in CSV directory structure  
+        # If not found, check in CSV directory structure as fallback
         csv_path = SEED_IV_BASE_PATH / str(session) / str(subject)
         if csv_path.exists():
             # Look for CSV files and infer .mat location
@@ -148,6 +154,7 @@ class SeedIVMatLoader:
                 logger.info(f"Found CSV files for Subject {subject}, Session {session}")
                 return csv_path  # Return CSV directory path
         
+        logger.warning(f"No .mat or CSV files found for Subject {subject}, Session {session}")
         return None
     
     def load_csv_data(self, csv_path: Path, feature_type: str, trial: int) -> Optional[np.ndarray]:
@@ -330,6 +337,19 @@ async def root():
         "version": "1.0.0",
         "status": "active",
         "timestamp": datetime.now().isoformat()
+    }
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for testing"""
+    return {
+        "status": "healthy",
+        "message": "EEG Backend is running",
+        "timestamp": datetime.now().isoformat(),
+        "paths": {
+            "csv_exists": SEED_IV_BASE_PATH.exists(),
+            "mat_exists": SEED_IV_MAT_PATH.exists()
+        }
     }
 
 @app.get("/api/dataset-info", response_model=DatasetInfo)
@@ -587,10 +607,14 @@ if __name__ == "__main__":
     
     print("🧠 Starting EEG Emotion Recognition API Server")
     print("=" * 60)
-    print(f"SEED-IV Base Path: {SEED_IV_BASE_PATH}")
-    print(f"SEED-IV Mat Path: {SEED_IV_MAT_PATH}")
+    print("🧠 EEG Backend Configuration")
+    print("=" * 30)
+    print(f"CSV Path: {SEED_IV_BASE_PATH}")
+    print(f"MAT Path: {SEED_IV_MAT_PATH}")
+    print(f"CSV Path exists: {SEED_IV_BASE_PATH.exists()}")
+    print(f"MAT Path exists: {SEED_IV_MAT_PATH.exists()}")
     print("API will be available at: http://localhost:8000")
     print("API docs available at: http://localhost:8000/docs")
     print()
     
-    uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

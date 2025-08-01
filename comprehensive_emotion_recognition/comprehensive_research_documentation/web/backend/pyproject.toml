@@ -4,46 +4,17 @@ version = "0.1.0"
 description = "FastAPI backend for EEG Emotion Recognition Dashboard - processes SEED-IV .mat files"
 readme = "README.md"
 requires-python = ">=3.8"
-authors = [
-    {name = "EEG Research Team", email = "research@example.com"}
-]
-keywords = ["eeg", "emotion-recognition", "fastapi", "seed-iv", "brain-computer-interface"]
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Framework :: FastAPI",
-    "Intended Audience :: Science/Research",
-    "Topic :: Scientific/Engineering :: Medical Science Apps.",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-]
 dependencies = [
-    "fastapi>=0.104.1",
-    "uvicorn[standard]>=0.24.0",
-    "pydantic>=2.5.0",
-    "numpy>=1.24.3",
+    "fastapi==0.104.1",
+    "uvicorn[standard]==0.24.0",
+    "pydantic==2.5.0",
+    "numpy>=1.26.0,<2.2.0",
     "pandas>=2.0.3",
     "scipy>=1.11.4",
     "python-multipart>=0.0.6",
 ]
 
-[project.urls]
-Homepage = "https://github.com/ScienHAC/eeg-seed-IV"
-Repository = "https://github.com/ScienHAC/eeg-seed-IV"
-Documentation = "https://github.com/ScienHAC/eeg-seed-IV/blob/master/README.md"
-
-[project.scripts]
-eeg-backend = "main:app"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
-[tool.uv]
-dev-dependencies = [
-    "pytest>=7.0.0",
-    "httpx>=0.24.0",  # For testing FastAPI endpoints
+[dependency-groups]
+dev = [
+    "requests>=2.32.4",
 ]
