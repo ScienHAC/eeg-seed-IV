@@ -17,8 +17,14 @@ export const metadata: Metadata = {
   description: "Interactive research platform showcasing breakthrough EEG-based emotion recognition with 97.7% accuracy on SEED-IV dataset. Complete analysis, models, and documentation.",
   keywords: ["EEG", "emotion recognition", "machine learning", "SEED-IV", "brain-computer interface", "neuroscience"],
   authors: [{ name: "EEG Research Team" }],
-  viewport: "width=device-width, initial-scale=1",
 };
+
+export function generateViewport() {
+  return {
+    width: 'device-width',
+    initialScale: 1,
+  }
+}
 
 export default function RootLayout({
   children,

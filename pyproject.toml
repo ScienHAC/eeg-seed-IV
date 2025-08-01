@@ -24,3 +24,8 @@ dependencies = [
     "xgboost>=3.0.2",
     "lightgbm>=4.6.0",
 ]
+
+[tool.uv.workspace]
+members = [
+    "comprehensive_emotion_recognition/comprehensive_research_documentation/web/backend",
+]

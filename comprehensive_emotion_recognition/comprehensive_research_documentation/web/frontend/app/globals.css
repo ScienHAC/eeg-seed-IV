@@ -1,48 +1,45 @@
 @import "tailwindcss";
 
-:root {
-  --background: #f8fafc;
-  --foreground: #171717;
-  --neural-50: #f0f9ff;
-  --neural-100: #e0f2fe;
-  --neural-500: #0ea5e9;
-  --neural-600: #0284c7;
-  --neural-700: #0369a1;
-  --emotion-neutral: #64748b;
-  --emotion-sad: #3b82f6;
-  --emotion-fear: #ef4444;
-  --emotion-happy: #22c55e;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   
-  /* Custom colors for EEG research */
-  --color-neural-50: var(--neural-50);
-  --color-neural-100: var(--neural-100);
-  --color-neural-500: var(--neural-500);
-  --color-neural-600: var(--neural-600);
-  --color-neural-700: var(--neural-700);
+  --color-background: white;
+  --color-foreground: rgb(15 23 42);
+  --color-muted: rgb(248 250 252);
+  --color-muted-foreground: rgb(100 116 139);
+  --color-popover: white;
+  --color-popover-foreground: rgb(15 23 42);
+  --color-card: white;
+  --color-card-foreground: rgb(15 23 42);
+  --color-border: rgb(226 232 240);
+  --color-input: rgb(226 232 240);
+  --color-primary: rgb(79 70 229);
+  --color-primary-foreground: white;
+  --color-secondary: rgb(241 245 249);
+  --color-secondary-foreground: rgb(15 23 42);
+  --color-accent: rgb(241 245 249);
+  --color-accent-foreground: rgb(15 23 42);
+  --color-destructive: rgb(239 68 68);
+  --color-destructive-foreground: white;
+  --color-ring: rgb(79 70 229);
   
-  --color-emotion-neutral: var(--emotion-neutral);
-  --color-emotion-sad: var(--emotion-sad);
-  --color-emotion-fear: var(--emotion-fear);
-  --color-emotion-happy: var(--emotion-happy);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f1f5f9;
-  }
+  /* Custom colors for EEG research */
+  --color-neural-50: rgb(240 249 255);
+  --color-neural-100: rgb(224 242 254);
+  --color-neural-500: rgb(14 165 233);
+  --color-neural-600: rgb(2 132 199);
+  --color-neural-700: rgb(3 105 161);
+  
+  --color-emotion-neutral: rgb(100 116 139);
+  --color-emotion-sad: rgb(59 130 246);
+  --color-emotion-fear: rgb(239 68 68);
+  --color-emotion-happy: rgb(34 197 94);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: rgb(248 250 252);
+  color: rgb(15 23 42);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
 
