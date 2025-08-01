@@ -66,9 +66,9 @@ export default function EEGResearchDashboard() {
     { id: 3, name: 'Happy', color: '#22c55e', icon: '😊' }
   ]
 
-  // Mock data - Replace with actual .mat file loading
+  // Load initial data - try real data first, fallback to consistent mock data
   useEffect(() => {
-    loadMockData()
+    loadMatFile() // Try to load real data first
     loadModelResults()
   }, [])
 
@@ -86,26 +86,35 @@ export default function EEGResearchDashboard() {
   }, [selectedSubject, selectedSession, selectedTrial, selectedFrequencyBand])
 
   const loadMockData = () => {
-    // Simulate loading .mat file data
+    // Create CONSISTENT mock data that doesn't change between reloads
+    // Use seeded random based on current selections to ensure consistency
+    const seed = selectedSubject * 1000 + selectedSession * 100 + selectedTrial
+    const seededRandom = (seed: number) => {
+      const x = Math.sin(seed) * 10000
+      return x - Math.floor(x)
+    }
+    
     const mockData: EEGData[] = []
     for (let i = 0; i < 100; i++) {
+      const baseSeed = seed + i
       mockData.push({
-        subject: Math.floor(Math.random() * 15) + 1,
-        session: Math.floor(Math.random() * 3) + 1,
-        trial: Math.floor(Math.random() * 24) + 1,
-        emotion: Math.floor(Math.random() * 4),
+        subject: selectedSubject, // Use actual selected values
+        session: selectedSession,
+        trial: selectedTrial,
+        emotion: Math.floor(seededRandom(baseSeed) * 4), // Consistent emotion
         timestamp: i,
-        features: Array.from({length: 310}, () => Math.random() * 10 - 5),
+        features: Array.from({length: 310}, (_, j) => (seededRandom(baseSeed + j) - 0.5) * 10), // Consistent features
         frequency_bands: {
-          delta: Array.from({length: 62}, () => Math.random() * 2),
-          theta: Array.from({length: 62}, () => Math.random() * 3),
-          alpha: Array.from({length: 62}, () => Math.random() * 4),
-          beta: Array.from({length: 62}, () => Math.random() * 5),
-          gamma: Array.from({length: 62}, () => Math.random() * 2)
+          delta: Array.from({length: 62}, (_, j) => seededRandom(baseSeed + j + 1000) * 2),
+          theta: Array.from({length: 62}, (_, j) => seededRandom(baseSeed + j + 2000) * 3),
+          alpha: Array.from({length: 62}, (_, j) => seededRandom(baseSeed + j + 3000) * 4),
+          beta: Array.from({length: 62}, (_, j) => seededRandom(baseSeed + j + 4000) * 5),
+          gamma: Array.from({length: 62}, (_, j) => seededRandom(baseSeed + j + 5000) * 2)
         }
       })
     }
     setEEGData(mockData)
+    console.log(`📊 Loaded consistent mock data for Subject ${selectedSubject}, Session ${selectedSession}, Trial ${selectedTrial}`)
   }
 
   const loadModelResults = async () => {
@@ -180,22 +189,25 @@ export default function EEGResearchDashboard() {
       const result = await response.json()
       
       if (result.success) {
-        // Convert backend data to frontend format
-        const backendData = result.data.map((point: any, index: number) => ({
-          subject: point.subject,
-          session: point.session,
-          trial: point.trial,
-          emotion: EMOTIONS.find(e => e.name === point.emotion)?.id || 0,
-          timestamp: point.timestamp,
-          features: [point.value], // Single feature value from backend
-          frequency_bands: {
-            delta: [point.value * Math.random()],
-            theta: [point.value * Math.random()],
-            alpha: [point.value * Math.random()],
-            beta: [point.value * Math.random()],
-            gamma: [point.value * Math.random()]
+        // Convert backend data to frontend format - USE REAL MATLAB DATA!
+        const backendData = result.data.map((point: any, index: number) => {
+          return {
+            subject: point.subject,
+            session: point.session,
+            trial: point.trial,
+            emotion: EMOTIONS.find(e => e.name === point.emotion)?.id || 0,
+            timestamp: point.timestamp,
+            features: [point.value], // Real feature value from MATLAB
+            frequency_bands: {
+              // Use REAL frequency band data from MATLAB files
+              delta: point.frequency_bands?.delta ? [point.frequency_bands.delta] : [point.value * 0.5],
+              theta: point.frequency_bands?.theta ? [point.frequency_bands.theta] : [point.value * 0.7], 
+              alpha: point.frequency_bands?.alpha ? [point.frequency_bands.alpha] : [point.value * 0.9],
+              beta: point.frequency_bands?.beta ? [point.frequency_bands.beta] : [point.value * 1.1],
+              gamma: point.frequency_bands?.gamma ? [point.frequency_bands.gamma] : [point.value * 0.6]
+            }
           }
-        }))
+        })
         
         setEEGData(backendData)
         console.log(`✅ Loaded real data: ${result.metadata.n_samples} samples from ${result.metadata.data_source}`)
@@ -245,13 +257,17 @@ export default function EEGResearchDashboard() {
     emotion: EMOTIONS[data.emotion].name
   }))
 
-  const frequencyBandData = FREQUENCY_BANDS.slice(1).map(band => {
+  const frequencyBandData = FREQUENCY_BANDS.slice(1).map((band, index) => {
     const bandKey = band.name as keyof typeof filteredData[0]['frequency_bands']
+    
+    // Create consistent fallback value instead of Math.random()
+    const consistentFallback = (selectedSubject * 10 + selectedSession * 5 + selectedTrial + index * 15) % 80 + 20
+    
     return {
       band: band.label,
       power: filteredData.length > 0 && filteredData[0].frequency_bands[bandKey]
         ? filteredData[0].frequency_bands[bandKey].reduce((a: number, b: number) => a + b, 0)
-        : Math.random() * 100,
+        : consistentFallback, // Consistent value instead of random
       fill: band.color
     }
   })
@@ -536,25 +552,56 @@ export default function EEGResearchDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <div className="grid grid-cols-4 gap-2 text-center">
-                      <div></div>
-                      {EMOTIONS.map(emotion => (
-                        <div key={emotion.id} className="text-sm font-medium">
-                          {emotion.icon} {emotion.name}
-                        </div>
-                      ))}
-                      {modelResults?.confusion_matrix.map((row, i) => (
-                        <React.Fragment key={i}>
-                          <div className="text-sm font-medium text-right pr-2">
-                            {EMOTIONS[i].icon} {EMOTIONS[i].name}
+                    <div className="overflow-x-auto">
+                      <div className="grid grid-cols-5 gap-1 text-center min-w-max">
+                        {/* Header row */}
+                        <div className="p-2"></div>
+                        {EMOTIONS.map(emotion => (
+                          <div key={emotion.id} className="p-2 text-xs font-medium bg-slate-50 rounded">
+                            <div>{emotion.icon}</div>
+                            <div className="mt-1">{emotion.name}</div>
                           </div>
-                          {row.map((cell, j) => (
-                            <div key={j} className={`p-2 text-center rounded ${i === j ? 'bg-green-100 text-green-800' : 'bg-slate-100'}`}>
-                              {cell}
+                        ))}
+                        
+                        {/* Data rows */}
+                        {modelResults?.confusion_matrix.map((row, i) => (
+                          <React.Fragment key={i}>
+                            <div className="p-2 text-xs font-medium bg-slate-50 rounded flex items-center justify-end">
+                              <div className="text-right">
+                                <div>{EMOTIONS[i].icon}</div>
+                                <div className="mt-1">{EMOTIONS[i].name}</div>
+                              </div>
                             </div>
-                          ))}
-                        </React.Fragment>
-                      ))}
+                            {row.map((cell, j) => (
+                              <div key={j} className={`p-2 text-sm font-semibold text-center rounded flex items-center justify-center min-h-[60px] ${
+                                i === j 
+                                  ? 'bg-green-100 text-green-800 border-2 border-green-300' 
+                                  : cell > 0 
+                                    ? 'bg-red-50 text-red-600' 
+                                    : 'bg-slate-100 text-slate-600'
+                              }`}>
+                                {cell}
+                              </div>
+                            ))}
+                          </React.Fragment>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Legend */}
+                    <div className="flex flex-wrap gap-4 text-xs text-slate-600 justify-center pt-2 border-t">
+                      <div className="flex items-center space-x-1">
+                        <div className="w-3 h-3 bg-green-100 border border-green-300 rounded"></div>
+                        <span>Correct Predictions</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <div className="w-3 h-3 bg-red-50 border border-red-200 rounded"></div>
+                        <span>Misclassifications</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <div className="w-3 h-3 bg-slate-100 border border-slate-200 rounded"></div>
+                        <span>Perfect Classification</span>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
