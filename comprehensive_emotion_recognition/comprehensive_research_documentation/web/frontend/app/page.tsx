@@ -215,6 +215,13 @@ export default function EEGResearchDashboard() {
       console.error('Error loading .mat file from backend:', error)
       console.log('🔄 Falling back to mock data...')
       
+      // Show error toast
+      toast({
+        title: "Backend Unavailable",
+        description: "Falling back to mock data. Please ensure the backend server is running.",
+        variant: "destructive",
+      })
+      
       // Fallback to mock data if backend is not available
       loadMockData()
     } finally {
