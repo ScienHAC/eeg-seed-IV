@@ -1,8 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f8fafc;
   --foreground: #171717;
+  --neural-50: #f0f9ff;
+  --neural-100: #e0f2fe;
+  --neural-500: #0ea5e9;
+  --neural-600: #0284c7;
+  --neural-700: #0369a1;
+  --emotion-neutral: #64748b;
+  --emotion-sad: #3b82f6;
+  --emotion-fear: #ef4444;
+  --emotion-happy: #22c55e;
 }
 
 @theme inline {
@@ -10,17 +19,141 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Custom colors for EEG research */
+  --color-neural-50: var(--neural-50);
+  --color-neural-100: var(--neural-100);
+  --color-neural-500: var(--neural-500);
+  --color-neural-600: var(--neural-600);
+  --color-neural-700: var(--neural-700);
+  
+  --color-emotion-neutral: var(--emotion-neutral);
+  --color-emotion-sad: var(--emotion-sad);
+  --color-emotion-fear: var(--emotion-fear);
+  --color-emotion-happy: var(--emotion-happy);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #f1f5f9;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neural-500);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neural-600);
+}
+
+/* Research card styles */
+.research-card {
+  @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200;
+}
+
+/* Navigation styles */
+.nav-link {
+  @apply px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200;
+}
+
+.nav-link:hover {
+  background-color: var(--neural-50);
+  color: var(--neural-700);
+}
+
+.nav-link.active {
+  background-color: var(--neural-100);
+  color: var(--neural-700);
+  font-weight: 600;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: var(--neural-600);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: var(--neural-700);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Emotion badges */
+.emotion-badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.emotion-badge-neutral {
+  background-color: color-mix(in srgb, var(--emotion-neutral) 20%, white);
+  color: var(--emotion-neutral);
+}
+
+.emotion-badge-sad {
+  background-color: color-mix(in srgb, var(--emotion-sad) 20%, white);
+  color: var(--emotion-sad);
+}
+
+.emotion-badge-fear {
+  background-color: color-mix(in srgb, var(--emotion-fear) 20%, white);
+  color: var(--emotion-fear);
+}
+
+.emotion-badge-happy {
+  background-color: color-mix(in srgb, var(--emotion-happy) 20%, white);
+  color: var(--emotion-happy);
+}
+
+/* Animation classes */
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
+}
+
+/* Progress bar */
+.stage-progress-bar {
+  position: relative;
+  width: 100%;
+  background-color: #e2e8f0;
+  border-radius: 9999px;
+  height: 0.75rem;
+}
+
+.stage-progress-fill {
+  height: 0.75rem;
+  background: linear-gradient(to right, var(--neural-500), var(--neural-600));
+  border-radius: 9999px;
+  transition: all 0.7s ease-out;
 }

@@ -1,0 +1,214 @@
+{
+  "name": "Multi-Domain Feature Engineering",
+  "description": "Advanced feature extraction across spatial, temporal, frequency, and connectivity domains",
+  "originalFeatures": 310,
+  "optimizedFeatures": 60,
+  "retentionRate": 19.4,
+  "processingTime": "~2.5 hours",
+  "improvementPercent": 20.1,
+  "domains": [
+    {
+      "name": "Spatial Domain",
+      "description": "Features related to spatial distribution of brain activity",
+      "features": [
+        {
+          "name": "Channel Connectivity",
+          "method": "Pearson correlation between channels",
+          "importance": 0.24,
+          "description": "Measures synchronization between different brain regions"
+        },
+        {
+          "name": "Regional Power",
+          "method": "Power distribution across brain regions",
+          "importance": 0.18,
+          "description": "Quantifies activation strength in specific brain areas"
+        },
+        {
+          "name": "Hemispheric Asymmetry",
+          "method": "Left-right brain activation differences",
+          "importance": 0.18,
+          "description": "Captures bilateral brain processing differences"
+        },
+        {
+          "name": "Topographical Maps",
+          "method": "Spatial activation patterns",
+          "importance": 0.15,
+          "description": "Overall spatial distribution of neural activity"
+        }
+      ]
+    },
+    {
+      "name": "Temporal Domain", 
+      "description": "Time-based characteristics of EEG signals",
+      "features": [
+        {
+          "name": "Statistical Moments",
+          "method": "Mean, variance, skewness, kurtosis",
+          "importance": 0.11,
+          "description": "Basic statistical properties of signal distribution"
+        },
+        {
+          "name": "Hjorth Parameters",
+          "method": "Activity, mobility, complexity",
+          "importance": 0.13,
+          "description": "Time-domain complexity measures"
+        },
+        {
+          "name": "Fractal Dimension",
+          "method": "Signal complexity measures",
+          "importance": 0.09,
+          "description": "Quantifies signal irregularity and complexity"
+        },
+        {
+          "name": "Entropy Measures",
+          "method": "Sample entropy, permutation entropy",
+          "importance": 0.11,
+          "description": "Information-theoretic complexity measures"
+        }
+      ]
+    },
+    {
+      "name": "Frequency Domain",
+      "description": "Spectral characteristics across frequency bands",
+      "features": [
+        {
+          "name": "Band Power Ratios",
+          "method": "Alpha/beta, theta/alpha ratios",
+          "importance": 0.15,
+          "description": "Relative power between frequency bands"
+        },
+        {
+          "name": "Peak Frequency",
+          "method": "Dominant frequency per band",
+          "importance": 0.12,
+          "description": "Most prominent frequency in each band"
+        },
+        {
+          "name": "Spectral Centroid",
+          "method": "Frequency distribution center",
+          "importance": 0.10,
+          "description": "Center of mass of the power spectrum"
+        },
+        {
+          "name": "Spectral Roll-off",
+          "method": "95% energy frequency point",
+          "importance": 0.08,
+          "description": "Frequency below which 95% of energy is contained"
+        }
+      ]
+    },
+    {
+      "name": "Connectivity Domain",
+      "description": "Inter-channel connectivity and synchronization",
+      "features": [
+        {
+          "name": "Phase Locking Value",
+          "method": "Inter-channel synchronization",
+          "importance": 0.24,
+          "description": "Measures phase synchrony between channels"
+        },
+        {
+          "name": "Coherence",
+          "method": "Frequency-specific connectivity",
+          "importance": 0.19,
+          "description": "Linear relationship between channels in frequency domain"
+        },
+        {
+          "name": "Cross-correlation",
+          "method": "Time-domain connectivity",
+          "importance": 0.14,
+          "description": "Temporal relationship between channel pairs"
+        },
+        {
+          "name": "Graph Theory Metrics",
+          "method": "Clustering coefficient, path length",
+          "importance": 0.16,
+          "description": "Network properties of brain connectivity"
+        }
+      ]
+    }
+  ],
+  "featureSelection": {
+    "method": "Sequential Feature Selection (SFS)",
+    "algorithm": "Forward Selection",
+    "estimator": "Random Forest (n_estimators=100)",
+    "scoring": "5-fold Cross-Validation Accuracy",
+    "stoppingCriterion": "No improvement for 10 consecutive features",
+    "results": {
+      "originalAccuracy": 77.64,
+      "optimizedAccuracy": 97.70,
+      "improvement": 20.06,
+      "processingTime": 9300
+    }
+  },
+  "topFeatureCategories": [
+    {
+      "category": "Gamma Band Features",
+      "percentage": 32,
+      "description": "High cognitive processing markers",
+      "significance": "Critical for complex emotional processing"
+    },
+    {
+      "category": "Frontal Region Connectivity",
+      "percentage": 24,
+      "description": "Emotional processing centers",
+      "significance": "Key area for emotion regulation and recognition"
+    },
+    {
+      "category": "Asymmetry Features",
+      "percentage": 18,
+      "description": "Hemispheric differences",
+      "significance": "Left-right brain emotional processing differences"
+    },
+    {
+      "category": "Beta Band Ratios",
+      "percentage": 15,
+      "description": "Attention and anxiety markers",
+      "significance": "Indicates arousal and attention states"
+    },
+    {
+      "category": "Temporal Complexity",
+      "percentage": 11,
+      "description": "Signal variability measures",
+      "significance": "Captures dynamic aspects of emotional states"
+    }
+  ],
+  "preprocessingPipeline": [
+    {
+      "step": 1,
+      "name": "MATLAB to CSV Conversion",
+      "description": "Convert .mat files using scipy.io",
+      "details": "Extract trial data for each subject/session"
+    },
+    {
+      "step": 2,
+      "name": "Temporal Averaging",
+      "description": "Average across time points",
+      "details": "Reduce from variable time points to single feature vector"
+    },
+    {
+      "step": 3,
+      "name": "Normalization",
+      "description": "Z-score normalization per feature",
+      "details": "Standardize features to zero mean and unit variance"
+    },
+    {
+      "step": 4,
+      "name": "Missing Value Handling",
+      "description": "Forward-fill method",
+      "details": "Handle any missing values through interpolation"
+    },
+    {
+      "step": 5,
+      "name": "Outlier Detection",
+      "description": "IQR-based outlier removal (±3σ)",
+      "details": "Remove extreme outliers that could bias the model"
+    },
+    {
+      "step": 6,
+      "name": "Feature Scaling",
+      "description": "StandardScaler for ML algorithms",
+      "details": "Final scaling for machine learning compatibility"
+    }
+  ]
+}
