@@ -1,18 +1,22 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
+import { Brain, Database, Zap, Bot, TrendingUp, FileText, Menu } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 const Navbar = () => {
-  const router = useRouter();
+  const pathname = usePathname();
   
   const navItems = [
-    { href: '/', label: 'Home', icon: '🏠' },
-    { href: '/dataset', label: 'Dataset', icon: '📊' },
-    { href: '/features', label: 'Features', icon: '🔬' },
-    { href: '/models', label: 'Models', icon: '🤖' },
-    { href: '/results', label: 'Results', icon: '📈' },
-    { href: '/documentation', label: 'Docs', icon: '📚' },
-    { href: '/code', label: 'Code', icon: '💻' },
+    { href: '/', label: 'Home', icon: Brain },
+    { href: '/dataset', label: 'Dataset', icon: Database },
+    { href: '/features', label: 'Features', icon: Zap },
+    { href: '/models', label: 'Models', icon: Bot },
+    { href: '/results', label: 'Results', icon: TrendingUp },
+    { href: '/documentation', label: 'Docs', icon: FileText },
   ];
 
   return (
