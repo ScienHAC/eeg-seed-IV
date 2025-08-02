@@ -2033,3 +2033,4 @@ Emotion Distribution:
 2025-08-02 16:28:29,207 - models.stage6_transformer - INFO - Training EEG_ViT_Base...
 2025-08-02 17:03:53,107 - models.stage6_transformer - INFO - Epoch [30/200], Loss: 0.1113, Val Acc: 0.8134, LR: 0.00003000
 2025-08-02 17:38:13,161 - models.stage6_transformer - INFO - Epoch [60/200], Loss: 0.0702, Val Acc: 0.8982, LR: 0.00001500
+2025-08-02 18:13:06,782 - models.stage6_transformer - INFO - Epoch [90/200], Loss: 0.0572, Val Acc: 0.9152, LR: 0.00000750
