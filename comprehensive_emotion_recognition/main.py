@@ -59,11 +59,10 @@ try:
     from data_processing.seed_iv_loader import SeedIVLoader
     from models.stage1_traditional import TraditionalBaseline
     from models.stage2_enhanced import EnhancedFeaturesModel
-    # Placeholders for future stages
-    # from models.stage3_advanced import AdvancedMLModel
-    # from models.stage4_deeplearning import DeepLearningModel
-    # from models.stage5_attention import AttentionModel
-    # from models.stage6_transformer import TransformerModel
+    from models.stage3_advanced import AdvancedMLModel
+    from models.stage4_deeplearning import DeepLearningModel
+    from models.stage5_attention import AdvancedDeepLearningModel
+    from models.stage6_transformer import StateOfArtModel
 except ImportError as e:
     logger.error(f"Import error: {e}")
     logger.error("Make sure all required modules are in the correct directories")
@@ -257,44 +256,32 @@ class ComprehensiveEmotionRecognition:
                 )
                 
             elif stage_num == 3:
-                # Placeholder for Stage 3: Advanced ML (XGBoost/LightGBM)
-                logger.warning("WARNING: Stage 3 (Advanced ML) not implemented yet")
-                result = {
-                    'error': 'Stage 3 implementation pending',
-                    'placeholder': True,
-                    'expected_accuracy': 0.825,
-                    'methods': ['XGBoost', 'LightGBM', 'CatBoost']
-                }
+                model = AdvancedMLModel(self.config.stage3)
+                result = model.run_complete_pipeline(
+                    data_config=self.config.data,
+                    save_results=True
+                )
                 
             elif stage_num == 4:
-                # Placeholder for Stage 4: Deep Learning Foundation
-                logger.warning("WARNING: Stage 4 (Deep Learning) not implemented yet")
-                result = {
-                    'error': 'Stage 4 implementation pending',
-                    'placeholder': True,
-                    'expected_accuracy': 0.865,
-                    'methods': ['CNN', 'LSTM', 'CNN-LSTM']
-                }
+                model = DeepLearningModel(self.config.stage4)
+                result = model.run_complete_pipeline(
+                    data_config=self.config.data,
+                    save_results=True
+                )
                 
             elif stage_num == 5:
-                # Placeholder for Stage 5: Advanced Deep Learning
-                logger.warning("WARNING: Stage 5 (Attention Models) not implemented yet")
-                result = {
-                    'error': 'Stage 5 implementation pending',
-                    'placeholder': True,
-                    'expected_accuracy': 0.90,
-                    'methods': ['Multi-head Attention', 'Temporal Attention']
-                }
+                model = AdvancedDeepLearningModel(self.config.stage5)
+                result = model.run_complete_pipeline(
+                    data_config=self.config.data,
+                    save_results=True
+                )
                 
             elif stage_num == 6:
-                # Placeholder for Stage 6: State-of-Art
-                logger.warning("WARNING: Stage 6 (Vision Transformer) not implemented yet")
-                result = {
-                    'error': 'Stage 6 implementation pending',
-                    'placeholder': True,
-                    'expected_accuracy': 0.94,
-                    'methods': ['Vision Transformer', 'EEG Transformer']
-                }
+                model = StateOfArtModel(self.config.stage6)
+                result = model.run_complete_pipeline(
+                    data_config=self.config.data,
+                    save_results=True
+                )
             
             else:
                 error_msg = f"Stage {stage_num} not implemented"
@@ -319,8 +306,8 @@ class ComprehensiveEmotionRecognition:
                 status = "ACHIEVED" if target_achieved else "NOT ACHIEVED"
                 logger.info(f"Target accuracy {status}: {result['accuracy']:.1%} vs {stage_info['target_accuracy']:.1%}")
             
-            # Save checkpoint for successful stages (only stages 1-2 for now)
-            if stage_num <= 2 and 'error' not in result and model is not None:
+            # Save checkpoint for successful stages (all stages now implemented)
+            if 'error' not in result and model is not None:
                 self.save_checkpoint(stage_num, model, result)
             
             logger.info(f"Stage {stage_num} completed in {execution_time:.1f} seconds")
@@ -565,14 +552,44 @@ def main():
         print("  → No checkpoints found, running all stages from scratch")
     print()
     
-    # Run all stages (currently only 1-2 are implemented)
+    # Run all stages (all stages 1-6 now implemented!)
     print("Starting comprehensive experiment...")
-    print("Note: Stages 3-6 are placeholders for next iteration")
-    print("Expected completion time: ~45-60 minutes (balanced natural sampling)")
+    print("🚀 ALL STAGES NOW IMPLEMENTED:")
+    print("   Stage 1: Traditional Baseline (SVM) - Target 75%")
+    print("   Stage 2: Enhanced Features (Random Forest) - Target 80%") 
+    print("   Stage 3: Advanced ML (XGBoost/LightGBM/CatBoost) - Target 85%")
+    print("   Stage 4: Deep Learning (CNN/LSTM/Hybrid) - Target 88%")
+    print("   Stage 5: Advanced DL (Attention/Transformer) - Target 92%")
+    print("   Stage 6: State-of-Art (Vision Transformer/Ensemble) - Target 96%")
+    print("Expected completion time: ~2-4 hours (all 6 stages)")
     print()
     
-    # Run currently implemented stages
-    results = system.run_all_stages(stages=[1, 2], force_run=False)
+    # Ask user which stages to run
+    print("🔧 STAGE SELECTION:")
+    print("   1. Run all stages (1-6) - Full pipeline")
+    print("   2. Run specific stages - Custom selection")
+    print("   3. Run only new stages (3-6) - Skip existing checkpoints")
+    
+    try:
+        choice = input("Select option (1, 2, or 3, default=3): ").strip()
+        if choice == '1':
+            stages_to_run = [1, 2, 3, 4, 5, 6]
+            print("📊 Running complete 6-stage pipeline")
+        elif choice == '2':
+            stages_input = input("Enter stages to run (e.g., 3,4,5,6): ").strip()
+            stages_to_run = [int(s.strip()) for s in stages_input.split(',') if s.strip().isdigit()]
+            print(f"📊 Running stages: {stages_to_run}")
+        else:
+            stages_to_run = [3, 4, 5, 6]  # Default to new stages
+            print("📊 Running new stages: 3, 4, 5, 6")
+    except (EOFError, KeyboardInterrupt, ValueError):
+        stages_to_run = [3, 4, 5, 6]  # Default
+        print("📊 Using default: Running new stages 3, 4, 5, 6")
+    
+    print()
+    
+    # Run selected stages
+    results = system.run_all_stages(stages=stages_to_run, force_run=False)
     
     if results:
         print("\nExperiment completed!")

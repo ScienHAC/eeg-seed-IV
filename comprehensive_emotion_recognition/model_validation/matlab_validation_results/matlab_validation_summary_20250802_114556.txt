@@ -1,0 +1,26 @@
+MATLAB-Based EEG Emotion Recognition Validation Report
+============================================================
+
+Generated: 20250802_114556
+Data Source: Original MATLAB .mat files
+Test Subjects: [13, 14, 15]
+Total Samples: 216
+Features: 310
+
+MODEL PERFORMANCE:
+------------------------------
+Stage 1 SVM:
+  Training Accuracy: 77.6%
+  Test Accuracy: 25.9%
+  Generalization Gap: 51.7%
+
+Stage 2 Random Forest:
+  Training Accuracy: 97.7%
+  Test Accuracy: 28.2%
+  Generalization Gap: 69.5%
+
+PER-SUBJECT PERFORMANCE:
+------------------------------
+Subject 13: Stage1= 25.0%, Stage2= 26.4% (n=72)
+Subject 14: Stage1= 27.8%, Stage2= 34.7% (n=72)
+Subject 15: Stage1= 25.0%, Stage2= 23.6% (n=72)

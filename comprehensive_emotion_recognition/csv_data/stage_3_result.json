@@ -1,0 +1,76 @@
+{
+  "stage_num": 3,
+  "stage_name": "Advanced ML",
+  "target_accuracy": 0.85,
+  "model_type": "Ensemble",
+  "accuracy": 0.28263473053892213,
+  "f1_score": 0.20790999798665177,
+  "cv_mean": 0.8419161676646707,
+  "cv_std": 0.009378457639401197,
+  "processing_time": 107.6919310092926,
+  "n_features_selected": 310,
+  "subjects": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "model_results": {
+    "XGBoost": {
+      "model": "XGBClassifier(base_score=None, booster=None, callbacks=None,\n              colsample_bylevel=None, colsample_bynode=None,\n              colsample_bytree=0.7, device=None, early_stopping_rounds=None,\n              enable_categorical=False, eval_metric='mlogloss',\n              feature_types=None, feature_weights=None, gamma=None,\n              grow_policy=None, importance_type=None,\n              interaction_constraints=None, learning_rate=0.1, max_bin=None,\n              max_cat_threshold=None, max_cat_to_onehot=None,\n              max_delta_step=None, max_depth=3, max_leaves=None,\n              min_child_weight=None, missing=nan, monotone_constraints=None,\n              multi_strategy=None, n_estimators=100, n_jobs=-1,\n              num_parallel_tree=None, ...)",
+      "cv_mean": 0.9157684630738523,
+      "cv_std": 0.0085526088964585,
+      "test_accuracy": 0.27285429141716566,
+      "test_f1": 0.20956125328006875,
+      "training_time": 2.647151231765747,
+      "predictions": "[3 3 3 ... 2 2 2]",
+      "prediction_probabilities": "[[0.12056672 0.04825943 0.1992829  0.63189095]\n [0.12056672 0.04825943 0.1992829  0.63189095]\n [0.12056672 0.04825943 0.1992829  0.63189095]\n ...\n [0.06871632 0.12141745 0.4781814  0.33168483]\n [0.06871632 0.12141745 0.4781814  0.33168483]\n [0.06893456 0.11862712 0.47970006 0.33273822]]"
+    },
+    "LightGBM": {
+      "model": "LGBMClassifier(colsample_bytree=0.7, max_depth=3, min_child_samples=50,\n               n_jobs=-1, random_state=42, reg_alpha=1.0, reg_lambda=2.0,\n               subsample=0.7, verbose=-1)",
+      "cv_mean": 0.9255489021956087,
+      "cv_std": 0.004577782411648581,
+      "test_accuracy": 0.26407185628742513,
+      "test_f1": 0.17350704657500937,
+      "training_time": 1.9547836780548096,
+      "predictions": "[3 3 3 ... 2 2 2]",
+      "prediction_probabilities": "[[0.05351689 0.05742806 0.14703896 0.7420161 ]\n [0.05351689 0.05742806 0.14703896 0.7420161 ]\n [0.05351689 0.05742806 0.14703896 0.7420161 ]\n ...\n [0.00649862 0.03506744 0.53990523 0.41852871]\n [0.00649862 0.03506744 0.53990523 0.41852871]\n [0.00649862 0.03506744 0.53990523 0.41852871]]"
+    },
+    "RandomForest_Optimized": {
+      "model": "RandomForestClassifier(class_weight='balanced', max_depth=5,\n                       min_samples_leaf=20, min_samples_split=50,\n                       n_estimators=50, n_jobs=-1, random_state=42)",
+      "cv_mean": 0.7992015968063872,
+      "cv_std": 0.015948091301747052,
+      "test_accuracy": 0.24810379241516967,
+      "test_f1": 0.1844989602469912,
+      "training_time": 1.5884270668029785,
+      "predictions": "[3 3 3 ... 3 3 3]",
+      "prediction_probabilities": "[[0.30768539 0.08605502 0.21229163 0.39396796]\n [0.30768539 0.08605502 0.21229163 0.39396796]\n [0.30768539 0.08605502 0.21229163 0.39396796]\n ...\n [0.26064387 0.1326869  0.22582397 0.38084526]\n [0.2453979  0.13284363 0.24862338 0.37313509]\n [0.2453979  0.13284363 0.24862338 0.37313509]]"
+    },
+    "ExtraTrees": {
+      "model": "ExtraTreesClassifier(bootstrap=True, class_weight='balanced', max_depth=5,\n                     min_samples_leaf=20, min_samples_split=50, n_estimators=50,\n                     n_jobs=-1, random_state=42)",
+      "cv_mean": 0.7271457085828342,
+      "cv_std": 0.008435347947750655,
+      "test_accuracy": 0.255688622754491,
+      "test_f1": 0.17452065059682959,
+      "training_time": 0.4839823246002197,
+      "predictions": "[3 3 3 ... 3 3 3]",
+      "prediction_probabilities": "[[0.27798832 0.18570226 0.17590916 0.36040026]\n [0.27798832 0.18570226 0.17590916 0.36040026]\n [0.27798832 0.18570226 0.17590916 0.36040026]\n ...\n [0.23143985 0.15153029 0.20851682 0.40851304]\n [0.23143985 0.15153029 0.20851682 0.40851304]\n [0.23143985 0.15153029 0.20851682 0.40851304]]"
+    },
+    "Ensemble": {
+      "model": "VotingClassifier(estimators=[('XGBoost',\n                              XGBClassifier(base_score=None, booster=None,\n                                            callbacks=None,\n                                            colsample_bylevel=None,\n                                            colsample_bynode=None,\n                                            colsample_bytree=0.7, device=None,\n                                            early_stopping_rounds=None,\n                                            enable_categorical=False,\n                                            eval_metric='mlogloss',\n                                            feature_types=None,\n                                            feature_weights=None, gamma=None,\n                                            grow_policy=None,\n                                            importance_type=None,\n                                            interactio...\n                             ('RandomForest_Optimized',\n                              RandomForestClassifier(class_weight='balanced',\n                                                     max_depth=5,\n                                                     min_samples_leaf=20,\n                                                     min_samples_split=50,\n                                                     n_estimators=50, n_jobs=-1,\n                                                     random_state=42)),\n                             ('ExtraTrees',\n                              ExtraTreesClassifier(bootstrap=True,\n                                                   class_weight='balanced',\n                                                   max_depth=5,\n                                                   min_samples_leaf=20,\n                                                   min_samples_split=50,\n                                                   n_estimators=50, n_jobs=-1,\n                                                   random_state=42))],\n                 voting='soft')",
+      "test_accuracy": 0.28263473053892213,
+      "test_f1": 0.20790999798665177,
+      "predictions": "[3 3 3 ... 3 3 3]",
+      "cv_mean": 0.8419161676646707,
+      "cv_std": 0.009378457639401197
+    }
+  },
+  "data_shape": {
+    "train_samples": 5010,
+    "test_samples": 5010,
+    "n_features": 310
+  },
+  "target_achieved": false,
+  "execution_time": 107.70693159103394,
+  "timestamp": "2025-08-02T13:49:59.977842"
+}

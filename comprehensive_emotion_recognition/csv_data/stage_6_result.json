@@ -1,0 +1,10 @@
+{
+  "stage_num": 6,
+  "stage_name": "State-of-the-Art",
+  "error": "Found array with 0 sample(s) (shape=(0, 310)) while a minimum of 1 is required by StandardScaler.",
+  "processing_time": 0.6561410427093506,
+  "target_accuracy": 0.96,
+  "accuracy": 0.0,
+  "execution_time": 0.6581411361694336,
+  "timestamp": "2025-08-02T12:19:14.623233"
+}

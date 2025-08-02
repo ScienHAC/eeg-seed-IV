@@ -2,17 +2,27 @@
 COMPREHENSIVE EMOTION RECOGNITION REPORT
 ================================================================================
 Dataset: SEED-IV
-Total subjects: 4
-Execution time: 2025-07-30 14:47:24
+Total subjects: 0
+Execution time: 2025-08-02 12:19:14
 
 STAGE PROGRESSION SUMMARY:
 --------------------------------------------------
-Stage 1: Support Vector Machine
-  - Accuracy: 77.64%
-  - F1-Score: 77.47%
-  - Processing time: 30.7s
+Stage 3: Unknown
+  - Accuracy: 0.00%
+  - F1-Score: 0.00%
+  - Processing time: 0.9s
 
-Stage 2: Random Forest with Enhanced Features
-  - Accuracy: 97.70%
-  - F1-Score: 97.71%
-  - Processing time: 1678.8s
+Stage 4: Unknown
+  - Accuracy: 0.00%
+  - F1-Score: 0.00%
+  - Processing time: 0.7s
+
+Stage 5: Unknown
+  - Accuracy: 0.00%
+  - F1-Score: 0.00%
+  - Processing time: 0.7s
+
+Stage 6: Unknown
+  - Accuracy: 0.00%
+  - F1-Score: 0.00%
+  - Processing time: 0.7s
